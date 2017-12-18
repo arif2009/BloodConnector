@@ -1,0 +1,3 @@
+rootProject.name = 'BloodConnector'
+
+include ':app'

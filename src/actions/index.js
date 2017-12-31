@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {
-	EMAIL_CHANGED, PASSWORD_CHANGED
+	EMAIL_CHANGED, PASSWORD_CHANGED, 
+	LOGIN_USER_SUCCESS, LOGIN_USER_FAIL
 } from './types';
 
 export const emailChanged = (text) => {
@@ -23,8 +24,18 @@ export const loginUser = ({email, password}) => {
 		const header = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } };
 
 		axios.post('http://www.bloodconnector.org/token', data, header)
-		.then(response => {
-			dispatch({ type:'LOGIN_USER_SUCCESS', payload: response.data});
-		});
+		.then(tokenInfo => loginUserSuccess(dispatch, tokenInfo))
+		.catch(() => loginUserFail(dispatch));
 	};
+};
+
+const loginUserFail = (dispatch) => {
+	dispatch({ type: LOGIN_USER_FAIL})
+};
+
+const loginUserSuccess = (dispatch, tokenInfo) => {
+	dispatch({
+		type: LOGIN_USER_SUCCESS, 
+		payload: tokenInfo
+	});
 };

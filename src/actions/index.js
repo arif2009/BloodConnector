@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Actions } from 'react-native-router-flux';
 import {
 	EMAIL_CHANGED, PASSWORD_CHANGED, 
 	LOGIN_USER_SUCCESS, LOGIN_USER_FAIL,
@@ -34,7 +35,7 @@ export const loginUser = ({email, password}) => {
 };
 
 const loginUserFail = (dispatch) => {
-	dispatch({ type: LOGIN_USER_FAIL})
+	dispatch({ type: LOGIN_USER_FAIL});
 };
 
 const loginUserSuccess = (dispatch, tokenInfo) => {
@@ -42,4 +43,6 @@ const loginUserSuccess = (dispatch, tokenInfo) => {
 		type: LOGIN_USER_SUCCESS, 
 		payload: tokenInfo
 	});
+
+	Actions.userList();
 };

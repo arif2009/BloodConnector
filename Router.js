@@ -6,10 +6,17 @@ import UserList from './src/components/UserList';
 const RouterComponent = () => {
     return(
         <Router>
-            <Stack key="root">
-                <Scene key="login" component={LoginForm} title="Please Login" />
-                <Scene key="userList" component={UserList} title="NUMBER OF DONOR : XX" />
-            </Stack>
+            <Scene key="root">
+                <Scene key="login" component={LoginForm} title="Please Login" titleStyle={{ alignSelf: 'center' }} initial />
+
+                    <Scene 
+                        onRight={() => console.log('right!!!')}
+                        rightTitle="Add"
+                        key="userList" 
+                        component={UserList} 
+                        title="NUMBER OF DONOR : XX" 
+                        titleStyle={{ alignSelf: 'center' }} />
+            </Scene>
         </Router>
     );
 };

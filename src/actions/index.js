@@ -44,5 +44,5 @@ const loginUserSuccess = (dispatch, tokenInfo) => {
 		payload: tokenInfo
 	});
 
-	Actions.userList();
+	Actions.main();
 };

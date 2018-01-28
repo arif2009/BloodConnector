@@ -18,7 +18,7 @@ const RouterComponent = () => {
                     <Scene 
                         onRight={() => Actions.userCreate()}
                         hideNavBar={false}
-                        rightTitle="Add"
+                        rightTitle="Join"
                         key="userList" 
                         component={UserList} 
                         title="NUMBER OF DONOR : XX" 

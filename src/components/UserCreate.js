@@ -7,9 +7,9 @@ import { Card, CardSection, Button, Input } from './common';
 
 class UserCreate extends Component {
   onButtonPress() {
-    const { name, phone, shift } = this.props;
+    const { name, phone, sex } = this.props;
 
-    this.props.userCreate({ name, phone, shift: shift || 'Male' });
+    this.props.userCreate({ name, phone, sex: sex || '1' });
   }
 
   render() {

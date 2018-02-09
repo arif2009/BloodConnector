@@ -14,7 +14,10 @@ export const userUpdate = ({ prop, value }) => {
 };
 
 export const userCreate = ({ name, phone, sex }) => {
-  console.log(name, phone, sex);
+  return () => {
+    console.log(name, phone, sex);
+  };
+  
   /*const { currentUser } = firebase.auth();
 
   return (dispatch) => {

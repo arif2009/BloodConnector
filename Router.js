@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 import { Scene, Stack, Router, Actions } from 'react-native-router-flux';
+import Home from './src/components/Home';
 import LoginForm from './src/components/LoginForm';
 import UserList from './src/components/UserList';
 import UserCreate from './src/components/UserCreate';
@@ -11,7 +12,8 @@ const RouterComponent = () => {
             <Scene key="root">
 
                 <Scene key="auth" hideNavBar={true}>
-                    <Scene key="login" hideNavBar={false} component={LoginForm} title="Please Login" titleStyle={{ alignSelf: 'center' }} initial />
+                    <Scene key="home" hideNavBar={false} component={Home} title="Blood Connector" titleStyle={{ alignSelf: 'center' }} initial />
+                    <Scene key="login" hideNavBar={false} component={LoginForm} title="Please Login" titleStyle={{ alignSelf: 'center' }} />
                 </Scene>
 
                 <Scene key="main" hideNavBar={true}>

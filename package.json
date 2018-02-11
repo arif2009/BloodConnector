@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "axios": "^0.17.1",
+    "native-base": "^2.3.8",
     "react": "16.0.0",
     "react-native": "0.51.0",
     "react-native-drawer": "^2.5.0",

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View, Text, Image, TouchableOpacity} from 'react-native';
+import {View, Text, Image, TouchableOpacity, DrawerLayoutAndroid} from 'react-native';
 import { Drawer } from 'native-base';
 import { Scene, Stack, Router, Actions } from 'react-native-router-flux';
 import Home from './src/components/Home';
@@ -9,26 +9,27 @@ import UserCreate from './src/components/UserCreate';
 import LeftSidebar from './src/components/LeftSidebar';
 
 export default class RouterComponent extends Component {
-    closeDrawer() {
-        this.drawer._root.close()
-      };
-      openDrawer() {
-        this.drawer._root.open()
-      };
 
     render(){
+
+        var navigationView = (
+            <View style={{flex: 1, backgroundColor: '#fff'}}>
+              <Text style={{margin: 10, fontSize: 15, textAlign: 'left'}}>I'm in the Drawer!</Text>
+            </View>
+          );
+
         return(
-            <Drawer
-                type="static"
-                content={<LeftSidebar navigator={this._navigator} />}
-                onClose={() => this.closeDrawer()}
-                ref={ (ref) => this.drawer = ref}>
+            <DrawerLayoutAndroid
+                drawerWidth={300}
+                drawerPosition={DrawerLayoutAndroid.positions.Left}
+                renderNavigationView={() => navigationView}>
                 <Router>
                     <Scene key="root">
                         <Scene key="home" hideNavBar={false} component={Home} title="Blood Connector" titleStyle={{ alignSelf: 'center' }} initial />
                     </Scene>
                 </Router>
-            </Drawer>
+
+            </DrawerLayoutAndroid>
     /*         <Router>
                 <Scene key="root">
     

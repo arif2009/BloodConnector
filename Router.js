@@ -6,32 +6,16 @@ import Home from './src/components/Home';
 import LoginForm from './src/components/LoginForm';
 import UserList from './src/components/UserList';
 import UserCreate from './src/components/UserCreate';
-import LeftSidebar from './src/components/LeftSidebar';
+import SideMenu from './src/components/SideMenu';
 
 export default class RouterComponent extends Component {
 
     render(){
 
-        var navigationView = (
-            <View style={{flex: 1, backgroundColor: '#fff'}}>
-              <Text style={{margin: 10, fontSize: 15, textAlign: 'left'}}>I'm in the Drawer!</Text>
-            </View>
-          );
-
         return(
-            <DrawerLayoutAndroid
-                drawerWidth={300}
-                drawerPosition={DrawerLayoutAndroid.positions.Left}
-                renderNavigationView={() => navigationView}>
-                <Router>
-                    <Scene key="root">
-                        <Scene key="home" hideNavBar={false} component={Home} title="Blood Connector" titleStyle={{ alignSelf: 'center' }} initial />
-                    </Scene>
-                </Router>
-
-            </DrawerLayoutAndroid>
-    /*         <Router>
-                <Scene key="root">
+            /*
+             <Router>
+                <Scene key="root" drawer={true}>
     
                     <Scene key="auth" hideNavBar={true}>
                         <Scene key="home" hideNavBar={false} component={Home} title="Blood Connector" titleStyle={{ alignSelf: 'center' }} initial />
@@ -51,7 +35,36 @@ export default class RouterComponent extends Component {
                         <Scene key="userCreate" hideNavBar={false} component={UserCreate} title="Create User" titleStyle={{ alignSelf: 'center' }} />
                     </Scene>
                 </Scene>
-            </Router> */
+            </Router>*/
+
+            <Router>
+            <Scene overlay>
+                <Scene key="lightbox" lightbox leftButtonTextStyle={{ color: 'green' }} backButtonTextStyle={{ color: 'red' }} initial>
+                    <Scene key="modal" modal hideNavBar>
+                        <Scene key="drawer" drawer contentComponent={SideMenu}>
+                            <Scene key="main" >
+                                <Scene
+                                    key="home"
+                                    component={Home}
+                                    title="Home"
+                                    initial
+                                />
+                                <Scene
+                                    key="profile"
+                                    component={LoginForm}
+                                    title="Profile"
+                                />
+                                <Scene
+                                    key="settings"
+                                    component={UserCreate}
+                                    title="Settings"
+                                />
+                            </Scene>
+                        </Scene>
+                    </Scene>
+                </Scene>
+            </Scene>
+        </Router>
         );
     }
 }

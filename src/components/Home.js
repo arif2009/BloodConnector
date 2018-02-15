@@ -1,19 +1,48 @@
-import React, {Component} from 'react';
-import {View, Text} from 'react-native';
+import React, { Component } from 'react';
+import { Text } from 'react-native';
+import { connect } from 'react-redux';
+//import { emailChanged, passwordChanged, loginUser } from '../actions';
+import { loadBloodGroups } from '../actions';
+import { Card, CardSection, Input, Button, Spinner } from './common';
 
 class Home extends Component {
-    render(){
-        return(
-            <View>
-                <Text>A</Text>
-                <Text>B</Text>
-                <Text>V</Text>
-                <Text>D</Text>
-                <Text>E</Text>
-                <Text>R</Text>
-            </View>
-        );
-    }
+
+	renderGroups() {
+		if(this.props.loading){
+			return <Spinner size="large" />
+		}
+
+        //this.props.loginUser({email, password});
+        this.props.loadBloodGroups();
+	}
+
+	render() {
+		return (
+			<Card>
+				<Text style={styles.errorTextStyle}>
+					{ this.props.error }
+				</Text>
+
+				<CardSection>
+					{this.renderGroups()}
+				</CardSection>
+			</Card>
+		);
+	}
 }
 
-export default Home;
+const styles = {
+	errorTextStyle: {
+		fontSize: 20,
+		alignSelf: 'center',
+		color: 'red'
+	}
+};
+
+const mapStateToProps = ({ auth }) => {
+	const { email, password, error, loading } = auth;
+
+	return { email, password, error, loading };
+};
+
+export default connect(mapStateToProps, { loadBloodGroups })(Home);

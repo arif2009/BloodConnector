@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
 import { Text } from 'react-native';
 import { connect } from 'react-redux';
-//import { emailChanged, passwordChanged, loginUser } from '../actions';
 import { loadBloodGroups } from '../actions';
 import { Card, CardSection, Input, Button, Spinner } from './common';
 
 class Home extends Component {
 
+	constructor(props){
+		super(props);
+		
+		this.props.loadBloodGroups();
+	}
+
 	renderGroups() {
 		if(this.props.loading){
 			return <Spinner size="large" />
 		}
-
-        //this.props.loginUser({email, password});
-        this.props.loadBloodGroups();
 	}
 
 	render() {
@@ -39,10 +41,10 @@ const styles = {
 	}
 };
 
-const mapStateToProps = ({ auth }) => {
-	const { email, password, error, loading } = auth;
+const mapStateToProps = ({ blood }) => {
+	const { error, loading } = blood;
 
-	return { email, password, error, loading };
+	return { error, loading };
 };
 
 export default connect(mapStateToProps, { loadBloodGroups })(Home);

@@ -13,31 +13,7 @@ export default class RouterComponent extends Component {
     render(){
 
         return(
-            /*
-             <Router>
-                <Scene key="root" drawer={true}>
-    
-                    <Scene key="auth" hideNavBar={true}>
-                        <Scene key="home" hideNavBar={false} component={Home} title="Blood Connector" titleStyle={{ alignSelf: 'center' }} initial />
-                        <Scene key="login" hideNavBar={false} component={LoginForm} title="Please Login" titleStyle={{ alignSelf: 'center' }} />
-                    </Scene>
-    
-                    <Scene key="main" hideNavBar={true}>
-                        <Scene 
-                            onRight={() => Actions.userCreate()}
-                            hideNavBar={false}
-                            rightTitle="Join"
-                            key="userList" 
-                            component={UserList} 
-                            title="NUMBER OF DONOR : XX" 
-                            titleStyle={{ alignSelf: 'center' }} initial />
-    
-                        <Scene key="userCreate" hideNavBar={false} component={UserCreate} title="Create User" titleStyle={{ alignSelf: 'center' }} />
-                    </Scene>
-                </Scene>
-            </Router>*/
-
-            <Router>
+        <Router>
             <Scene overlay>
                 <Scene key="lightbox" lightbox leftButtonTextStyle={{ color: 'green' }} backButtonTextStyle={{ color: 'red' }} initial>
                     <Scene key="modal" modal hideNavBar>
@@ -58,6 +34,12 @@ export default class RouterComponent extends Component {
                                     component={UserList} 
                                     title="NUMBER OF DONOR : XX" 
                                     titleStyle={{ alignSelf: 'center' }}
+                                />
+
+                                <Scene key="login"
+                                    component={LoginForm} 
+                                    title="Please Login" 
+                                    titleStyle={{ alignSelf: 'center' }} 
                                 />
 
                                 <Scene 

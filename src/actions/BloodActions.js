@@ -29,6 +29,5 @@ const loadingSuccess = (dispatch, response) => {
 		type: LOADING_BLOOD_SUCCESS, 
 		payload: response
 	});
-	console.log(response);
 	//Actions.main();
 };

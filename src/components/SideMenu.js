@@ -52,7 +52,7 @@ class SideMenu extends Component {
           <Button
             containerStyle={styles.container}
             style={styles.name}
-            onPress={() => { Actions.profile(); }}
+            onPress={() => { Actions.login(); }}
           >User Name</Button>
         </CardSection>
         <CardSection style={{ flexDirection: 'column' }}>

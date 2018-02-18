@@ -5,10 +5,17 @@ Blood Connector is a real time online database of blood donors. Anyone can find 
 
 # Technologies
 
-* [React 16.0.0](https://reactjs.org/)
-* [React Native 0.50.4](https://facebook.github.io/react-native/)
-* ["axios 0.17.1" For Promise based HTTP client](https://github.com/axios/axios)
-* ["React Native Restart" To Restart(JS part) React Native Project](https://github.com/avishayil/react-native-restart)
+* [React 16.2.0](https://reactjs.org/)
+* [React Native 0.53.0](https://facebook.github.io/react-native/)
+* ["axios 0.17.1" For promise based HTTP client](https://github.com/axios/axios)
+* ["lodash 4.17.5" For JavaScript utility](https://lodash.com/)
+* ["native-base 2.3.8" For design stuff](https://nativebase.io/)
+* ["prop-types 15.6.0" For runtime type checking](https://www.npmjs.com/package/prop-types)
+* ["react-native-communications 2.2.1" For call, email, text or iMessage](https://github.com/anarchicknight/react-native-communications)
+* ["react-native-router-flux 4.0.0-beta.27" For routing](https://www.npmjs.com/package/react-native-router-flux)
+* ["redux 3.7.2" For state container](https://redux.js.org/)
+* ["react-redux 5.0.6" To connect with action and state](https://github.com/reactjs/react-redux)
+* ["redux-thunk 2.2.0" For action creators](https://www.npmjs.com/package/redux-thunk)
 
 # Installation
 
@@ -16,17 +23,17 @@ Cloning the repository:
 
 ```bash
 # HTTPS clone URL
-$ git clone https://github.com/arif2009/Auth.git
+$ git clone https://github.com/arif2009/BloodConnector.git
 
 # SSH clone URL
-$ git clone git@github.com:arif2009/Auth.git
+$ git@github.com:arif2009/BloodConnector.git
 ```
 
 You need to have [Git](https://git-scm.com/), [Node.js](https://nodejs.org/en/) and [Python 2 (Not mandatory)](https://www.python.org/) installed on your machine before running the followings:
 
 ```bash
 
-$ cd /path/to/Auth
+$ cd /path/to/BloodConnector
 $ yarn
 OR
 $ npm i --do-not-make-me-cry

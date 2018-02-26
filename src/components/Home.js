@@ -8,6 +8,7 @@ import {
 import We from '../utills/we';
 import { loadBloodGroups } from '../actions';
 import ListItem from './ListItem';
+var styles = require('./styles');
 
 class Home extends Component {
 
@@ -56,7 +57,7 @@ class Home extends Component {
 		return (
 			<Container>
 				<Content>
-				<Text>
+				<Text style={[styles.bgColor, styles.wd]}>
 					This is Content Section
 				</Text>
 				</Content>

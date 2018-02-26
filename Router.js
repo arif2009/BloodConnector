@@ -17,7 +17,8 @@ export default class RouterComponent extends Component {
             <Scene overlay>
                 <Scene key="lightbox" lightbox leftButtonTextStyle={{ color: 'green' }} backButtonTextStyle={{ color: 'red' }} initial>
                     <Scene key="modal" modal hideNavBar>
-                        <Scene key="drawer" drawer contentComponent={SideMenu}>
+                        <Scene key="drawer" drawer contentComponent={SideMenu}
+                            drawerImage={require('./src/images/hamburger-48.png')}>
                             <Scene key="main">
                                 <Scene 
                                     key="home" 

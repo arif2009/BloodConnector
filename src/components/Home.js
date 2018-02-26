@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { Text, ListView, View } from 'react-native';
 import { connect } from 'react-redux';
+import { 
+	Container, Header, Title, Content, Footer, 
+	FooterTab, Button, Left, Right, Body, Icon, Spinner 
+} from 'native-base';
+import We from '../utills/we';
 import { loadBloodGroups } from '../actions';
-import { Card, CardSection, Input, Button, Spinner } from './common';
 import ListItem from './ListItem';
 
 class Home extends Component {
@@ -34,7 +38,7 @@ class Home extends Component {
 
 	renderGroups() {
 		if(this.props.loading){
-			return <Spinner size="large" />
+			return <Spinner />
 		}
 
 		if(this.props.loaded){
@@ -50,9 +54,21 @@ class Home extends Component {
 
 	render() {
 		return (
-			<View>
-				{this.renderGroups()}
-			</View>
+			<Container>
+				<Content>
+				<Text>
+					This is Content Section
+				</Text>
+				</Content>
+
+				<Footer>
+				<FooterTab>
+					<Button full>
+						<Text>© {We.currentYear} - BloodConnector {We.version}</Text>
+					</Button>
+				</FooterTab>
+				</Footer>
+			</Container>
 		);
 	}
 }

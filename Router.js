@@ -7,23 +7,25 @@ import LoginForm from './src/components/LoginForm';
 import UserList from './src/components/UserList';
 import UserCreate from './src/components/UserCreate';
 import SideMenu from './src/components/SideMenu';
+var styles = require('./src/components/styles');
 
 export default class RouterComponent extends Component {
 
     render(){
 
         return(
-        <Router>
+        <Router navigationBarStyle={styles.nabBg} titleStyle={styles.txtColor}>
             <Scene overlay>
                 <Scene key="lightbox" lightbox leftButtonTextStyle={{ color: 'green' }} backButtonTextStyle={{ color: 'red' }} initial>
                     <Scene key="modal" modal hideNavBar>
-                        <Scene key="drawer" drawer contentComponent={SideMenu}>
+                        <Scene key="drawer" drawer contentComponent={SideMenu}
+                            drawerImage={require('./src/images/hamburger-48.png')}>
                             <Scene key="main">
                                 <Scene 
                                     key="home" 
                                     component={Home} 
                                     title="Blood Connector" 
-                                    titleStyle={{ alignSelf: 'center' }} 
+                                    titleStyle={styles.sceneTitle} 
                                     initial
                                 />
 

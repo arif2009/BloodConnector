@@ -55,19 +55,19 @@ class Home extends Component {
 
 	render() {
 		return (
-			<Container>
+			<Container style={styles.bgColor}>
 				<Content>
-				<Text style={[styles.bgColor, styles.wd]}>
+				<Text>
 					This is Content Section
 				</Text>
 				</Content>
 
 				<Footer>
-				<FooterTab>
-					<Button full>
-						<Text>© {We.currentYear} - BloodConnector {We.version}</Text>
-					</Button>
-				</FooterTab>
+					<FooterTab style={styles.footerBg}>
+						<Button full>
+							<Text>© {We.currentYear} - BloodConnector {We.version}</Text>
+						</Button>
+					</FooterTab>
 				</Footer>
 			</Container>
 		);

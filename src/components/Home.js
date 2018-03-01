@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, ListView, View } from 'react-native';
+import { Text, ListView, View, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import { 
 	Container, Header, Title, Content, Footer, 
@@ -56,6 +56,7 @@ class Home extends Component {
 	render() {
 		return (
 			<Container style={styles.bgColor}>
+				<StatusBar backgroundColor="#ff8080" barStyle="light-content" />
 				<Content>
 					{this.renderGroups()}
 				</Content>

@@ -15,6 +15,11 @@ module.exports = StyleSheet.create({
     txtColor: {
         color: '#fff'
     },
+    budgetTxt: {
+        color: '#fff',
+        fontSize: 18,
+        fontWeight: 'bold'
+    },
     sceneTitle: {
         alignSelf: 'center',
         color: '#fff'

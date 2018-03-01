@@ -39,7 +39,7 @@ class Home extends Component {
 
 	renderGroups() {
 		if(this.props.loading){
-			return <Spinner />
+			return <Spinner color='blue' />
 		}
 
 		if(this.props.loaded){
@@ -57,9 +57,7 @@ class Home extends Component {
 		return (
 			<Container style={styles.bgColor}>
 				<Content>
-				<Text>
-					This is Content Section
-				</Text>
+					{this.renderGroups()}
 				</Content>
 
 				<Footer>

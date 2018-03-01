@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Text, TouchableWithoutFeedback, View } from 'react-native';
+import { H1, H2, H3, Badge } from 'native-base';
 import { Actions } from 'react-native-router-flux';
-import { CardSection } from './common';
+import { CardSection, Card } from './common';
+var styles = require('./styles');
 
 class ListItem extends Component {
   /*onRowPress() {
@@ -12,22 +14,13 @@ class ListItem extends Component {
     const { groupSymbole, numberOfGroupUser } = this.props.group;
     return (
       <TouchableWithoutFeedback>
-        <View>
-          <CardSection>
-            <Text style={styles.titleStyle}> { groupSymbole }</Text>
-            <Text style={styles.titleStyle}> { numberOfGroupUser }</Text>
+          <CardSection style={{justifyContent: 'space-around', paddingTop: 10, paddingBottom: 10, backgroundColor:'#fff', borderColor: '#ffcccc'}}>
+            <H2> { groupSymbole } </H2>
+            <Badge primary><Text style={styles.budgetTxt}> { numberOfGroupUser } </Text></Badge>
           </CardSection>
-        </View>
       </TouchableWithoutFeedback>
     );
   }
 }
-
-const styles = {
-  titleStyle: {
-    fontSize: 18,
-    paddingLeft: 15
-  }
-};
 
 export default ListItem;

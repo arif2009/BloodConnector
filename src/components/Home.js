@@ -8,6 +8,8 @@ import {
 import We from '../utills/we';
 import { loadBloodGroups } from '../actions';
 import ListItem from './ListItem';
+import { CardSection } from './common';
+import { H1, H2, H3, Badge } from 'native-base';
 var styles = require('./styles');
 
 class Home extends Component {
@@ -45,12 +47,21 @@ class Home extends Component {
 		if(this.props.loaded){
 			return <ListView enableEmptySections
 				dataSource={this.dataSource}
-				renderRow={this.renderRow} />
+				renderRow={this.renderRow}
+				renderHeader={this.renderHeader} />
 		}
 	}
 
 	renderRow(group) {
 		return <ListItem group={group} />;
+	}
+
+	renderHeader() {
+		return (
+			<CardSection style={{justifyContent: 'space-around', paddingTop: 10, paddingBottom: 10, backgroundColor:'#fff', borderColor: '#ffcccc'}}>
+				<H2> NUMBER OF DONOR : 24</H2>
+			</CardSection>
+		);
 	}
 
 	render() {

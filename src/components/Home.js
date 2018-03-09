@@ -13,12 +13,12 @@ import { H1, H2, H3, Badge } from 'native-base';
 var styles = require('./styles');
 
 class Home extends Component {
-
+	
 	componentWillMount(){
 		this.props.loadBloodGroups();
 
 		if(this.props.bloodInfo){
-			this.createDataSource(this.props.bloodInfo.groups);
+			this.createDataSource(this.props.bloodInfo.groups, this.props.bloodInfo.totalNumberOfUser);
 		}
 		
 	}
@@ -28,15 +28,16 @@ class Home extends Component {
 		// will be rendered with
 		// this.props is still the old set of props
 		if(nextProps.bloodInfo){
-			this.createDataSource(nextProps.bloodInfo.groups);
+			this.createDataSource(nextProps.bloodInfo.groups, nextProps.bloodInfo.totalNumberOfUser);
 		}
 	  }
 
-	createDataSource(bloodGroups) {
+	createDataSource(bloodGroups, totalUser) {
 		const ds = new ListView.DataSource({
 		  rowHasChanged: (r1, r2) => r1 !== r2
 		});
 		this.dataSource = ds.cloneWithRows(bloodGroups);
+		this.dataSource.totalNumberOfUser = totalUser;
 	}
 
 	renderGroups() {
@@ -59,7 +60,7 @@ class Home extends Component {
 	renderHeader() {
 		return (
 			<CardSection style={{justifyContent: 'space-around', paddingTop: 10, paddingBottom: 10, backgroundColor:'#fff', borderColor: '#ffcccc'}}>
-				<H2> NUMBER OF DONOR : 24</H2>
+				<H2> NUMBER OF DONOR : { this.dataSource.totalNumberOfUser }</H2>
 			</CardSection>
 		);
 	}

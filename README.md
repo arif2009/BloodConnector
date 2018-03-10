@@ -16,6 +16,8 @@ Blood Connector is a real time online database of blood donors. Anyone can find 
 * ["redux 3.7.2" For state container](https://redux.js.org/)
 * ["react-redux 5.0.6" To connect with action and state](https://github.com/reactjs/react-redux)
 * ["redux-thunk 2.2.0" For action creators](https://www.npmjs.com/package/redux-thunk)
+* ["react-native-easy-grid 0.1.17" For grid layout](https://github.com/GeekyAnts/react-native-easy-grid.git)
+* ["react-native-fontawesome 5.7.0" For Icons](https://github.com/entria/react-native-fontawesome.git)
 
 # Installation
 

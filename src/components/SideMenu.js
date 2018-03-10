@@ -32,19 +32,19 @@ class SideMenu extends Component {
 
         <CardSection style={styles.drawerBtnContainer}>
           <Button style={styles.drawerBtnTxt} onPress={() => { Actions.home(); }}>
-            <FontAwesome style={styles.drawerIconFont}>{Icons.home}</FontAwesome> Home Page
+            <FontAwesome style={styles.drawerIcon}>{Icons.home}</FontAwesome> Home Page
           </Button>
         </CardSection>
 
         <CardSection style={styles.drawerBtnContainer}>
           <Button style={styles.drawerBtnTxt} onPress={() => { Actions.login(); }}>
-            <FontAwesome style={styles.drawerIconFont}>{Icons.signIn}</FontAwesome> Log In
+            <FontAwesome style={styles.drawerIcon}>{Icons.signIn}</FontAwesome> Log In
           </Button>
         </CardSection>
 
         <CardSection style={[styles.drawerBtnContainer, {borderBottomWidth: 0}]}>
           <Button style={styles.drawerBtnTxt} onPress={() => { Actions.about(); }}>
-            <FontAwesome style={styles.drawerIconFont}>{Icons.infoCircle}</FontAwesome> About
+            <FontAwesome style={styles.drawerIcon}>{Icons.infoCircle}</FontAwesome> About
           </Button>
         </CardSection>
       </View>

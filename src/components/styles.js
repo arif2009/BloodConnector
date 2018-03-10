@@ -6,9 +6,6 @@ module.exports = StyleSheet.create({
     bgColor: {
         backgroundColor: '#ffcccc'
     },
-    footerBg: {
-        backgroundColor: '#ff8080'
-    },
     nabBg: {
         backgroundColor: '#ff0000'
     },
@@ -18,8 +15,15 @@ module.exports = StyleSheet.create({
     txtBlue:{
         color: '#0000ff'
     },
+    borderBottom0:{
+        borderBottomWidth:0
+    },
     selfAlignCenter:{
         alignSelf: 'center'
+    },
+    footerBg: {
+        backgroundColor: '#ff8080',
+        justifyContent:'center'
     },
     budgetTxt: {
         color: '#fff',
@@ -57,7 +61,12 @@ module.exports = StyleSheet.create({
         fontSize: 18,
         color: '#555',
     },
-    drawerIconFont:{
+    drawerIcon:{
         fontSize: 22
     },
+    errorTextStyle: {
+		fontSize: 20,
+		alignSelf: 'center',
+		color: '#ff0000'
+	}
 });

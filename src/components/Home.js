@@ -75,9 +75,7 @@ class Home extends Component {
 
 				<Footer>
 					<FooterTab style={styles.footerBg}>
-						<Button full>
-							<Text>© {We.currentYear} - BloodConnector {We.version}</Text>
-						</Button>
+						<Text style={styles.selfAlignCenter}>© 2017-{We.twoLetterYear} - BloodConnector {We.version}</Text>
 					</FooterTab>
 				</Footer>
 			</Container>

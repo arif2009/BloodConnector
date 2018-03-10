@@ -38,20 +38,21 @@ export default class RouterComponent extends Component {
                                     key="userList" 
                                     component={UserList} 
                                     title="NUMBER OF DONOR : XX" 
-                                    titleStyle={{ alignSelf: 'center' }}
+                                    titleStyle={styles.sceneTitle}
                                 />
 
-                                <Scene key="login"
+                                <Scene 
+                                    key="login"
                                     component={LoginForm} 
                                     title="Please Login" 
-                                    titleStyle={{ alignSelf: 'center' }} 
+                                    titleStyle={styles.sceneTitle} 
                                 />
 
                                 <Scene 
                                     key="userCreate"
                                     component={UserCreate} 
                                     title="Create User" 
-                                    titleStyle={{ alignSelf: 'center' }} 
+                                    titleStyle={styles.sceneTitle} 
                                 />
                             </Scene>
                         </Scene>

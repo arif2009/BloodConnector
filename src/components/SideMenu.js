@@ -4,7 +4,10 @@ import { StyleSheet, Text, View, ViewPropTypes } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import Button from 'react-native-button';
+import { H1, H2, H3, Badge } from 'native-base';
+import FontAwesome, { Icons } from 'react-native-fontawesome';
 import { CardSection } from './common';
+var styles = require('./styles');
 
 const contextTypes = {
   drawer: PropTypes.object,
@@ -16,63 +19,33 @@ const propTypes = {
   title: PropTypes.string,
 };
 
-const styles = StyleSheet.create({
-  viewContainer: {
-    flex: 1,
-    backgroundColor: '#fff'
-  },
-  container: {
-    padding: 15,
-    height: 45,
-    overflow: 'hidden',
-    alignSelf: 'flex-start',
-  },
-  textStyle: {
-    fontSize: 18,
-    color: '#555',
-  },
-  nameContainer: {
-    padding: 15,
-    height: 45,
-    overflow: 'hidden',
-    alignSelf: 'flex-start',
-  },
-  name: {
-    fontSize: 22,
-    color: '#555',
-    fontWeight: '400',
-  }
-});
-
 class SideMenu extends Component {
   render() {
     return (
-      <View style={[styles.viewContainer, this.props.sceneStyle]}>
-        <CardSection style={{ flexDirection: 'column', padding: 30 }}>
-          <Button
-            containerStyle={styles.container}
-            style={styles.name}
-            onPress={() => { Actions.login(); }}
-          >User Name</Button>
+      <View style={[styles.drawerContainer, this.props.sceneStyle]}>
+
+        <View style={styles.drawerHeader}>
+          <Text style={[styles.txtBolder,styles.selfAlignCenter]}>Arifur Rahman</Text>
+          <H1 style={[styles.selfAlignCenter, styles.txtBlue]}>B+</H1>
+          <Text style={[styles.txtBolder,styles.selfAlignCenter]}>Similar Blood : <H2 style={styles.txtBlue}>10</H2></Text>
+        </View>
+
+        <CardSection style={styles.drawerBtnContainer}>
+          <Button style={styles.drawerBtnTxt} onPress={() => { Actions.home(); }}>
+            <FontAwesome style={styles.drawerIconFont}>{Icons.home}</FontAwesome> Home Page
+          </Button>
         </CardSection>
-        <CardSection style={{ flexDirection: 'column' }}>
-          <Button
-            containerStyle={styles.container}
-            style={styles.textStyle}
-            onPress={() => { Actions.home(); }}
-          >Home Page</Button>
+
+        <CardSection style={styles.drawerBtnContainer}>
+          <Button style={styles.drawerBtnTxt} onPress={() => { Actions.login(); }}>
+            <FontAwesome style={styles.drawerIconFont}>{Icons.signIn}</FontAwesome> Log In
+          </Button>
         </CardSection>
-        <CardSection style={{ flexDirection: 'column', borderBottomWidth: 0, }}>
-          <Button
-            containerStyle={styles.container}
-            style={styles.textStyle}
-            onPress={() => Actions.settings()}
-          >Settings</Button>
-          <Button
-            containerStyle={styles.container}
-            style={styles.textStyle}
-            onPress={() => Actions.auth()}
-          >Log Out</Button>
+
+        <CardSection style={[styles.drawerBtnContainer, {borderBottomWidth: 0}]}>
+          <Button style={styles.drawerBtnTxt} onPress={() => { Actions.about(); }}>
+            <FontAwesome style={styles.drawerIconFont}>{Icons.infoCircle}</FontAwesome> About
+          </Button>
         </CardSection>
       </View>
     );

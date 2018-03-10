@@ -15,6 +15,12 @@ module.exports = StyleSheet.create({
     txtColor: {
         color: '#fff'
     },
+    txtBlue:{
+        color: '#0000ff'
+    },
+    selfAlignCenter:{
+        alignSelf: 'center'
+    },
     budgetTxt: {
         color: '#fff',
         fontSize: 18,
@@ -31,5 +37,27 @@ module.exports = StyleSheet.create({
     txtBolder: {
         fontSize: 18,
         fontWeight: 'bold'
-    }
+    },
+    drawerContainer: {
+        flex: 1,
+        backgroundColor: '#ffcccc'
+    },
+    drawerHeader: {
+        borderBottomWidth: 1,
+        flexDirection: 'column',
+        marginTop: 5,
+        paddingBottom: 5
+    },
+    drawerBtnContainer:{
+        paddingLeft:15, 
+        paddingTop:10, 
+        paddingBottom:10
+    },
+    drawerBtnTxt: {
+        fontSize: 18,
+        color: '#555',
+    },
+    drawerIconFont:{
+        fontSize: 22
+    },
 });

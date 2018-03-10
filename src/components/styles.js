@@ -27,5 +27,9 @@ module.exports = StyleSheet.create({
     txtMedium: {
         fontSize: 16,
 		fontWeight: '600'
+    },
+    txtBolder: {
+        fontSize: 18,
+        fontWeight: 'bold'
     }
 });

@@ -24,7 +24,10 @@ export default class RouterComponent extends Component {
                                 <Scene 
                                     key="home" 
                                     component={Home} 
-                                    title="Blood Connector" 
+                                    title="Blood Connector"
+                                    rightTitle="Join"
+                                    onRight={() => Actions.userCreate()}
+                                    rightButtonTextStyle = {[styles.txtBolder, styles.txtColor]} 
                                     titleStyle={styles.sceneTitle} 
                                     initial
                                 />

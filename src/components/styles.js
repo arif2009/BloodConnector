@@ -59,10 +59,11 @@ module.exports = StyleSheet.create({
     },
     drawerBtnTxt: {
         fontSize: 18,
-        color: '#555',
+        color: '#404040',
     },
     drawerIcon:{
-        fontSize: 22
+        fontSize: 22,
+        color: '#404040'
     },
     errorTextStyle: {
 		fontSize: 20,

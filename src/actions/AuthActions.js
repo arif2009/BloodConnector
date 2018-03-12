@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { AsyncStorage } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import RNRestart from 'react-native-restart';
 import {
 	EMAIL_CHANGED, PASSWORD_CHANGED, 
 	LOGIN_USER_SUCCESS, LOGIN_USER_FAIL,
@@ -32,12 +33,13 @@ export const loginUser = ({email, password}) => {
 
 		axios.post('http://www.bloodconnector.org/token', data, header)
 		.then(tokenInfo => loginUserSuccess(dispatch, tokenInfo))
-		.catch(() => loginUserFail(dispatch));
+		.catch((error) => loginUserFail(dispatch, error));
 	};
 };
 
-const loginUserFail = (dispatch) => {
+const loginUserFail = (dispatch, error) => {
 	dispatch({ type: LOGIN_USER_FAIL});
+	console.log(error);
 };
 
 const loginUserSuccess = (dispatch, tokenInfo) => {
@@ -46,7 +48,7 @@ const loginUserSuccess = (dispatch, tokenInfo) => {
 		payload: tokenInfo
 	});
 
-	console.log(tokenInfo);
-	AsyncStorage.setItem('@auth:userData', JSON.stringify(tokenInfo.data));
-	Actions.home();
+	AsyncStorage.setItem('@auth:userData', JSON.stringify(tokenInfo.data), ()=>{
+		RNRestart.Restart();
+	});
 };

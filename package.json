@@ -17,6 +17,7 @@
     "react-native-communications": "^2.2.1",
     "react-native-easy-grid": "^0.1.17",
     "react-native-fontawesome": "^5.7.0",
+    "react-native-restart": "^0.0.6",
     "react-native-router-flux": "^4.0.0-beta.27",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",

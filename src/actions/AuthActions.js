@@ -1,10 +1,12 @@
 import axios from 'axios';
+import { AsyncStorage } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import {
 	EMAIL_CHANGED, PASSWORD_CHANGED, 
 	LOGIN_USER_SUCCESS, LOGIN_USER_FAIL,
 	LOGIN_USER
 } from './types';
+import { action } from 'mobx';
 
 export const emailChanged = (text) => {
 	return {
@@ -44,5 +46,7 @@ const loginUserSuccess = (dispatch, tokenInfo) => {
 		payload: tokenInfo
 	});
 
-	Actions.main();
+	console.log(tokenInfo);
+	AsyncStorage.setItem('@auth:userData', JSON.stringify(tokenInfo.data));
+	Actions.home();
 };

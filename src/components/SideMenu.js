@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, Text, View, ViewPropTypes } from 'react-native';
-import { connect } from 'react-redux';
+import { StyleSheet, Text, View, ViewPropTypes, AsyncStorage } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Button from 'react-native-button';
 import { H1, H2, H3, Badge } from 'native-base';
 import FontAwesome, { Icons } from 'react-native-fontawesome';
+import RNRestart from 'react-native-restart';
 import { CardSection } from './common';
 var styles = require('./styles');
 
@@ -20,27 +20,64 @@ const propTypes = {
 };
 
 class SideMenu extends Component {
+  state = { 
+    isLogedIn: false,
+    fullName: "",
+    bloodGroup: "",
+    similarBlood: 0 
+  };
+
+  componentDidMount() {
+    AsyncStorage.getItem('@auth:userData', (error, result) => {
+      var hasObj = !!result;
+      var userInfo = JSON.parse(result);
+      //console.log("userInfo",userInfo);
+      this.setState({ 
+        isLogedIn: hasObj,
+        fullName: hasObj? userInfo.userName : this.state.fullName
+       });
+    });
+  }
+
+  logout(){
+    AsyncStorage.clear(()=>{
+      this.setState({
+        isLogedIn: false,
+        fullName: "",
+        bloodGroup: "",
+        similarBlood: 0
+      });
+      RNRestart.Restart();
+    });
+  }
+
   render() {
     return (
       <View style={[styles.drawerContainer, this.props.sceneStyle]}>
 
         <View style={styles.drawerHeader}>
-          <Text style={[styles.txtBolder,styles.selfAlignCenter]}>Arifur Rahman</Text>
-          <H1 style={[styles.selfAlignCenter, styles.txtBlue]}>B+</H1>
-          <Text style={[styles.txtBolder,styles.selfAlignCenter]}>Similar Blood : <H2 style={styles.txtBlue}>10</H2></Text>
+          <Text style={[styles.txtBolder,styles.selfAlignCenter]}>{this.state.fullName}</Text>
+          <H1 style={[styles.selfAlignCenter, styles.txtBlue]}>{this.state.bloodGroup}</H1>
+          <Text style={[styles.txtBolder,styles.selfAlignCenter]}>Similar Blood : <H2 style={styles.txtBlue}>{this.state.similarBlood}</H2></Text>
         </View>
-
+        
         <CardSection style={styles.drawerBtnContainer}>
           <Button style={styles.drawerBtnTxt} onPress={() => { Actions.home(); }}>
             <FontAwesome style={styles.drawerIcon}>{Icons.home}</FontAwesome> Home Page
           </Button>
         </CardSection>
-
-        <CardSection style={styles.drawerBtnContainer}>
+        
+        {!this.state.isLogedIn && <CardSection style={styles.drawerBtnContainer}>
           <Button style={styles.drawerBtnTxt} onPress={() => { Actions.login(); }}>
             <FontAwesome style={styles.drawerIcon}>{Icons.signIn}</FontAwesome> Log In
           </Button>
-        </CardSection>
+        </CardSection>}
+
+        {this.state.isLogedIn && <CardSection style={styles.drawerBtnContainer}>
+          <Button style={styles.drawerBtnTxt} onPress={() => { this.logout(); }}>
+            <FontAwesome style={styles.drawerIcon}>{Icons.signOut}</FontAwesome> Log Out
+          </Button>
+        </CardSection>}
 
         <CardSection style={[styles.drawerBtnContainer, {borderBottomWidth: 0}]}>
           <Button style={styles.drawerBtnTxt} onPress={() => { Actions.about(); }}>

@@ -55,11 +55,17 @@ class SideMenu extends Component {
     return (
       <View style={[styles.drawerContainer, this.props.sceneStyle]}>
 
-        <View style={styles.drawerHeader}>
+        {!this.state.isLogedIn && <CardSection style={{padding: 25}}>
+          <Button onPress={() => { Actions.userCreate(); }}>
+            Please SignUp to join with us !
+          </Button>
+        </CardSection>}
+
+        {this.state.isLogedIn && <View style={styles.drawerHeader}>
           <Text style={[styles.txtBolder,styles.selfAlignCenter]}>{this.state.fullName}</Text>
           <H1 style={[styles.selfAlignCenter, styles.txtBlue]}>{this.state.bloodGroup}</H1>
           <Text style={[styles.txtBolder,styles.selfAlignCenter]}>Similar Blood : <H2 style={styles.txtBlue}>{this.state.similarBlood}</H2></Text>
-        </View>
+        </View>}
         
         <CardSection style={styles.drawerBtnContainer}>
           <Button style={styles.drawerBtnTxt} onPress={() => { Actions.home(); }}>

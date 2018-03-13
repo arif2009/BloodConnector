@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import {View, Text, Image, TouchableOpacity, DrawerLayoutAndroid} from 'react-native';
+import {
+    View, Text, Image, TouchableOpacity, DrawerLayoutAndroid,
+    AsyncStorage
+} from 'react-native';
 import { Drawer } from 'native-base';
 import { Scene, Stack, Router, Actions } from 'react-native-router-flux';
 import Home from './src/components/Home';
@@ -10,6 +13,23 @@ import SideMenu from './src/components/SideMenu';
 var styles = require('./src/components/styles');
 
 export default class RouterComponent extends Component {
+
+    state = { 
+        isLogedIn: false,
+        rightTitle: "Join"
+    };
+
+    componentDidMount() {
+        AsyncStorage.getItem('@auth:userData', (error, result) => {
+          var hasObj = !!result;
+          //var userInfo = JSON.parse(result);
+          console.log("hasObj",!hasObj);
+          this.setState({ 
+            isLogedIn: hasObj,
+            rightTitle: !hasObj? this.state.rightTitle : null
+           });
+        });
+    }
 
     render(){
 
@@ -25,7 +45,7 @@ export default class RouterComponent extends Component {
                                     key="home" 
                                     component={Home} 
                                     title="Blood Connector"
-                                    rightTitle="Join"
+                                    rightTitle={this.state.rightTitle}
                                     onRight={() => Actions.userCreate()}
                                     rightButtonTextStyle = {[styles.txtBolder, styles.txtColor]} 
                                     titleStyle={styles.sceneTitle} 

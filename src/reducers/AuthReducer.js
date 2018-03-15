@@ -1,17 +1,16 @@
 import {
-	EMAIL_CHANGED,
-	PASSWORD_CHANGED,
-	LOGIN_USER_SUCCESS,
-	LOGIN_USER_FAIL,
-	LOGIN_USER
+	EMAIL_CHANGED, PASSWORD_CHANGED,
+	LOGIN_USER_SUCCESS, LOGIN_USER_FAIL, LOGIN_USER,
+	AUTH_INFO, AUTH_INFO_DISPATCHED
 } from '../actions/types';
 
 const INITIAL_STATE = {
 	email: '',
 	password: '',
-	tokenInfo: null,
 	error: '',
-	loading: false
+	loading: false,
+	isLogedIn: false,
+	userInfo: null
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -24,10 +23,11 @@ export default (state = INITIAL_STATE, action) => {
 		case LOGIN_USER:
 			return { ...state, loading: true, error: ''}
 		case LOGIN_USER_SUCCESS:
-			return { ...state, ...INITIAL_STATE, tokenInfo: action.payload.data
-			 };
+			return { ...state, ...INITIAL_STATE, isLogedIn: true, userInfo: action.payload };
 		case LOGIN_USER_FAIL:
 			return { ...state, error: 'Login Failed.', password: '', loading: false};
+		case AUTH_INFO_DISPATCHED:
+			return {...state, ...INITIAL_STATE, userInfo: action.payload };
 		default:
 			return state;
 

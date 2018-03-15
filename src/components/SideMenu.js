@@ -5,7 +5,7 @@ import { Actions } from 'react-native-router-flux';
 import Button from 'react-native-button';
 import { H1, H2, H3, Badge } from 'native-base';
 import FontAwesome, { Icons } from 'react-native-fontawesome';
-import RNRestart from 'react-native-restart';
+//import RNRestart from 'react-native-restart';
 import { CardSection } from './common';
 var styles = require('./styles');
 
@@ -47,7 +47,7 @@ class SideMenu extends Component {
         bloodGroup: "",
         similarBlood: 0
       });
-      RNRestart.Restart();
+      Actions.home();
     });
   }
 

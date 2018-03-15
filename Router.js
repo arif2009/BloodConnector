@@ -5,6 +5,7 @@ import {
 } from 'react-native';
 import { Drawer } from 'native-base';
 import { Scene, Stack, Router, Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
 import Home from './src/components/Home';
 import LoginForm from './src/components/LoginForm';
 import UserList from './src/components/UserList';
@@ -12,22 +13,22 @@ import UserCreate from './src/components/UserCreate';
 import SideMenu from './src/components/SideMenu';
 var styles = require('./src/components/styles');
 
-export default class RouterComponent extends Component {
+class RouterComponent extends Component {
 
     state = { 
-        isLogedIn: false,
+        isLogedIn: this.props.isLogedIn,
         rightTitle: "Join"
     };
-
+    
     componentDidMount() {
         AsyncStorage.getItem('@auth:userData', (error, result) => {
-          var hasObj = !!result;
-          //var userInfo = JSON.parse(result);
-          console.log("hasObj",!hasObj);
-          this.setState({ 
+            var hasObj = !!result;
+            var userInfo = JSON.parse(result);
+            //console.log("userInfo",userInfo);
+            this.setState({
             isLogedIn: hasObj,
-            rightTitle: !hasObj? this.state.rightTitle : null
-           });
+            rightTitle: hasObj? "" : "Join"
+            });
         });
     }
 
@@ -83,3 +84,11 @@ export default class RouterComponent extends Component {
         );
     }
 }
+
+const mapStateToProps = ({ auth }) => {
+	const { isLogedIn, userInfo } = auth;
+
+	return { isLogedIn, userInfo };
+};
+
+export default connect(mapStateToProps)(RouterComponent);

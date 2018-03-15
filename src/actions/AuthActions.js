@@ -5,9 +5,23 @@ import RNRestart from 'react-native-restart';
 import {
 	EMAIL_CHANGED, PASSWORD_CHANGED, 
 	LOGIN_USER_SUCCESS, LOGIN_USER_FAIL,
-	LOGIN_USER
+	LOGIN_USER, AUTH_INFO, AUTH_INFO_DISPATCHED
 } from './types';
 import { action } from 'mobx';
+
+export const authInfo = () => {
+	return(dispatch) => {
+		dispatch({ type: AUTH_INFO });
+		AsyncStorage.getItem('@auth:userData', (error, result) => dispatchUserData(dispatch,error,result));
+	}
+};
+
+const dispatchUserData = (dispatch, error, result)=>{
+	dispatch({
+		type: AUTH_INFO_DISPATCHED,
+		payload: JSON.parse(result)
+	});
+};
 
 export const emailChanged = (text) => {
 	return {
@@ -24,6 +38,7 @@ export const passwordChanged = (text) => {
 };
 
 export const loginUser = ({email, password}) => {
+	console.log("Login Clicked", email, password);
 	return (dispatch) => {
 
 		dispatch({ type: LOGIN_USER });
@@ -43,12 +58,14 @@ const loginUserFail = (dispatch, error) => {
 };
 
 const loginUserSuccess = (dispatch, tokenInfo) => {
-	dispatch({
-		type: LOGIN_USER_SUCCESS, 
-		payload: tokenInfo
-	});
-
+	console.log("Success", tokenInfo.data);
 	AsyncStorage.setItem('@auth:userData', JSON.stringify(tokenInfo.data), ()=>{
-		RNRestart.Restart();
+		//RNRestart.Restart();
+		console.log("Stored auth info");
+		dispatch({
+			type: LOGIN_USER_SUCCESS, 
+			payload: tokenInfo.data
+		});
+		Actions.home({rightTitle: ''});
 	});
 };

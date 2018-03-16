@@ -68,9 +68,9 @@ class RouterComponent extends Component {
 }
 
 const mapStateToProps = ({ auth }) => {
-	const { isLogedIn, userInfo } = auth;
+	const { isLogedIn } = auth;
 
-	return { isLogedIn, userInfo };
+	return { isLogedIn };
 };
 
 export default connect(mapStateToProps)(RouterComponent);

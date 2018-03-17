@@ -74,8 +74,14 @@ class SideMenu extends Component {
         </CardSection>
 
         {this.state.isLogedIn && <CardSection style={styles.drawerBtnContainer}>
+          <Button style={styles.drawerBtnTxt} onPress={() => { Actions.userCreate(); }}>
+            <FontAwesome style={styles.drawerIcon}>{Icons.signIn}</FontAwesome> Join With Us
+          </Button>
+        </CardSection>}
+
+        {this.state.isLogedIn && <CardSection style={styles.drawerBtnContainer}>
           <Button style={styles.drawerBtnTxt} onPress={() => { Actions.drList(); }}>
-            <FontAwesome style={styles.drawerIcon}>{Icons.signOut}</FontAwesome> Our Donors
+            <FontAwesome style={styles.drawerIcon}>{Icons.odnoklassniki}</FontAwesome> Our Donors
           </Button>
         </CardSection>}
         
@@ -86,7 +92,7 @@ class SideMenu extends Component {
         </CardSection>}
 
         {this.state.isLogedIn && <CardSection style={styles.drawerBtnContainer}>
-          <Button style={styles.drawerBtnTxt} onPress={() => { Actions.logout(); }}>
+          <Button style={styles.drawerBtnTxt} onPress={() => { this.logout(); }}>
             <FontAwesome style={styles.drawerIcon}>{Icons.signOut}</FontAwesome> Log Out
           </Button>
         </CardSection>}

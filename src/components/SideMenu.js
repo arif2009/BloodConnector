@@ -34,7 +34,9 @@ class SideMenu extends Component {
       //console.log("userInfo",userInfo);
       this.setState({ 
         isLogedIn: hasObj,
-        fullName: hasObj? userInfo.userName : this.state.fullName
+        fullName: userInfo.fullName,
+        bloodGroup: userInfo.bloodGroup,
+        similarBlood: userInfo.similarBlood
        });
     });
   }

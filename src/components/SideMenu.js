@@ -20,25 +20,42 @@ const propTypes = {
 };
 
 class SideMenu extends Component {
-  state = { 
-    isLogedIn: false,
-    fullName: "",
-    bloodGroup: "",
-    similarBlood: 0 
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = { 
+      isLogedIn: false,
+      fullName: "",
+      bloodGroup: "",
+      similarBlood: 0 
+    };
+
+    //this.state = {isShowingText: true};
+
+    // Toggle the state every second
+    /*setInterval(() => {
+      this.setState(previousState => {
+        return { isShowingText: !previousState.isShowingText };
+      });
+    }, 5000);*/
+  }
 
   componentDidMount() {
     AsyncStorage.getItem('@auth:userData', (error, result) => {
       var hasObj = !!result;
       var userInfo = JSON.parse(result);
-      //console.log("userInfo",userInfo);
+      console.log("Sidebar loaded");
       this.setState({ 
         isLogedIn: hasObj,
-        fullName: userInfo.fullName,
-        bloodGroup: userInfo.bloodGroup,
-        similarBlood: userInfo.similarBlood
+        fullName: hasObj? userInfo.fullName : this.state.fullName,
+        bloodGroup: hasObj? userInfo.bloodGroup : this.state.bloodGroup,
+        similarBlood: hasObj? userInfo.similarBlood: this.state.similarBlood
        });
     });
+  }
+
+  componentWillReceiveProps(nextProps){
+    console.log("componentWillReceiveProps > this.props", this.props, "nextProps", nextProps);
   }
 
   logout(){

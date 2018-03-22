@@ -29,18 +29,9 @@ class SideMenu extends Component {
       bloodGroup: "",
       similarBlood: 0 
     };
-
-    //this.state = {isShowingText: true};
-
-    // Toggle the state every second
-    /*setInterval(() => {
-      this.setState(previousState => {
-        return { isShowingText: !previousState.isShowingText };
-      });
-    }, 5000);*/
   }
 
-  componentDidMount() {
+  componentWillReceiveProps(nextProps){
     AsyncStorage.getItem('@auth:userData', (error, result) => {
       var hasObj = !!result;
       var userInfo = JSON.parse(result);
@@ -54,8 +45,9 @@ class SideMenu extends Component {
     });
   }
 
-  componentWillReceiveProps(nextProps){
-    console.log("componentWillReceiveProps > this.props", this.props, "nextProps", nextProps);
+  shouldComponentUpdate(nextProps, nextState) {
+    //console.log("shouldComponentUpdate > nextProps", nextProps, "nextState", nextState);
+    return true;
   }
 
   logout(){
@@ -87,7 +79,7 @@ class SideMenu extends Component {
         </View>}
         
         <CardSection style={styles.drawerBtnContainer}>
-          <Button style={styles.drawerBtnTxt} onPress={() => { Actions.home(); }}>
+          <Button style={styles.drawerBtnTxt} onPress={() => { Actions.home({ rightTitle: this.state.isLogedIn ? '': 'Join' }); }}>
             <FontAwesome style={styles.drawerIcon}>{Icons.home}</FontAwesome> Home Page
           </Button>
         </CardSection>

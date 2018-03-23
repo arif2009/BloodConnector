@@ -29,9 +29,16 @@ class SideMenu extends Component {
       bloodGroup: "",
       similarBlood: 0 
     };
+
+    this.setProperState();
+    
   }
 
   componentWillReceiveProps(nextProps){
+      this.setProperState();
+  }
+
+  setProperState() {
     AsyncStorage.getItem('@auth:userData', (error, result) => {
       var hasObj = !!result;
       var userInfo = JSON.parse(result);
@@ -91,7 +98,7 @@ class SideMenu extends Component {
         </CardSection>}
 
         {this.state.isLogedIn && <CardSection style={styles.drawerBtnContainer}>
-          <Button style={styles.drawerBtnTxt} onPress={() => { Actions.drList(); }}>
+          <Button style={styles.drawerBtnTxt} onPress={() => { Actions.userList(); }}>
             <FontAwesome style={styles.drawerIcon}>{Icons.odnoklassniki}</FontAwesome> Our Donors
           </Button>
         </CardSection>}

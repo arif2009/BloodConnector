@@ -35,13 +35,18 @@ class RouterComponent extends Component {
                                     initial
                                 />
 
-                                <Scene 
-                                    onRight={() => Actions.userCreate()}
-                                    rightTitle="Join"
+                                <Scene
                                     key="userList" 
                                     component={UserList} 
-                                    title="NUMBER OF DONOR : XX" 
+                                    title="List of our donor's & receiver's" 
                                     titleStyle={styles.sceneTitle}
+                                />
+
+                                <Scene 
+                                    key="login"
+                                    component={LoginForm} 
+                                    title="Please Login" 
+                                    titleStyle={styles.sceneTitle} 
                                 />
 
                                 <Scene 

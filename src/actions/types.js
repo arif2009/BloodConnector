@@ -8,6 +8,8 @@ export const AUTH_INFO_DISPATCHED = 'auth_info_dispached';
 
 export const USER_UPDATE = 'user_update';
 export const USER_CREATE = 'user_create';
+export const USERS_FETCHING = 'users_fetching';
+export const USERS_FETCH_ERROR = 'users_fetch_error';
 export const USERS_FETCH_SUCCESS = 'users_fetch_success';
 export const USER_SAVE_SUCCESS = 'user_save_success';
 

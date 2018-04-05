@@ -27,7 +27,8 @@ class SideMenu extends Component {
       isLogedIn: false,
       fullName: "",
       bloodGroup: "",
-      similarBlood: 0 
+      similarBlood: 0,
+      accessTolen: ""
     };
 
     this.setProperState();
@@ -42,12 +43,13 @@ class SideMenu extends Component {
     AsyncStorage.getItem('@auth:userData', (error, result) => {
       var hasObj = !!result;
       var userInfo = JSON.parse(result);
-      console.log("Sidebar loaded");
+      console.log("Sidebar loaded", userInfo);
       this.setState({ 
         isLogedIn: hasObj,
         fullName: hasObj? userInfo.fullName : this.state.fullName,
         bloodGroup: hasObj? userInfo.bloodGroup : this.state.bloodGroup,
-        similarBlood: hasObj? userInfo.similarBlood: this.state.similarBlood
+        similarBlood: hasObj? userInfo.similarBlood: this.state.similarBlood,
+        accessTolen: hasObj? userInfo.access_token: this.state.accessTolen
        });
     });
   }
@@ -98,7 +100,7 @@ class SideMenu extends Component {
         </CardSection>}
 
         {this.state.isLogedIn && <CardSection style={styles.drawerBtnContainer}>
-          <Button style={styles.drawerBtnTxt} onPress={() => { Actions.userList(); }}>
+          <Button style={styles.drawerBtnTxt} onPress={() => { Actions.userList({token: this.state.accessTolen}); }}>
             <FontAwesome style={styles.drawerIcon}>{Icons.odnoklassniki}</FontAwesome> Our Donors
           </Button>
         </CardSection>}

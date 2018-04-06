@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, ListView, View, StatusBar } from 'react-native';
+import { Text, ListView, View, StatusBar, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import { 
 	Container, Header, Title, Content, Footer, 

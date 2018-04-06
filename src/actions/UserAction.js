@@ -30,13 +30,13 @@ export const userCreate = ({ name, phone, sex }) => {
   };*/
 };
 
-export const userFetch = ({ authToken }) => {
+export const userFetch = ({ token }) => {
 	return (dispatch) => {
 		dispatch({ type: USERS_FETCHING });
     axios({
       method:'get',
       url:'http://bloodconnector.org/api/users',
-      headers: { 'Authorization': 'bearer ' + authToken },
+      headers: { 'Authorization': 'bearer ' + token },
       responseType:'json'
     })
     .then(result => userFetchSuccess(dispatch, result))
@@ -45,6 +45,7 @@ export const userFetch = ({ authToken }) => {
 };
 
 const userFetchFail = (dispatch, error) => {
+  console.log("userFetchFail",error);
 	dispatch({ type: USERS_FETCH_ERROR});
 };
 

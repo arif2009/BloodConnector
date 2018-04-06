@@ -59,7 +59,6 @@ const loginUserFail = (dispatch, error) => {
 const loginUserSuccess = (dispatch, tokenInfo) => {
 	console.log("Success", tokenInfo.data);
 	AsyncStorage.setItem('@auth:userData', JSON.stringify(tokenInfo.data), ()=>{
-		//RNRestart.Restart();
 		console.log("Stored auth info");
 		dispatch({
 			type: LOGIN_USER_SUCCESS, 

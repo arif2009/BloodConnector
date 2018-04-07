@@ -18,15 +18,27 @@ class UserList extends Component {
         super(props);
 
         const { token } = this.props;
-        let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.props.userFetch({token});
     }
 
-    componentWillReceiveProps(nextProps){
-        if(!!nextProps.listOfUser){
-            console.log("nextProps", nextProps);
-        }
+    searchFilter(text){
+        const newData = this.props.listOfUser.filter(function(item){
+            const itemData = item.fullName.toUpperCase()
+            const textData = text.toUpperCase()
+            return itemData.indexOf(textData) > -1;
+        })
+        console.log(newData);
+        this.createDataSource(newData);
+        this.text = text;
     }
+
+    createDataSource(userList) {
+		const ds = new ListView.DataSource({
+		  rowHasChanged: (r1, r2) => r1 !== r2
+		});
+		this.dataSource = ds.cloneWithRows(userList);
+        console.log("dataSource", this.dataSource);
+	}
 
     renderList() {
 		if(this.props.loading){
@@ -39,17 +51,25 @@ class UserList extends Component {
                 </Text>
             );
         }
-
-        return(
-            <View>
-                <Text>User List</Text>
-                <Text>User List</Text>
-                <Text>User List</Text>
-                <Text>User List</Text>
-                <Text>User List</Text>
-                <Text>User List</Text>
-            </View>
-        );
+        else if(this.props.listOfUser.length > 0){
+            this.createDataSource(this.props.listOfUser);
+            return(
+                <View>
+                    <TextInput 
+                        style={{textAlign: 'center',height: 40,borderWidth: 1,borderColor: '#009688',borderRadius: 7 ,backgroundColor : "#FFFFFF"}}
+                        onChangeText={(text) => this.searchFilter(text)}
+                        value={this.text}
+                        underlineColorAndroid='transparent'
+                        placeholder="Search Here" />
+                <ListView
+                    dataSource={this.dataSource}
+                    //renderSeparator= {this.ListViewItemSeparator}
+                    renderRow={(rowData) => <Text style={{fontSize: 17, padding: 10}}>{rowData.fullName}</Text>}
+                    enableEmptySections={true}
+                    style={{marginTop: 10}} />
+                </View>
+            );
+        }
 	}
 
     render(){

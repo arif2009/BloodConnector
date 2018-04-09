@@ -13,8 +13,11 @@ import { H1, H2, H3, Badge } from 'native-base';
 var styles = require('./styles');
 
 class Home extends Component {
-	
-	componentWillMount(){
+	constructor(props){
+		super(props);
+		this.props.loadBloodGroups();
+	}
+	/*componentDidMount(){
 		this.props.loadBloodGroups();
 
 		if(this.props.bloodInfo){
@@ -23,14 +26,14 @@ class Home extends Component {
 		
 	}
 
-	componentWillReceiveProps(nextProps) {
+	UNSAFE_componentWillReceiveProps(nextProps) {
 		// nextProps are the next set of props that this component
 		// will be rendered with
 		// this.props is still the old set of props
 		if(nextProps.bloodInfo){
 			this.createDataSource(nextProps.bloodInfo.groups, nextProps.bloodInfo.totalNumberOfUser);
 		}
-	  }
+	  }*/
 
 	createDataSource(bloodGroups, totalUser) {
 		const ds = new ListView.DataSource({
@@ -46,6 +49,7 @@ class Home extends Component {
 		}
 
 		if(this.props.loaded){
+			this.createDataSource(this.props.bloodInfo.groups, this.props.bloodInfo.totalNumberOfUser);
 			return <ListView enableEmptySections
 				dataSource={this.dataSource}
 				renderRow={this.renderRow}

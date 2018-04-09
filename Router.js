@@ -14,10 +14,14 @@ import SideMenu from './src/components/SideMenu';
 var styles = require('./src/components/styles');
 
 class RouterComponent extends Component {
+    constructor(props){
+        super(props);
+        this.state = { key: 'in-router' }
+    }
     render(){
 
         return(
-        <Router navigationBarStyle={styles.nabBg} titleStyle={styles.txtColor}>
+        <Router key={this.state.key} navigationBarStyle={styles.nabBg} titleStyle={styles.txtColor}>
             <Scene overlay>
                 <Scene key="lightbox" lightbox initial>
                     <Scene key="modal" modal hideNavBar>
@@ -66,9 +70,9 @@ class RouterComponent extends Component {
 }
 
 const mapStateToProps = ({ auth }) => {
-	const { isLogedIn } = auth;
-
-	return { isLogedIn };
+	const { key } = auth;
+    console.log("key", key);
+	return { key };
 };
 
 export default connect(mapStateToProps)(RouterComponent);

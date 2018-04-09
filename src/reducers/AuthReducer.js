@@ -10,7 +10,8 @@ const INITIAL_STATE = {
 	error: '',
 	loading: false,
 	isLogedIn: false,
-	userInfo: null
+	userInfo: null,
+	key:'in-auth-reducer'
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -23,7 +24,7 @@ export default (state = INITIAL_STATE, action) => {
 		case LOGIN_USER:
 			return { ...state, loading: true, error: ''}
 		case LOGIN_USER_SUCCESS:
-			return { ...state, ...INITIAL_STATE, isLogedIn: true, userInfo: action.payload };
+			return { ...state, ...INITIAL_STATE, isLogedIn: true, userInfo: action.payload, key: Math.random() };
 		case LOGIN_USER_FAIL:
 			return { ...state, error: 'Login Failed.', password: '', loading: false};
 		case AUTH_INFO_DISPATCHED:

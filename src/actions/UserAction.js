@@ -33,14 +33,14 @@ export const userCreate = ({ name, phone, sex }) => {
 export const userFetch = ({ token }) => {
 	return (dispatch) => {
 		dispatch({ type: USERS_FETCHING });
-    axios({
+   return axios({
       method:'get',
-      url:'http://bloodconnector.org/api/users',
+      url:'http://10.0.2.2/api/users',
       headers: { 'Authorization': 'bearer ' + token },
       responseType:'json'
-    })
-    .then(result => userFetchSuccess(dispatch, result))
-    .catch((error) => userFetchFail(dispatch, error));
+    });
+    //.then(result => userFetchSuccess(dispatch, result))
+    //.catch((error) => userFetchFail(dispatch, error));
 	};
 };
 

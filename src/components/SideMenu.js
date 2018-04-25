@@ -35,10 +35,6 @@ class SideMenu extends Component {
     
   }
 
-  /*componentWillReceiveProps(nextProps){
-      this.setProperState();
-  }*/
-
   setProperState() {
     AsyncStorage.getItem('@auth:userData', (error, result) => {
       var hasObj = !!result;

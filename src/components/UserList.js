@@ -8,6 +8,7 @@ import {
 import { 
 	Container, Content, Footer, FooterTab, Spinner 
 } from 'native-base';
+
 import { userFetch } from '../actions'
 import We from '../utills/we';
 var styles = require('./styles');
@@ -17,8 +18,29 @@ class UserList extends Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            error: false,
+            loading: true,
+            showGrid: false,
+            userListDs: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}).cloneWithRows([])
+        };
+        console.log("constructor", this.state.userListDs);
+    }
+
+    componentDidMount(){
         const { token } = this.props;
-        this.props.userFetch({token});
+        this.props.userFetch({token}).then((result) => {
+            
+            this.setState({
+                error: false,
+                loading: false,
+                showGrid: true
+            });
+            this.createDataSource(result.data);
+            console.log(result.data);
+        }).catch((error)=>{
+            console.log("error",error);
+        });
     }
 
     searchFilter(text){
@@ -35,41 +57,42 @@ class UserList extends Component {
     createDataSource(userList) {
 		const ds = new ListView.DataSource({
 		  rowHasChanged: (r1, r2) => r1 !== r2
-		});
-		this.dataSource = ds.cloneWithRows(userList);
-        console.log("dataSource", this.dataSource);
+    });
+    this.setState({
+      userListDs: ds.cloneWithRows(userList)
+    });
 	}
 
     renderList() {
-		if(this.props.loading){
-			return <Spinner color='blue' />
-        }
-        else if(!!this.props.error){
-            return(
-                <Text style={styles.errorTextStyle}>
-                    {this.props.error}
-                </Text>
-            );
-        }
-        else if(this.props.listOfUser.length > 0){
-            this.createDataSource(this.props.listOfUser);
-            return(
-                <View>
-                    <TextInput 
-                        style={{textAlign: 'center',height: 40,borderWidth: 1,borderColor: '#009688',borderRadius: 7 ,backgroundColor : "#FFFFFF"}}
-                        onChangeText={(text) => this.searchFilter(text)}
-                        value={this.text}
-                        underlineColorAndroid='transparent'
-                        placeholder="Search Here" />
-                <ListView
-                    dataSource={this.dataSource}
-                    //renderSeparator= {this.ListViewItemSeparator}
-                    renderRow={(rowData) => <Text style={{fontSize: 17, padding: 10}}>{rowData.fullName}</Text>}
-                    enableEmptySections={true}
-                    style={{marginTop: 10}} />
-                </View>
-            );
-        }
+		if(this.state.loading){
+			  return <Spinner color='blue' />
+    }
+    else if(!!this.state.error){
+        return(
+            <Text style={styles.errorTextStyle}>
+                {this.props.error}
+            </Text>
+        );
+    }
+    else if(this.state.showGrid){
+      console.log("render", this.state.userListDs);
+        return(
+            <View>
+                <TextInput 
+                    style={{textAlign: 'center',height: 40,borderWidth: 1,borderColor: '#009688',borderRadius: 7 ,backgroundColor : "#FFFFFF"}}
+                    onChangeText={(text) => this.searchFilter(text)}
+                    value={this.text}
+                    underlineColorAndroid='transparent'
+                    placeholder="Search Here" />
+            <ListView
+                dataSource={this.state.userListDs}
+                //renderSeparator= {this.ListViewItemSeparator}
+                renderRow={(rowData) => <Text style={{fontSize: 17, padding: 10}}>{rowData.fullName}</Text>}
+                enableEmptySections={true}
+                style={{marginTop: 10}} />
+            </View>
+        );
+    }
 	}
 
     render(){

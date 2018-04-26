@@ -5,11 +5,11 @@ Blood Connector is a real time online database of blood donors. Anyone can find 
 
 # Technologies
 
-* [React 16.2.0](https://reactjs.org/)
-* [React Native 0.53.0](https://facebook.github.io/react-native/)
-* ["axios 0.17.1" For promise based HTTP client](https://github.com/axios/axios)
+* [React 16.3.2](https://reactjs.org/)
+* [React Native 0.55](https://facebook.github.io/react-native/)
+* ["axios 0.18.0" For promise based HTTP client](https://github.com/axios/axios)
 * ["lodash 4.17.5" For JavaScript utility](https://lodash.com/)
-* ["native-base 2.3.8" For design stuff](https://nativebase.io/)
+* ["native-base 2.4.1" For design stuff](https://nativebase.io/)
 * ["prop-types 15.6.0" For runtime type checking](https://www.npmjs.com/package/prop-types)
 * ["react-native-communications 2.2.1" For call, email, text or iMessage](https://github.com/anarchicknight/react-native-communications)
 * ["react-native-router-flux 4.0.0-beta.27" For routing](https://www.npmjs.com/package/react-native-router-flux)

@@ -6,9 +6,10 @@ import {
     ActivityIndicator, Alert, AsyncStorage, StatusBar
 } from 'react-native';
 import { 
-	Container, Content, Footer, FooterTab, Spinner 
+    Container, Content, Footer, FooterTab, Spinner,
+    Header, Item, Input, Icon
 } from 'native-base';
-
+import { CardSection } from './common';
 import { userFetch } from '../actions'
 import We from '../utills/we';
 var styles = require('./styles');
@@ -19,80 +20,86 @@ class UserList extends Component {
         super(props);
 
         this.state = {
-            error: false,
-            loading: true,
-            showGrid: false,
+            error: props.error,
+            loading: props.loading,
+            userList: [],
             userListDs: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}).cloneWithRows([])
         };
-        console.log("constructor", this.state.userListDs);
+        console.log("constructor", this.state);
     }
 
     componentDidMount(){
         const { token } = this.props;
-        this.props.userFetch({token}).then((result) => {
-            
-            this.setState({
-                error: false,
-                loading: false,
-                showGrid: true
-            });
-            this.createDataSource(result.data);
-            console.log(result.data);
-        }).catch((error)=>{
-            console.log("error",error);
+        this.props.userFetch({token})
+            .then((result) => {
+                this.setState({
+                    error: false,
+                    loading: false,
+                    userList: result.data
+                });
+                this.createDataSource(result.data);
+            })
+            .catch((error)=>{
+                this.setState({
+                    error: 'Loading failed',
+                    loading: false,
+                    userList: result.data
+                });
         });
     }
 
     searchFilter(text){
-        const newData = this.props.listOfUser.filter(function(item){
+        console.log(text);
+        const newData = this.state.userList.filter(function(item){
             const itemData = item.fullName.toUpperCase()
             const textData = text.toUpperCase()
             return itemData.indexOf(textData) > -1;
-        })
-        console.log(newData);
+        });
         this.createDataSource(newData);
         this.text = text;
     }
 
     createDataSource(userList) {
-		const ds = new ListView.DataSource({
-		  rowHasChanged: (r1, r2) => r1 !== r2
-    });
-    this.setState({
-      userListDs: ds.cloneWithRows(userList)
-    });
+		const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        this.setState({
+           userListDs: ds.cloneWithRows(userList)
+        });
 	}
 
     renderList() {
 		if(this.state.loading){
 			  return <Spinner color='blue' />
-    }
-    else if(!!this.state.error){
-        return(
-            <Text style={styles.errorTextStyle}>
-                {this.props.error}
-            </Text>
-        );
-    }
-    else if(this.state.showGrid){
-      console.log("render", this.state.userListDs);
-        return(
-            <View>
-                <TextInput 
-                    style={{textAlign: 'center',height: 40,borderWidth: 1,borderColor: '#009688',borderRadius: 7 ,backgroundColor : "#FFFFFF"}}
-                    onChangeText={(text) => this.searchFilter(text)}
-                    value={this.text}
-                    underlineColorAndroid='transparent'
-                    placeholder="Search Here" />
-            <ListView
-                dataSource={this.state.userListDs}
-                //renderSeparator= {this.ListViewItemSeparator}
-                renderRow={(rowData) => <Text style={{fontSize: 17, padding: 10}}>{rowData.fullName}</Text>}
-                enableEmptySections={true}
-                style={{marginTop: 10}} />
-            </View>
-        );
-    }
+        }
+        else if(!!this.state.error){
+            return(
+                <Text style={styles.errorTextStyle}>
+                    {this.state.error}
+                </Text>
+            );
+        }
+        else if(!!this.state.userList){
+            return(
+                <View>
+                    <Header searchBar rounded style={styles.bgColor}>
+                        <Item>
+                            <Icon name="ios-search" />
+                            <Input
+                                onChangeText={this.searchFilter.bind(this)}
+                                value={this.text}
+                                placeholder="Search" />
+                            <Icon name="ios-people" />
+                        </Item>
+                    </Header>
+
+                    <ListView
+                        dataSource={this.state.userListDs}
+                        //renderSeparator= {this.ListViewItemSeparator}
+                        renderRow={(rowData) => <Text style={{ fontSize: 17, padding: 10 }}>{rowData.fullName}</Text>}
+                        enableEmptySections={true}
+                        style={{ marginTop: 10 }} />
+                </View>
+            );
+        }
 	}
 
     render(){
@@ -114,8 +121,8 @@ class UserList extends Component {
 }
 
 const mapStateToProps = ({ action }) => {
-	const { error, loading, listOfUser } = action;
-	return { error, loading, listOfUser };
+	const { error, loading } = action;
+	return { error, loading };
 };
 
 export default connect(mapStateToProps, { userFetch })(UserList);

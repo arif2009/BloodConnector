@@ -2,7 +2,6 @@ import axios from 'axios';
 import { Actions } from 'react-native-router-flux';
 import {
   USER_UPDATE, USER_CREATE, USERS_FETCHING,
-  USERS_FETCH_ERROR, USERS_FETCH_SUCCESS, 
   USER_SAVE_SUCCESS
 } from './types';
 
@@ -39,22 +38,7 @@ export const userFetch = ({ token }) => {
       headers: { 'Authorization': 'bearer ' + token },
       responseType:'json'
     });
-    //.then(result => userFetchSuccess(dispatch, result))
-    //.catch((error) => userFetchFail(dispatch, error));
 	};
-};
-
-const userFetchFail = (dispatch, error) => {
-  console.log("userFetchFail",error);
-	dispatch({ type: USERS_FETCH_ERROR});
-};
-
-const userFetchSuccess = (dispatch, result) => {
-	dispatch({
-    type: USERS_FETCH_SUCCESS, 
-    payload: result.data
-  });
-  //Actions.home({rightTitle: ''});
 };
 
 /*export const employeesFetch = () => {

@@ -17,23 +17,6 @@ class Home extends Component {
 		super(props);
 		this.props.loadBloodGroups();
 	}
-	/*componentDidMount(){
-		this.props.loadBloodGroups();
-
-		if(this.props.bloodInfo){
-			this.createDataSource(this.props.bloodInfo.groups, this.props.bloodInfo.totalNumberOfUser);
-		}
-		
-	}
-
-	UNSAFE_componentWillReceiveProps(nextProps) {
-		// nextProps are the next set of props that this component
-		// will be rendered with
-		// this.props is still the old set of props
-		if(nextProps.bloodInfo){
-			this.createDataSource(nextProps.bloodInfo.groups, nextProps.bloodInfo.totalNumberOfUser);
-		}
-	  }*/
 
 	createDataSource(bloodGroups, totalUser) {
 		const ds = new ListView.DataSource({

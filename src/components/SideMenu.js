@@ -63,7 +63,7 @@ class SideMenu extends Component {
         bloodGroup: "",
         similarBlood: 0
       });
-      Actions.home({rightTitle:''});
+      Actions.home({rightTitle: <Icon style={styles.txtColor} type="FontAwesome" name="user-plus" />});
     });
   }
 

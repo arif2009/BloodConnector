@@ -25,8 +25,10 @@ class UserList extends Component {
 
     componentDidMount(){
         const { token } = this.props;
+        //console.log("token",token);
         this.props.userFetch({token})
             .then((result) => {
+                //console.log("Then",result);
                 this.setState({
                     error: false,
                     loading: false,
@@ -34,17 +36,18 @@ class UserList extends Component {
                 });
                 this.createDataSource(result.data);
             })
-            .catch((error)=>{
+            .catch((errors)=>{
                 this.setState({
                     error: 'Loading failed',
                     loading: false,
-                    userList: result.data
+                    userList: []
                 });
+                //console.log("Catch > ",errors);
         });
     }
 
     searchFilter(text){
-        console.log(text);
+        //console.log(text);
         const newData = this.state.userList.filter(function(item){
             const itemData = item.fullName.toUpperCase()
             const textData = text.toUpperCase()
@@ -76,7 +79,7 @@ class UserList extends Component {
                 </Col>
                 <Col size={80} style={{backgroundColor: '#fff', padding:5, borderBottomRightRadius: 5, borderTopRightRadius:5}}>
                     <Row>
-                        <Text style={[styles.txtMedium]}>{person.fullName}</Text>
+                        <Text style={[styles.txtMedium]} ellipsizeMode='tail' numberOfLines={1}>{person.fullName}</Text>
                     </Row>
                     <Row>
                         <Col>
@@ -84,7 +87,7 @@ class UserList extends Component {
                                 <Text>{person.phoneNumber}</Text>
                             </TouchableOpacity>
                         </Col>
-                        <Col><Text>{person.email}</Text></Col>
+                        <Col><Text ellipsizeMode='tail' numberOfLines={1}>{person.email}</Text></Col>
                     </Row>
                 </Col>
             </Grid>
@@ -92,6 +95,7 @@ class UserList extends Component {
     }
 
     renderList() {
+        //console.log("!!this.state.error", !!this.state.error)
 		if(this.state.loading){
 			  return <Spinner color='blue' />
         }

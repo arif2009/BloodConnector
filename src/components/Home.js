@@ -55,7 +55,7 @@ class Home extends Component {
 	render() {
 		return (
 			<Container style={styles.bgColor}>
-				<StatusBar backgroundColor="#e60000" barStyle="light-content" />
+				<StatusBar backgroundColor="#324291" barStyle="light-content" />
 				<Content>
 					{this.renderGroups()}
 				</Content>

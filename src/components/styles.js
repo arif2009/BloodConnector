@@ -6,6 +6,9 @@ module.exports = StyleSheet.create({
     bgColor: {
         backgroundColor: '#ffcccc'
     },
+    hRed:{
+        backgroundColor: '#e60000'
+    },
     nabBg: {
         backgroundColor: '#ff0000'
     },

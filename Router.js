@@ -71,7 +71,6 @@ class RouterComponent extends Component {
 
 const mapStateToProps = ({ auth }) => {
 	const { key } = auth;
-    console.log("key", key);
 	return { key };
 };
 

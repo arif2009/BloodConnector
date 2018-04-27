@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { StyleSheet, Text, View, ViewPropTypes, AsyncStorage } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Button from 'react-native-button';
-import { H1, H2, H3, Badge } from 'native-base';
+import { H1, H2, H3, Badge, Icon } from 'native-base';
 import FontAwesome, { Icons } from 'react-native-fontawesome';
 //import RNRestart from 'react-native-restart';
 import { CardSection } from './common';
@@ -63,7 +63,7 @@ class SideMenu extends Component {
         bloodGroup: "",
         similarBlood: 0
       });
-      Actions.home();
+      Actions.home({rightTitle:''});
     });
   }
 
@@ -84,14 +84,14 @@ class SideMenu extends Component {
         </View>}
         
         <CardSection style={styles.drawerBtnContainer}>
-          <Button style={styles.drawerBtnTxt} onPress={() => { Actions.home({ rightTitle: this.state.isLogedIn ? '': 'Join' }); }}>
+          <Button style={styles.drawerBtnTxt} onPress={() => { Actions.home({ rightTitle: this.state.isLogedIn ? '': <Icon style={styles.txtColor} type="FontAwesome" name="user-plus" /> }); }}>
             <FontAwesome style={styles.drawerIcon}>{Icons.home}</FontAwesome> Home Page
           </Button>
         </CardSection>
 
-        {this.state.isLogedIn && <CardSection style={styles.drawerBtnContainer}>
+        {!this.state.isLogedIn && <CardSection style={styles.drawerBtnContainer}>
           <Button style={styles.drawerBtnTxt} onPress={() => { Actions.userCreate(); }}>
-            <FontAwesome style={styles.drawerIcon}>{Icons.signIn}</FontAwesome> Join With Us
+            <FontAwesome style={styles.drawerIcon}>{Icons.userPlus}</FontAwesome> Sign Up
           </Button>
         </CardSection>}
 

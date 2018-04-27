@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { Text, StyleSheet, View, ListView, TextInput, ActivityIndicator, Alert, AsyncStorage } from 'react-native';
-import { Container, Content, Footer, FooterTab, Spinner, Header, Item, Input, Icon } from 'native-base';
+import { Text, StyleSheet, View, ListView, TextInput, ActivityIndicator, Alert, AsyncStorage, TouchableOpacity } from 'react-native';
+import { Container, Content, Footer, FooterTab, Spinner, Header, Item, Input, Icon, H1 } from 'native-base';
+import Communications from 'react-native-communications';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import { CardSection } from './common';
 import { userFetch } from '../actions'
@@ -62,25 +63,34 @@ class UserList extends Component {
     
     renderRow(person) {
         //console.log(person);
-        //return <Text style={{ fontSize: 17, padding: 10 }}>{person.fullName}</Text>;
+        let _userDetails = () => {
+            Alert.alert(person.fullName);
+        };
+        //onPress={() => _userDetails()} of Grid
         return(
             <Grid style={{marginLeft:5, marginRight:5, marginBottom: 5}}>
-                <Col size={20} style={{backgroundColor: '#00ff00'}}>
-                    <Text>{person.bloodGroup}</Text>
+                <Col size={20} style={[styles.hRed, {borderBottomLeftRadius: 5, borderTopLeftRadius:5}]}>
+                    <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
+                        <H1 style={[styles.txtColor]}>{person.bloodGroup}</H1>
+                    </View>
                 </Col>
-                <Col size={80} style={{backgroundColor: '#fff'}}>
+                <Col size={80} style={{backgroundColor: '#fff', padding:5, borderBottomRightRadius: 5, borderTopRightRadius:5}}>
                     <Row>
-                        <Text>{person.fullName}</Text>
+                        <Text style={[styles.txtMedium]}>{person.fullName}</Text>
                     </Row>
                     <Row>
-                        <Col><Text>{person.phoneNumber}</Text></Col>
+                        <Col>
+                            <TouchableOpacity onPress={() => Communications.phonecall(person.phoneNumber, true)}>
+                                <Text>{person.phoneNumber}</Text>
+                            </TouchableOpacity>
+                        </Col>
                         <Col><Text>{person.email}</Text></Col>
                     </Row>
                 </Col>
             </Grid>
         );
     }
-    
+
     renderList() {
 		if(this.state.loading){
 			  return <Spinner color='blue' />

@@ -3,7 +3,7 @@ import {
     View, Text, Image, TouchableOpacity, 
     DrawerLayoutAndroid, AsyncStorage
 } from 'react-native';
-import { Drawer } from 'native-base';
+import { Icon } from 'native-base';
 import { Scene, Stack, Router, Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import Home from './src/components/Home';
@@ -32,7 +32,7 @@ class RouterComponent extends Component {
                                     key="home" 
                                     component={Home} 
                                     title="Blood Connector"
-                                    rightTitle="Join"
+                                    rightTitle={<Icon style={styles.txtColor} type="FontAwesome" name="user-plus" />}
                                     onRight={() => Actions.userCreate()}
                                     rightButtonTextStyle = {[styles.txtBolder, styles.txtColor]} 
                                     titleStyle={styles.sceneTitle} 

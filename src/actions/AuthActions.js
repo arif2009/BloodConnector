@@ -45,7 +45,7 @@ export const loginUser = ({email, password}) => {
 		const data = `grant_type=password&username=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`;
 		const header = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } };
 
-		axios.post('http://10.0.2.2/token', data, header)
+		axios.post('http://www.bloodconnector.org/token', data, header)
 		.then(tokenInfo => loginUserSuccess(dispatch, tokenInfo))
 		.catch((error) => loginUserFail(dispatch, error));
 	};

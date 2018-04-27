@@ -34,7 +34,8 @@ export const userFetch = ({ token }) => {
 		dispatch({ type: USERS_FETCHING });
    return axios({
       method:'get',
-      url:'http://10.0.2.2/api/users',
+      url:'http://www.bloodconnector.org/api/users',
+      timeout: 5000,
       headers: { 'Authorization': 'bearer ' + token },
       responseType:'json'
     });

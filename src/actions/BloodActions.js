@@ -11,7 +11,7 @@ export const loadBloodGroups = () => {
 		
         dispatch({ type: LOADING_BLOOD });
         
-        axios.get('http://10.0.2.2/api/bloodgroup/getusersbloodgroup')
+        axios.get('http://www.bloodconnector.org/api/bloodgroup/getusersbloodgroup')
         .then(response => loadingSuccess(dispatch, response))
         .catch(error => loadingFail(dispatch, error));
 	};

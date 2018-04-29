@@ -6,7 +6,6 @@ import {
 	LOGIN_USER_SUCCESS, LOGIN_USER_FAIL,
 	LOGIN_USER, AUTH_INFO, AUTH_INFO_DISPATCHED
 } from './types';
-import { action } from 'mobx';
 
 export const authInfo = () => {
 	return(dispatch) => {
@@ -65,6 +64,5 @@ const loginUserSuccess = (dispatch, tokenInfo) => {
 			payload: tokenInfo.data
 		});
 		Actions.userList({token: tokenInfo.data.access_token});
-		//Actions.home({rightTitle: ''});
 	});
 };

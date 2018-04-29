@@ -35,7 +35,7 @@ export const userFetch = ({ token }) => {
    return axios({
       method:'get',
       url:'http://www.bloodconnector.org/api/users',
-      timeout: 5000,
+      timeout: 10000,
       headers: { 'Authorization': 'bearer ' + token },
       responseType:'json'
     });

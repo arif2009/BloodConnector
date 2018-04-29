@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Picker, Text } from 'react-native';
+import { Picker, Text, View } from 'react-native';
 import { H1, Icon } from 'native-base';
 import { connect } from 'react-redux';
 import { userUpdate, userCreate } from '../actions';
@@ -15,9 +15,12 @@ class UserCreate extends Component {
 
   render() {
     return (
-      <Card>
-        <H1 style={{textAlign: 'center'}}>Under Construction...<Icon type="FontAwesome" name="gavel" /></H1>
-        {/*<CardSection>
+      <View style={{paddingTop:20}}>
+        <H1 style={{textAlign: 'center'}}>Under Construction...</H1>
+        <Icon style={{alignSelf: 'center'}} type="FontAwesome" name="gavel" />
+      </View>
+/*       <Card>
+        <CardSection>
           <Input
             label="Name"
             placeholder="Arifur Rahman"
@@ -50,8 +53,8 @@ class UserCreate extends Component {
           <Button onPress={this.onButtonPress.bind(this)}>
             Create
           </Button>
-        </CardSection>*/}
-      </Card>
+        </CardSection>
+      </Card> */
     );
   }
 }

@@ -39,7 +39,6 @@ class SideMenu extends Component {
     AsyncStorage.getItem('@auth:userData', (error, result) => {
       var hasObj = !!result;
       var userInfo = JSON.parse(result);
-      console.log("Sidebar loaded", userInfo);
       this.setState({ 
         isLogedIn: hasObj,
         fullName: hasObj? userInfo.fullName : this.state.fullName,

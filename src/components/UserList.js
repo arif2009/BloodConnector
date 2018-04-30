@@ -17,6 +17,7 @@ class UserList extends Component {
         this.state = {
             error: props.error,
             loading: props.loading,
+            waiting: true,
             userList: [],
             userListDs: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}).cloneWithRows([])
         };
@@ -121,15 +122,32 @@ class UserList extends Component {
                     </Header>
 
                     <ListView
+                        enableEmptySections={true}
                         dataSource={this.state.userListDs}
                         //renderSeparator= {this.ListViewItemSeparator}
                         renderRow={this.renderRow}
-                        enableEmptySections={true}
+                        renderFooter = {this.renderFooter.bind(this)}
+                        onEndReached={this.onEndReached.bind(this)}
                         style={{ marginTop: 10 }} />
                 </View>
             );
         }
-	}
+    }
+
+    onEndReached() {
+        //if (!this.state.waiting) {
+            this.setState({waiting: false});
+            //this.fetchData() // fetching new data, ended with this.setState({waiting: false});
+        //}
+    }
+
+    renderFooter() {
+        if (this.state.waiting) {
+            return <Spinner color='blue' />;
+        } else {
+            return <Text></Text>;
+        }
+    }
 
     render(){
         return (

@@ -43,7 +43,7 @@ class RouterComponent extends Component {
                                 <Scene
                                     key="userList" 
                                     component={UserList} 
-                                    title="List of our donor's & receiver's" 
+                                    title="Our donor's & receiver's" 
                                     titleStyle={styles.sceneTitle}
                                 />
 

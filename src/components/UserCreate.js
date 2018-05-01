@@ -15,11 +15,7 @@ class UserCreate extends Component {
 
   render() {
     return (
-      <View style={{paddingTop:20}}>
-        <H1 style={{textAlign: 'center'}}>Under Construction...</H1>
-        <Icon style={{alignSelf: 'center'}} type="FontAwesome" name="gavel" />
-      </View>
-/*       <Card>
+      <Card>
         <CardSection>
           <Input
             label="Name"
@@ -54,7 +50,7 @@ class UserCreate extends Component {
             Create
           </Button>
         </CardSection>
-      </Card> */
+      </Card>
     );
   }
 }

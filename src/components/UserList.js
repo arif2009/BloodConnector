@@ -21,7 +21,6 @@ class UserList extends Component {
             userList: [],
             userListDs: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}).cloneWithRows([])
         };
-        console.log("constructor", this.state);
     }
 
     componentDidMount(){

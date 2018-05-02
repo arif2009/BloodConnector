@@ -50,7 +50,7 @@ class RouterComponent extends Component {
                                 <Scene 
                                     key="userCreate"
                                     component={UserCreate} 
-                                    title="Create User" 
+                                    title="Create Account" 
                                     titleStyle={styles.sceneTitle} 
                                 />
 

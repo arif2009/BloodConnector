@@ -72,5 +72,18 @@ module.exports = StyleSheet.create({
 		fontSize: 20,
 		alignSelf: 'center',
 		color: '#ff0000'
-	}
+    },
+    btnBlock:{
+        padding:10, 
+        height:45, 
+        overflow:'hidden', 
+        width:'95%', 
+        alignSelf: 'center', 
+        borderRadius:4, 
+        backgroundColor: '#0000ff'
+    },
+    itemStyle: {
+        borderBottomWidth: 1,
+        borderColor: '#fff'
+    }
 });

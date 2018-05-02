@@ -1,66 +1,53 @@
 import React, { Component } from 'react';
-import { Picker, Text, View } from 'react-native';
-import { H1, Icon } from 'native-base';
+import { Text, View } from 'react-native';
+import { Container, Header, Content, Form, Item, Input, Footer, FooterTab, Icon } from 'native-base';
+import Button from 'react-native-button';
 import { connect } from 'react-redux';
 import { userUpdate, userCreate } from '../actions';
-import { Card, CardSection, Button, Input } from './common';
-//import userForm from './EmployeeForm';
+import We from '../utills/we';
+var styles = require('./styles');
 
 class UserCreate extends Component {
+
   onButtonPress() {
     const { name, phone, sex } = this.props;
 
     this.props.userCreate({ name, phone, sex: sex || '1' });
   }
-
   render() {
     return (
-      <Card>
-        <CardSection>
-          <Input
-            label="Name"
-            placeholder="Arifur Rahman"
-            value={this.props.name}
-            onChangeText={value => this.props.userUpdate({prop: 'name', value})}
-          />
-        </CardSection>
-
-        <CardSection>
-          <Input
-            label="Phone"
-            placeholder="+880XXXXXXXXXX"
-            value={this.props.phone}
-            onChangeText={value => this.props.userUpdate({prop: 'phone', value})}
-          />
-        </CardSection>
-
-        <CardSection>
-          <Text style={styles.PickerTextStyle}>Gender :</Text>
-          <Picker
-            style={{flex:1}}
-            selectedValue={this.props.sex}
-            onValueChange={value => this.props.userUpdate({prop: 'sex', value})}>
-            <Picker.Item label="Male" value="1" />
-            <Picker.Item label="Female" value="0" />
-          </Picker>
-        </CardSection>
-
-        <CardSection>
-          <Button onPress={this.onButtonPress.bind(this)}>
-            Create
+			<Container style={styles.bgColor}>
+				<Content>
+          <Form>
+            <Item style={[styles.itemStyle]}>
+              <Icon type="FontAwesome" name='user' />
+              <Input placeholder="Your Name" />
+            </Item>
+            <Item style={[styles.itemStyle]}>
+              <Icon type="FontAwesome" name='envelope' />
+              <Input placeholder="E-mail" />
+            </Item>
+            <Item style={[styles.itemStyle]}>
+              <Icon type="FontAwesome" name='volume-control-phone' />
+              <Input placeholder="Contact Number" />
+            </Item>
+            <Button
+              containerStyle={[styles.btnBlock]}
+              disabledContainerStyle={{backgroundColor: 'grey'}}
+              style={{fontSize: 20, color: '#fff'}}>
+              Create!
           </Button>
-        </CardSection>
-      </Card>
+          </Form>
+				</Content>
+				<Footer>
+					<FooterTab style={styles.footerBg}>
+					  <Text style={styles.selfAlignCenter}>© 2017-{We.twoLetterYear} - BloodConnector {We.version}</Text>
+					</FooterTab>
+				</Footer>
+			</Container>
     );
   }
 }
-
-const styles = {
-  PickerTextStyle: {
-    fontSize: 18,
-    paddingLeft: 20
-  }
-};
 
 const mapStateToProps = (state) => {
   const { name, phone, sex } = state.userForm;

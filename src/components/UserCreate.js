@@ -3,41 +3,21 @@ import { Text, View } from 'react-native';
 import { Container, Header, Content, Form, Item, Input, Footer, FooterTab, Icon } from 'native-base';
 import Button from 'react-native-button';
 import { connect } from 'react-redux';
+import UserCreateForm from './common/UserCreateForm';
 import { userUpdate, userCreate } from '../actions';
 import We from '../utills/we';
 var styles = require('./styles');
 
 class UserCreate extends Component {
 
-  onButtonPress() {
-    const { name, phone, sex } = this.props;
-
-    this.props.userCreate({ name, phone, sex: sex || '1' });
-  }
   render() {
+    const handleSubmit = values => {    
+      alert(`submitting form with values123 = ${values}`);
+    };
     return (
 			<Container style={styles.bgColor}>
 				<Content>
-          <Form>
-            <Item style={[styles.itemStyle]}>
-              <Icon type="FontAwesome" name='user' />
-              <Input placeholder="Your Name" />
-            </Item>
-            <Item style={[styles.itemStyle]}>
-              <Icon type="FontAwesome" name='envelope' />
-              <Input placeholder="E-mail" />
-            </Item>
-            <Item style={[styles.itemStyle]}>
-              <Icon type="FontAwesome" name='volume-control-phone' />
-              <Input placeholder="Contact Number" />
-            </Item>
-            <Button
-              containerStyle={[styles.btnBlock]}
-              disabledContainerStyle={{backgroundColor: 'grey'}}
-              style={{fontSize: 20, color: '#fff'}}>
-              Create!
-          </Button>
-          </Form>
+          <UserCreateForm handleSubmit={handleSubmit}/>
 				</Content>
 				<Footer>
 					<FooterTab style={styles.footerBg}>
@@ -49,7 +29,7 @@ class UserCreate extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+/*const mapStateToProps = (state) => {
   const { name, phone, sex } = state.userForm;
 
   return { name, phone, sex };
@@ -58,3 +38,5 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   userUpdate, userCreate
 })(UserCreate);
+*/
+export default UserCreate;

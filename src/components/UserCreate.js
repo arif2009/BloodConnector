@@ -11,8 +11,9 @@ var styles = require('./styles');
 class UserCreate extends Component {
 
   render() {
-    const handleSubmit = values => {    
-      alert(`submitting form with values123 = ${values}`);
+    const handleSubmit = values => {  
+      console.log("handleSubmit",values);  
+      //alert(`submitting form with values123 = ${values}`);
     };
     return (
 			<Container style={styles.bgColor}>

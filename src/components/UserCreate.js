@@ -8,17 +8,12 @@ import { userUpdate, userCreate } from '../actions';
 import We from '../utills/we';
 var styles = require('./styles');
 
-class UserCreate extends Component {
-
+export default class UserCreate extends Component {
   render() {
-    const handleSubmit = values => {  
-      console.log("handleSubmit",values);  
-      //alert(`submitting form with values123 = ${values}`);
-    };
     return (
 			<Container style={styles.bgColor}>
 				<Content>
-          <UserCreateForm handleSubmit={handleSubmit}/>
+          <UserCreateForm />
 				</Content>
 				<Footer>
 					<FooterTab style={styles.footerBg}>
@@ -40,4 +35,3 @@ export default connect(mapStateToProps, {
   userUpdate, userCreate
 })(UserCreate);
 */
-export default UserCreate;

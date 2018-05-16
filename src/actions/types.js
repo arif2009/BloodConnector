@@ -10,6 +10,7 @@ export const USER_UPDATE = 'user_update';
 export const USER_CREATE = 'user_create';
 export const USERS_FETCHING = 'users_fetching';
 export const USER_SAVE_SUCCESS = 'user_save_success';
+export const USER_CREATE_FORM = 'frm_create_user';
 
 export const LOADING_BLOOD_SUCCESS = 'loading_blood_success';
 export const LOADING_BLOOD_FAIL = 'loading_blood_fail';

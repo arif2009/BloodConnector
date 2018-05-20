@@ -1,8 +1,26 @@
+import axios from 'axios';
 import { SubmissionError } from 'redux-form';
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+import { Actions } from 'react-native-router-flux';
+import We from '../../utills/we';
+//const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 const submit = values => {
-    return sleep(1000).then(() => {
+
+    const data = JSON.stringify(values);
+    const header = { headers: { 'Content-Type': 'application/json' } };
+    const url = `${We.apiOrigin}api/account/app_register`;
+    const register = axios.post(url, data, header);
+
+    return register
+    .then(result => {
+        console.log("Success", result);
+        //Actions.userList()
+    })
+    .catch((error) => {
+        console.log("Error",error);
+    });
+
+    /*return sleep(1000).then(() => {
         if (!['hoang', 'hoangnd', 'ndhoang'].includes(values.username)) {
             throw new SubmissionError({
                 username: 'User does not exist',
@@ -16,6 +34,6 @@ const submit = values => {
         } else {
             alert(`Validation success. Values = ${JSON.stringify(values)}`);
         }
-    });
+    });*/
 };
 export default submit;

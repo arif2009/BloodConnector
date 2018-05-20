@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { StyleSheet, View, Text, TouchableOpacity, TextInput } from 'react-native';
+import { H2 } from 'native-base';
 import { USER_CREATE_FORM } from '../../actions/types';
 import submit from './submit';
 var styles = require('../../components/styles');
 
 //Validation
 const required = value => value ? undefined : 'Required';
-const maxLength15 = value => value && value.length > 15 ? `Must be 15 characters or less` : undefined;
+const maxLength40 = value => value && value.length > 40 ? `Must be 40 characters or less` : undefined;
 const number = value => value && isNaN(Number(value)) ? 'Must be a number' : undefined;
 const minValue = min => value =>
     value && value < min ? `Must be at least ${min}` : undefined;
@@ -21,17 +22,15 @@ const over70YearsOld = value =>
 const isYahooMail = value =>
 value && /.+@yahoo\.com/.test(value) ?'Really? You still use yahoo mail ?' : undefined;
 
-const renderField = ({ label, keyboardType, placeholder, meta: { touched, error, warning }, input: { onChange, ...restInput }}) => {
-    return (<View style={{ flexDirection: 'column', height: 70, alignItems: 'flex-start' }}>
-        <View style={{ flexDirection: 'row', height: 50, alignItems: 'center' }}>
-            <Text style={{ fontSize: 14, fontWeight: 'bold', width: 80 }}>{label}</Text>
-            <TextInput style={{ borderColor: 'steelblue', borderWidth: 1, height: 37, width: 220, padding: 5 }}
-                keyboardType={keyboardType} onChangeText={onChange} {...restInput} placeholder={placeholder} autoCapitalize='none'
-            >
-            </TextInput>
-        </View>
-        {touched && ((error && <Text style={{ color: 'red' }}>{error}</Text>) ||
-                (warning && <Text style={{ color: 'orange' }}>{warning}</Text>))}
+const renderField = ({ label, requiredMarker, keyboardType, placeholder, meta: { touched, error, warning }, input: { onChange, ...restInput }}) => {
+    return (
+    <View>
+        <Text style={styles.txtMedium}>{label}<Text style={styles.txtDanger}>{requiredMarker}</Text></Text>
+        <TextInput style={{ padding: 5 }}
+                keyboardType={keyboardType} onChangeText={onChange} {...restInput} placeholder={placeholder} autoCapitalize='none'>
+        </TextInput>
+        {touched && ((error && <Text style={styles.txtDanger}>{error}</Text>) ||
+                (warning && <Text style={styles.txtWarning}>{warning}</Text>))}
     </View>);
 };
 
@@ -43,14 +42,17 @@ const UserComponent = props => {
     const { handleSubmit, submitting, reset } = props;
     console.log(`submitting = ${submitting}`);
     return (
-        <View style={{ flex: 1, flexDirection: 'column', margin: 40, justifyContent: 'flex-start', }}>
+        <View style={{ flex: 1, flexDirection: 'column', margin: 20, justifyContent: 'flex-start', }}>
 
-            <Field name="username" keyboardType="default" label="Username: " placeholder="Enter name" component={renderField} 
-                validate={[required, maxLength15]}
+            <Field name="name" keyboardType="default" label="Name: " requiredMarker="*" placeholder="FirstName LastName NikeName" component={renderField} 
+                validate={[required, maxLength40]}
             />
-            <Field name="email" keyboardType="email-address" label="Email: " placeholder="Enter email" component={renderField} 
+            <Field name="email" keyboardType="email-address" label="Email: " requiredMarker="*" placeholder="Enter email" component={renderField} 
                 validate={isValidEmail}
                 warn={isYahooMail}
+            />
+            <Field name="phoneNumber" keyboardType="numeric" label="Contact Number: " requiredMarker="*" placeholder="FirstName LastName NikeName" component={renderField} 
+                validate={[required, maxLength40]}
             />
             <Field name="age" keyboardType="numeric" label="Age: " placeholder="Enter age" component={renderField} 
                 validate={[required, number, minValue18]}

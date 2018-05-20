@@ -18,6 +18,12 @@ module.exports = StyleSheet.create({
     txtBlue:{
         color: '#0000ff'
     },
+    txtWarning:{
+        color: '#ffc107'
+    },
+    txtDanger:{
+        color: '#dc3545'
+    },
     borderBottom0:{
         borderBottomWidth:0
     },

@@ -2,14 +2,16 @@ import axios from 'axios';
 import { Actions } from 'react-native-router-flux';
 import { Icon } from 'native-base';
 import {LOADING_BLOOD_SUCCESS, LOADING_BLOOD_FAIL,LOADING_BLOOD} from './types';
+import We from '../utills/we';
 var styles = require('../components/styles');
 
 export const loadBloodGroups = () => {
 	return (dispatch) => {
 		
         dispatch({ type: LOADING_BLOOD });
-        
-        axios.get('http://www.bloodconnector.org/api/bloodgroup/getusersbloodgroup')
+		
+		const url = `${We.apiOrigin}api/bloodgroup/getusersbloodgroup`;
+		axios.get(url)
         .then(response => loadingSuccess(dispatch, response))
         .catch(error => loadingFail(dispatch, error));
 	};

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { Actions } from 'react-native-router-flux';
+import We from '../utills/we';
 import {
   USER_UPDATE, USER_CREATE, USERS_FETCHING,
   USER_SAVE_SUCCESS
@@ -31,10 +32,13 @@ export const userCreate = ({ name, phone, sex }) => {
 
 export const userFetch = ({ token }) => {
 	return (dispatch) => {
-		dispatch({ type: USERS_FETCHING });
+    dispatch({ type: USERS_FETCHING });
+
+    const url = `${We.apiOrigin}api/users`;
    return axios({
       method:'get',
-      url:'http://www.bloodconnector.org/api/users',
+      //url:'http://www.bloodconnector.org/',
+      url: url,
       timeout: 10000,
       headers: { 'Authorization': 'bearer ' + token },
       responseType:'json'

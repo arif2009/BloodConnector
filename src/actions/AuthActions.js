@@ -6,6 +6,7 @@ import {
 	LOGIN_USER_SUCCESS, LOGIN_USER_FAIL,
 	LOGIN_USER, AUTH_INFO, AUTH_INFO_DISPATCHED
 } from './types';
+import We from '../utills/we';
 
 export const authInfo = () => {
 	return(dispatch) => {
@@ -43,8 +44,8 @@ export const loginUser = ({email, password}) => {
 
 		const data = `grant_type=password&username=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`;
 		const header = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } };
-
-		axios.post('http://www.bloodconnector.org/token', data, header)
+		const url = `${We.apiOrigin}token`;
+		axios.post(url, data, header)
 		.then(tokenInfo => loginUserSuccess(dispatch, tokenInfo))
 		.catch((error) => loginUserFail(dispatch, error));
 	};

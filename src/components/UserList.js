@@ -42,7 +42,7 @@ class UserList extends Component {
                     loading: false,
                     userList: []
                 });
-                //console.log("Catch > ",errors);
+                console.log("Catch > ",errors);
         });
     }
 

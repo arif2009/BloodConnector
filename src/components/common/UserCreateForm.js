@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { StyleSheet, View, Text, TouchableOpacity, TextInput } from 'react-native';
-import { H2 } from 'native-base';
+import { Picker } from 'native-base';
 import { USER_CREATE_FORM } from '../../actions/types';
 import submit from './submit';
 var styles = require('../../components/styles');
@@ -34,6 +34,20 @@ const renderField = ({ label, requiredMarker, keyboardType, placeholder, meta: {
     </View>);
 };
 
+const renderPicker = ({ label, requiredMarker, meta: { touched, error, warning }, input: { onChange, value, ...inputProps }, children, ...pickerProps }) => {
+    return (
+        <View>
+            <Text style={styles.txtMedium}>{label}<Text style={styles.txtDanger}>{value}</Text></Text>
+            <Picker selectedValue={value} onValueChange={ value => onChange(value) } { ...inputProps } { ...pickerProps } >
+                { children }
+            </Picker>
+            {touched && (error && <Text style={styles.txtDanger}>{error}</Text>)}
+        </View>);
+    };
+
+const formatLoanTerm = value => value+'';
+const parseLoanTerm = value => parseInt(value);
+
 /*const submit = values => {
     alert(JSON.stringify(values))
 }*/
@@ -48,16 +62,25 @@ const UserComponent = props => {
                 validate={[required, maxLength40]}
             />
             <Field name="email" keyboardType="email-address" label="Email: " requiredMarker="*" placeholder="Enter email" component={renderField} 
-                validate={isValidEmail}
+                validate={[required, isValidEmail]}
                 warn={isYahooMail}
             />
-            <Field name="phoneNumber" keyboardType="numeric" label="Contact Number: " requiredMarker="*" placeholder="FirstName LastName NikeName" component={renderField} 
-                validate={[required, maxLength40]}
+            <Field name="phoneNumber" keyboardType="numeric" label="Contact Number: " requiredMarker="*" placeholder="E.g. +8801721654450" component={renderField} 
+                validate={[required]}
             />
             <Field name="age" keyboardType="numeric" label="Age: " placeholder="Enter age" component={renderField} 
                 validate={[required, number, minValue18]}
                 warn={over70YearsOld}
             />
+            <Field name="bloodGroupId" label="Blood Group: " requiredMarker="*" component={ renderPicker } 
+                iosHeader="Select one" mode="dropdown" format={ formatLoanTerm } parse={ parseLoanTerm }
+                validate={[required]}
+            >
+                <Picker.Item label="Select one" value="1" />
+                <Picker.Item label="20 Years" value="2" />
+                <Picker.Item label="10 Years" value="3" />
+                <Picker.Item label="7 Years" value="4" />
+            </Field>
             <TouchableOpacity onPress={handleSubmit(submit)} style={{ margin: 10, alignItems: 'center' }} disabled={submitting}>
                 <Text style={{
                     backgroundColor: 'steelblue', color: 'white', fontSize: 16,

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { StyleSheet, View, Text, TouchableOpacity, TextInput } from 'react-native';
-import { Picker } from 'native-base';
+import { Picker, Item } from 'native-base';
 import { USER_CREATE_FORM } from '../../actions/types';
 import submit from './submit';
 var styles = require('../../components/styles');
@@ -38,7 +38,7 @@ const renderPicker = ({ label, requiredMarker, meta: { touched, error, warning }
     return (
         <View>
             <Text style={styles.txtMedium}>{label}<Text style={styles.txtDanger}>{value}</Text></Text>
-            <Picker selectedValue={value} onValueChange={ value => onChange(value) } { ...inputProps } { ...pickerProps } >
+            <Picker selectedValue={value} onValueChange={ value => requestAnimationFrame(()=>{onChange(value);}) } { ...inputProps } { ...pickerProps } >
                 { children }
             </Picker>
             {touched && (error && <Text style={styles.txtDanger}>{error}</Text>)}

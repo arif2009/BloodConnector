@@ -76,10 +76,10 @@ const UserComponent = props => {
                 iosHeader="Select one" mode="dropdown" format={ formatLoanTerm } parse={ parseLoanTerm }
                 validate={[required]}
             >
-                <Picker.Item label="Select one" value="1" />
-                <Picker.Item label="20 Years" value="2" />
-                <Picker.Item label="10 Years" value="3" />
-                <Picker.Item label="7 Years" value="4" />
+                <Item label="Select one" value="1" />
+                <Item label="20 Years" value="2" />
+                <Item label="10 Years" value="3" />
+                <Item label="7 Years" value="4" />
             </Field>
             <TouchableOpacity onPress={handleSubmit(submit)} style={{ margin: 10, alignItems: 'center' }} disabled={submitting}>
                 <Text style={{

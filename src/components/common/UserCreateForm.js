@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { StyleSheet, View, Text, TouchableOpacity, TextInput } from 'react-native';
-import { Picker, Item } from 'native-base';
+import { Picker, Item, Icon } from 'native-base';
 import { USER_CREATE_FORM } from '../../actions/types';
 import submit from './submit';
 var styles = require('../../components/styles');
@@ -37,7 +37,7 @@ const renderField = ({ label, requiredMarker, keyboardType, placeholder, meta: {
 const renderPicker = ({ label, requiredMarker, meta: { touched, error, warning }, input: { onChange, value, ...inputProps }, children, ...pickerProps }) => {
     return (
         <View>
-            <Text style={styles.txtMedium}>{label}<Text style={styles.txtDanger}>{value}</Text></Text>
+            <Text style={styles.txtMedium}>{label}<Text style={styles.txtDanger}>{requiredMarker}</Text></Text>
             <Picker selectedValue={value} onValueChange={ value => requestAnimationFrame(()=>{onChange(value);}) } { ...inputProps } { ...pickerProps } >
                 { children }
             </Picker>
@@ -47,10 +47,6 @@ const renderPicker = ({ label, requiredMarker, meta: { touched, error, warning }
 
 const formatLoanTerm = value => value+'';
 const parseLoanTerm = value => parseInt(value);
-
-/*const submit = values => {
-    alert(JSON.stringify(values))
-}*/
 
 const UserComponent = props => {
     const { handleSubmit, submitting, reset } = props;
@@ -68,18 +64,21 @@ const UserComponent = props => {
             <Field name="phoneNumber" keyboardType="numeric" label="Contact Number: " requiredMarker="*" placeholder="E.g. +8801721654450" component={renderField} 
                 validate={[required]}
             />
-            <Field name="age" keyboardType="numeric" label="Age: " placeholder="Enter age" component={renderField} 
-                validate={[required, number, minValue18]}
-                warn={over70YearsOld}
+            <Field name="bloodGiven" keyboardType="numeric" label="Number of times given blood: " placeholder="E.g. 5" component={renderField} 
+                validate={[required, number]}
             />
             <Field name="bloodGroupId" label="Blood Group: " requiredMarker="*" component={ renderPicker } 
                 iosHeader="Select one" mode="dropdown" format={ formatLoanTerm } parse={ parseLoanTerm }
-                validate={[required]}
-            >
-                <Item label="Select one" value="1" />
-                <Item label="20 Years" value="2" />
-                <Item label="10 Years" value="3" />
-                <Item label="7 Years" value="4" />
+                validate={[required]}>
+                <Item label="Select one" />
+                <Item label="O-" value="1" />
+                <Item label="O+" value="2" />
+                <Item label="A-" value="3" />
+                <Item label="A+" value="4" />
+                <Item label="B-" value="5" />
+                <Item label="B+" value="6" />
+                <Item label="AB-" value="7" />
+                <Item label="AB+" value="8" />
             </Field>
             <TouchableOpacity onPress={handleSubmit(submit)} style={{ margin: 10, alignItems: 'center' }} disabled={submitting}>
                 <Text style={{

@@ -91,5 +91,17 @@ module.exports = StyleSheet.create({
     itemStyle: {
         borderBottomWidth: 1,
         borderColor: '#fff'
+    },
+    button: {
+        shadowColor: 'rgba(0,0,0, .4)', // IOS
+        shadowOffset: { height: 1, width: 1 }, // IOS
+        shadowOpacity: 1, // IOS
+        shadowRadius: 1, //IOS
+        elevation: 2, // Android
+        height: 40,
+        borderRadius:4,
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row'
     }
 });

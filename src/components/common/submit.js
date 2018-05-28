@@ -12,7 +12,7 @@ const submit = values => {
     const register = axios.post(url, data, header);
 
     return register
-    .then(result => {
+    .then((result) => {
         console.log("Success", result);
         //Actions.userList()
     })

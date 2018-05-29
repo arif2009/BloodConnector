@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { StyleSheet, View, Text, TouchableOpacity, TextInput } from 'react-native';
 import { Picker, Item, Icon, CheckBox, ListItem } from 'native-base';
+import _ from 'lodash';
 import { USER_CREATE_FORM } from '../../actions/types';
 import submit from './submit';
 var styles = require('../../components/styles');
 
 //Validation
-const required = value => value ? undefined : 'Required';
+const reqMsg = 'Required'
+const required = value => value ? undefined : reqMsg;
+const in1To8 = value => _.inRange(value, 1, 8)? undefined : reqMsg;
+const is0Or1 = value => _.inRange(value, 0, 1)? undefined : reqMsg;
+
 const number = value => value && isNaN(Number(value)) ? 'Must be a number' : undefined;
 
 const maxLength = max => value => value && value.length > max ? `Must be ${max} characters or less` : undefined;
@@ -31,11 +36,15 @@ const isYahooMail = value =>
 const renderField = ({ secureTextEntry, label, requiredMarker, keyboardType, placeholder, meta: { touched, error, warning }, input: { onChange, ...restInput } }) => {
     return (
         <View>
-            <Text style={styles.txtMedium}>{label}<Text style={styles.txtDanger}>{requiredMarker}</Text></Text>
+            <Text style={styles.txtMedium}>
+                {label}
+                <Text style={styles.txtDanger}>{requiredMarker}</Text>
+                {touched && (error && error==reqMsg && <Text style={styles.txtDanger}>{error}</Text>)}
+            </Text>
             <TextInput secureTextEntry={JSON.parse(secureTextEntry)} style={{ padding: 5 }} keyboardType={keyboardType}
                 onChangeText={onChange} {...restInput} placeholder={placeholder} autoCapitalize='none'>
             </TextInput>
-            {touched && ((error && <Text style={styles.txtDanger}>{error}</Text>) ||
+            {touched && ((error && error!=reqMsg && <Text style={styles.txtDanger}>{error}</Text>) ||
                 (warning && <Text style={styles.txtWarning}>{warning}</Text>))}
         </View>
     );
@@ -44,11 +53,14 @@ const renderField = ({ secureTextEntry, label, requiredMarker, keyboardType, pla
 const renderPicker = ({ label, requiredMarker, meta: { touched, error, warning }, input: { onChange, value, ...inputProps }, children, ...pickerProps }) => {
     return (
         <View>
-            <Text style={styles.txtMedium}>{label}<Text style={styles.txtDanger}>{requiredMarker}</Text></Text>
+            <Text style={styles.txtMedium}>
+                {label}
+                <Text style={styles.txtDanger}>{requiredMarker}</Text>
+                {touched && (error && <Text style={styles.txtDanger}>{error}</Text>)}
+            </Text>
             <Picker selectedValue={value} onValueChange={value => requestAnimationFrame(() => { onChange(value); })} {...inputProps} {...pickerProps} >
                 {children}
             </Picker>
-            {touched && (error && <Text style={styles.txtDanger}>{error}</Text>)}
         </View>
     );
 };
@@ -82,7 +94,7 @@ class UserComponent extends Component {
                 />
                 <Field mode="dropdown" name="bloodGroupId" label="Blood Group: " requiredMarker="*" component={renderPicker}
                     iosHeader="Select one" format={formatLoanTerm} parse={parseLoanTerm}
-                    validate={[required]}>
+                    validate={[in1To8]}>
                     <Item label="Select one" />
                     <Item label="O-" value="1" />
                     <Item label="O+" value="2" />
@@ -95,7 +107,7 @@ class UserComponent extends Component {
                 </Field>
                 <Field mode="dropdown" name="gender" label="Gender: " requiredMarker="*" component={renderPicker}
                     iosHeader="Select one" format={formatLoanTerm} parse={parseLoanTerm}
-                    validate={[required]}>
+                    validate={[is0Or1]}>
                     <Item label="Select one" />
                     <Item label="Male" value="1" />
                     <Item label="Female" value="0" />

@@ -10,8 +10,8 @@ var styles = require('../../components/styles');
 //Validation
 const reqMsg = 'Required'
 const required = value => value ? undefined : reqMsg;
-const in1To8 = value => _.inRange(value, 1, 8)? undefined : reqMsg;
-const is0Or1 = value => _.inRange(value, 0, 1)? undefined : reqMsg;
+const in1To8 = value => _.inRange(value, 1, 9)? undefined : reqMsg;
+const is0Or1 = value => _.inRange(value, 0, 2)? undefined : reqMsg;
 
 const number = value => value && isNaN(Number(value)) ? 'Must be a number' : undefined;
 

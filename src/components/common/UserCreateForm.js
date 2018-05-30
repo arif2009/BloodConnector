@@ -27,6 +27,11 @@ const isValidEmail = value =>
 
 const confirmValidators = (value, values) => value === values.password ? undefined : 'Confirm password doesn\'t match with password!';
 
+const acceptTerms = value => {
+    console.log(value);
+    return value==true? undefined : 'You must accept the terms conditions!!'
+};
+
 //Warning
 const over70YearsOld = value =>
     value && value > 70 ? 'You might be too old for using this' : undefined;
@@ -93,9 +98,9 @@ class UserComponent extends Component {
                     validate={[required]}
                 />
                 <Field mode="dropdown" name="bloodGroupId" label="Blood Group: " requiredMarker="*" component={renderPicker}
-                    iosHeader="Select one" format={formatLoanTerm} parse={parseLoanTerm}
+                    iosHeader="--SELECT--" format={formatLoanTerm} parse={parseLoanTerm}
                     validate={[in1To8]}>
-                    <Item label="Select one" />
+                    <Item label="--SELECT--" />
                     <Item label="O-" value="1" />
                     <Item label="O+" value="2" />
                     <Item label="A-" value="3" />
@@ -106,9 +111,9 @@ class UserComponent extends Component {
                     <Item label="AB+" value="8" />
                 </Field>
                 <Field mode="dropdown" name="gender" label="Gender: " requiredMarker="*" component={renderPicker}
-                    iosHeader="Select one" format={formatLoanTerm} parse={parseLoanTerm}
+                    iosHeader="--SELECT--" format={formatLoanTerm} parse={parseLoanTerm}
                     validate={[is0Or1]}>
-                    <Item label="Select one" />
+                    <Item label="--SELECT--" />
                     <Item label="Male" value="1" />
                     <Item label="Female" value="0" />
                 </Field>
@@ -120,17 +125,19 @@ class UserComponent extends Component {
                 />
 
                 <Field name="acceptTAndC" component={(props) => {
+                    console.log(props);
                     return (
                         <ListItem>
                             <CheckBox {...props.input} checked={props.input.value ? true : false} onPress={() => {
                                 const val = !props.input.value;
                                 props.input.onChange(val);
                                 this.setState({ acceptTAndC: val });
-                            }} />
-                            <Text> I accept this terms and conditions </Text>
+                            }}{...reset} />
+                            <Text>{props.meta.touched+''} I accept this terms and conditions </Text>
+                            {props.touched && (props.error && <Text style={styles.txtDanger}>{props.error}</Text>)}
                         </ListItem>
                     )
-                }} />
+                }} validate={[acceptTerms]}/>
 
                 <TouchableOpacity disabled={submitting}
                     onPress={this.state.acceptTAndC ? handleSubmit(submit) : null}

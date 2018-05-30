@@ -17,7 +17,10 @@ const submit = values => {
         //Actions.userList()
     })
     .catch((error) => {
-        console.log("Error",error);
+        let errors = We.processModelstateError(error.response.data.modelState);
+        throw new SubmissionError({
+            phoneNumber: errors[0]
+        });
     });
 
     /*return sleep(1000).then(() => {

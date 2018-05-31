@@ -27,10 +27,7 @@ const isValidEmail = value =>
 
 const confirmValidators = (value, values) => value === values.password ? undefined : 'Confirm password doesn\'t match with password!';
 
-const acceptTerms = value => {
-    console.log(value);
-    return value==true? undefined : 'You must accept the terms conditions!!'
-};
+const acceptTerms = value => value? undefined : 'You must accept the terms conditions!!';
 
 //Warning
 const over70YearsOld = value =>
@@ -125,17 +122,19 @@ class UserComponent extends Component {
                 />
 
                 <Field name="acceptTAndC" component={(props) => {
-                    console.log(props);
                     return (
-                        <ListItem>
-                            <CheckBox {...props.input} checked={props.input.value ? true : false} onPress={() => {
-                                const val = !props.input.value;
-                                props.input.onChange(val);
-                                this.setState({ acceptTAndC: val });
-                            }}{...reset} />
-                            <Text>{props.meta.touched+''} I accept this terms and conditions </Text>
-                            {props.touched && (props.error && <Text style={styles.txtDanger}>{props.error}</Text>)}
-                        </ListItem>
+                        <View>
+                            <ListItem>
+                                <CheckBox {...props.input} checked={props.input.value ? true : false} onPress={() => {
+                                    const val = !props.input.value;
+                                    props.input.onChange(val);
+                                    this.setState({ acceptTAndC: val });
+                                    
+                                }} />
+                                <Text> I accept this terms and conditions</Text>
+                            </ListItem>
+                            {props.meta.error && <Text style={[styles.txtDanger, styles.mb, styles.mlLg]}>{props.meta.error}</Text>}
+                        </View>
                     )
                 }} validate={[acceptTerms]}/>
 

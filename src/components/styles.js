@@ -30,6 +30,15 @@ module.exports = StyleSheet.create({
     selfAlignCenter:{
         alignSelf: 'center'
     },
+    mb:{
+        marginBottom: 10
+    },
+    ml:{
+        marginLeft: 10
+    },
+    mlLg:{
+        marginLeft: 15
+    },
     footerBg: {
         backgroundColor: '#ff8080',
         justifyContent:'center'

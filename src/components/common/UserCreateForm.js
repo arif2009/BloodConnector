@@ -20,7 +20,7 @@ const maxLength = max => value => value && value.length > max ? `Must be ${max} 
 const maxLength12 = maxLength(12);
 const maxLength40 = maxLength(40);
 
-const minValue = min => value => value && value.length < min ? `Must be at least ${min}` : undefined;
+const minValue = min => value => value && value.length < min ? `Must be at least ${min} characters` : undefined;
 const minValue6 = minValue(6);
 
 const isValidEmail = value =>
@@ -142,7 +142,7 @@ class UserComponent extends Component {
 
                 <TouchableOpacity disabled={submitting}
                     onPress={this.state.acceptTAndC ? handleSubmit(submit) : null}
-                    style={[styles.button, { backgroundColor: this.state.acceptTAndC ? '#337ab7' : '#7aa9d0' }]}>
+                    style={[styles.button, { backgroundColor: this.state.acceptTAndC ? '#337ab7' : '#808080' }]}>
                     <Text style={[styles.txtColor, styles.txtMedium]}>Submit</Text>
                 </TouchableOpacity>
 

@@ -56,6 +56,9 @@ module.exports = StyleSheet.create({
         fontSize: 16,
 		fontWeight: '600'
     },
+    txtBold: {
+        fontWeight: 'bold'
+    },
     txtBolder: {
         fontSize: 18,
         fontWeight: 'bold'

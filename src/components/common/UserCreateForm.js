@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { StyleSheet, View, Text, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, TextInput, Button } from 'react-native';
 import { Picker, Item, Icon, CheckBox, ListItem } from 'native-base';
+import PopupDialog, { DialogTitle, DialogButton } from 'react-native-popup-dialog';
 import _ from 'lodash';
 import { USER_CREATE_FORM } from '../../actions/types';
 import submit from './submit';
@@ -27,7 +28,7 @@ const isValidEmail = value =>
 
 const confirmValidators = (value, values) => value === values.password ? undefined : 'Confirm password doesn\'t match with password!';
 
-const acceptTerms = value => value? undefined : 'You must accept the terms conditions!!';
+const acceptTerms = value => value? undefined : 'You must accept this terms and conditions!!';
 
 //Warning
 const over70YearsOld = value =>
@@ -79,7 +80,7 @@ class UserComponent extends Component {
         const { handleSubmit, submitting, reset } = this.props;
 
         return (
-            <View style={{ flex: 1, flexDirection: 'column', margin: 20, justifyContent: 'flex-start', }}>
+            <View style={{ flex: 1, flexDirection: 'column', padding: 20, justifyContent: 'flex-start', }}>
 
                 <Field name="name" secureTextEntry="false" keyboardType="default" label="Name: " requiredMarker="*" placeholder="FirstName LastName NikeName" component={renderField}
                     validate={[required, maxLength40]}
@@ -131,7 +132,8 @@ class UserComponent extends Component {
                                     this.setState({ acceptTAndC: val });
                                     
                                 }} />
-                                <Text> I accept this terms and conditions</Text>
+                                
+                                <Text> I accept <Text style={styles.txtBlue} onPress={() => { this.popupDialog.show();}}>this terms and conditions</Text></Text>
                             </ListItem>
                             {props.meta.error && <Text style={[styles.txtDanger, styles.mb, styles.mlLg]}>{props.meta.error}</Text>}
                         </View>
@@ -143,6 +145,16 @@ class UserComponent extends Component {
                     style={[styles.button, { backgroundColor: this.state.acceptTAndC ? '#337ab7' : '#7aa9d0' }]}>
                     <Text style={[styles.txtColor, styles.txtMedium]}>Submit</Text>
                 </TouchableOpacity>
+
+                <PopupDialog dialogTitle={<DialogTitle title="Terms and Conditions" />} width={0.9} height={160}
+                    ref={(popupDialog) => { this.popupDialog = popupDialog; }}
+                    containerStyle = {{ zIndex: 10, elevation: 10 }}
+                    actions={[<DialogButton text="OK" onPress={() => { this.popupDialog.dismiss();}} key="button-1"/>]}
+                >
+                    <View style={{paddingTop:10, paddingLeft:10, paddingRight:10}}>
+                        <Text>All the registered user can see your <Text style={styles.txtBold}>Contact Number</Text> and <Text style={styles.txtBold}>E-mail</Text>. So they can call you or send email for blood.</Text>
+                    </View>
+                </PopupDialog>
             </View>
         );
     }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { StyleSheet, View, Text, TouchableOpacity, TextInput, Button } from 'react-native';
-import { Picker, Item, Icon, CheckBox, ListItem } from 'native-base';
+import { Picker, Item, Icon, CheckBox, ListItem, Spinner } from 'native-base';
 import PopupDialog, { DialogTitle, DialogButton } from 'react-native-popup-dialog';
 import _ from 'lodash';
 import { USER_CREATE_FORM } from '../../actions/types';
@@ -78,7 +78,7 @@ class UserComponent extends Component {
     }
     render() {
         const { handleSubmit, submitting, reset } = this.props;
-
+        console.log(submitting);
         return (
             <View style={{ flex: 1, flexDirection: 'column', padding: 20, justifyContent: 'flex-start', }}>
 
@@ -143,13 +143,14 @@ class UserComponent extends Component {
                 <TouchableOpacity disabled={submitting}
                     onPress={this.state.acceptTAndC ? handleSubmit(submit) : null}
                     style={[styles.button, { backgroundColor: this.state.acceptTAndC ? '#337ab7' : '#808080' }]}>
-                    <Text style={[styles.txtColor, styles.txtMedium]}>Submit</Text>
+                    <Text style={[styles.txtColor, styles.txtMedium]}>Submit {' '}</Text>
+                    <Spinner size={25} color='blue' />
                 </TouchableOpacity>
 
                 <PopupDialog dialogTitle={<DialogTitle title="Terms and Conditions" />} width={0.9} height={160}
                     ref={(popupDialog) => { this.popupDialog = popupDialog; }}
                     containerStyle = {{ zIndex: 10, elevation: 10 }}
-                    actions={[<DialogButton text="OK" onPress={() => { this.popupDialog.dismiss();}} key="button-1"/>]}
+                    actions={[<DialogButton style={{marginBottom: 10}} text="OK" onPress={() => { this.popupDialog.dismiss();}} key="button-1"/>]}
                 >
                     <View style={{paddingTop:10, paddingLeft:10, paddingRight:10}}>
                         <Text>All the registered user can see your <Text style={styles.txtBold}>Contact Number</Text> and <Text style={styles.txtBold}>E-mail</Text>. So they can call you or send email for blood.</Text>

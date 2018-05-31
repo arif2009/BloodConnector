@@ -144,7 +144,7 @@ class UserComponent extends Component {
                     onPress={this.state.acceptTAndC ? handleSubmit(submit) : null}
                     style={[styles.button, { backgroundColor: this.state.acceptTAndC ? '#337ab7' : '#808080' }]}>
                     <Text style={[styles.txtColor, styles.txtMedium]}>Submit {' '}</Text>
-                    <Spinner size={25} color='blue' />
+                    {submitting && <Spinner size={25} color="#fff" />}
                 </TouchableOpacity>
 
                 <PopupDialog dialogTitle={<DialogTitle title="Terms and Conditions" />} width={0.9} height={160}

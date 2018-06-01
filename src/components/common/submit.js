@@ -18,6 +18,8 @@ const submit = values => {
         //Actions.userList()
     })
     .catch((error) => {
+        //debugger;
+        //console.log("error",error.response);
         let errors = We.processModelstateError(error);
         errors['_error'] = 'Registration Failed!'
         throw new SubmissionError(errors);

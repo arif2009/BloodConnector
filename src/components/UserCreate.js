@@ -17,7 +17,10 @@ export default class UserCreate extends Component {
 				</Content>
 				<Footer>
 					<FooterTab style={styles.footerBg}>
-					  <Text style={styles.selfAlignCenter}>© 2017-{We.twoLetterYear} - BloodConnector {We.version}</Text>
+						<View style={{justifyContent:'center'}}>
+							<Text style={styles.selfAlignCenter}>© 2017-{We.twoLetterYear} - BloodConnector {We.version}</Text>
+							<Text>Website <Text style={styles.txtBlue} onPress={() => Linking.openURL('http://www.bloodconnector.org')}>www.bloodconnector.org</Text></Text>
+						</View>
 					</FooterTab>
 				</Footer>
 			</Container>

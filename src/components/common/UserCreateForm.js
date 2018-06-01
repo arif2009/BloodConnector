@@ -130,7 +130,6 @@ class UserComponent extends Component {
                                     const val = !props.input.value;
                                     props.input.onChange(val);
                                     this.setState({ acceptTAndC: val });
-                                    
                                 }} />
                                 
                                 <Text> I accept <Text style={styles.txtBlue} onPress={() => { this.popupDialog.show();}}>this terms and conditions</Text></Text>

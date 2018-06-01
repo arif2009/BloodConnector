@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, ListView, View, StatusBar, ActivityIndicator } from 'react-native';
+import { Text, ListView, View, StatusBar, ActivityIndicator, Linking } from 'react-native';
 import { connect } from 'react-redux';
 import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Spinner } from 'native-base';
 import { loadBloodGroups } from '../actions';
@@ -59,7 +59,10 @@ class Home extends Component {
 
 				<Footer>
 					<FooterTab style={styles.footerBg}>
+					<View style={{justifyContent:'center'}}>
 						<Text style={styles.selfAlignCenter}>© 2017-{We.twoLetterYear} - BloodConnector {We.version}</Text>
+						<Text>Website <Text style={styles.txtBlue} onPress={() => Linking.openURL('http://www.bloodconnector.org')}>www.bloodconnector.org</Text></Text>
+					</View>
 					</FooterTab>
 				</Footer>
 			</Container>

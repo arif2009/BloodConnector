@@ -2,13 +2,22 @@ const we = {
     version: '2.5.0',
     twoLetterYear: new Date().getFullYear().toString().substr(-2),
     apiOrigin: 'http://10.0.2.2/', //'http://www.bloodconnector.org/'
-    processModelstateError: function(modelstate){
-      var errors = [];
-      for (var key in modelstate) {
-          for (var i = 0; i < modelstate[key].length; i++) {
-              errors.push(modelstate[key][i]);
-          }
+    makeFirstCharecterLower: string => string.charAt(0).toLowerCase() + string.slice(1),
+    processModelstateError: function(modelErr){
+
+      var errors = {};
+      try {
+        var validationErr = modelErr.response.data.modelState;
+        for (var key in validationErr) {
+          var field = key.split('.')[1];
+          var error = validationErr[key][0];
+          errors[field] = error;
+        }
+        //console.log(errors); 
+      } catch (e) {
+        console.log('Exception Occered');
       }
+
       return errors;
     }
   }

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { SubmissionError } from 'redux-form';
+import _ from 'lodash';
 import { Actions } from 'react-native-router-flux';
 import We from '../../utills/we';
 //const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
@@ -17,10 +18,9 @@ const submit = values => {
         //Actions.userList()
     })
     .catch((error) => {
-        let errors = We.processModelstateError(error.response.data.modelState);
-        throw new SubmissionError({
-            phoneNumber: errors[0]
-        });
+        let errors = We.processModelstateError(error);
+        errors['_error'] = 'Registration Failed!'
+        throw new SubmissionError(errors);
     });
 
     /*return sleep(1000).then(() => {

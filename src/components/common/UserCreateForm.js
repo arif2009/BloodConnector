@@ -26,7 +26,7 @@ const minValue6 = minValue(6);
 const isValidEmail = value =>
     value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) ? 'Invalid email address' : undefined;
 
-const confirmValidators = (value, values) => value === values.password ? undefined : 'Confirm password doesn\'t match with password!';
+const confirmValidators = (value, values) => value === values.Password ? undefined : 'Confirm password doesn\'t match with password!';
 
 const acceptTerms = value => value? undefined : 'You must accept this terms and conditions!!';
 
@@ -78,24 +78,24 @@ class UserComponent extends Component {
     }
     render() {
         const { handleSubmit, submitting, reset } = this.props;
-        console.log(submitting);
+        //console.log(submitting);
         return (
             <View style={{ flex: 1, flexDirection: 'column', padding: 20, justifyContent: 'flex-start', }}>
 
-                <Field name="name" secureTextEntry="false" keyboardType="default" label="Name: " requiredMarker="*" placeholder="FirstName LastName NikeName" component={renderField}
+                <Field name="Name" secureTextEntry="false" keyboardType="default" label="Name: " requiredMarker="*" placeholder="FirstName LastName NikeName" component={renderField}
                     validate={[required, maxLength40]}
                 />
-                <Field name="bloodGiven" secureTextEntry="false" keyboardType="numeric" label="Number of times given blood: " placeholder="E.g. 5" component={renderField}
+                <Field name="BloodGiven" secureTextEntry="false" keyboardType="numeric" label="Number of times given blood: " placeholder="E.g. 5" component={renderField}
                     validate={[number]}
                 />
-                <Field name="email" secureTextEntry="false" keyboardType="email-address" label="Email: " requiredMarker="*" placeholder="Enter email" component={renderField}
+                <Field name="Email" secureTextEntry="false" keyboardType="email-address" label="Email: " requiredMarker="*" placeholder="Enter email" component={renderField}
                     validate={[required, isValidEmail]}
                     warn={isYahooMail}
                 />
-                <Field name="phoneNumber" secureTextEntry="false" keyboardType="numeric" label="Contact Number: " requiredMarker="*" placeholder="E.g. +8801721654450" component={renderField}
+                <Field name="PhoneNumber" secureTextEntry="false" keyboardType="numeric" label="Contact Number: " requiredMarker="*" placeholder="E.g. +8801721654450" component={renderField}
                     validate={[required]}
                 />
-                <Field mode="dropdown" name="bloodGroupId" label="Blood Group: " requiredMarker="*" component={renderPicker}
+                <Field name="BloodGroupId" mode="dropdown" label="Blood Group: " requiredMarker="*" component={renderPicker}
                     iosHeader="--SELECT--" format={formatLoanTerm} parse={parseLoanTerm}
                     validate={[in1To8]}>
                     <Item label="--SELECT--" />
@@ -108,21 +108,21 @@ class UserComponent extends Component {
                     <Item label="AB-" value="7" />
                     <Item label="AB+" value="8" />
                 </Field>
-                <Field mode="dropdown" name="gender" label="Gender: " requiredMarker="*" component={renderPicker}
+                <Field name="Gender" mode="dropdown" label="Gender: " requiredMarker="*" component={renderPicker}
                     iosHeader="--SELECT--" format={formatLoanTerm} parse={parseLoanTerm}
                     validate={[is0Or1]}>
                     <Item label="--SELECT--" />
                     <Item label="Male" value="1" />
                     <Item label="Female" value="0" />
                 </Field>
-                <Field name="password" secureTextEntry="true" keyboardType="default" label="Password: " requiredMarker="*" placeholder="Password" component={renderField}
+                <Field name="Password" secureTextEntry="true" keyboardType="default" label="Password: " requiredMarker="*" placeholder="Password" component={renderField}
                     validate={[required, minValue6, maxLength12]}
                 />
-                <Field name="confirmPassword" secureTextEntry="true" keyboardType="default" label="Confirm Password: " requiredMarker="*" placeholder="Confirm Password" component={renderField}
+                <Field name="ConfirmPassword" secureTextEntry="true" keyboardType="default" label="Confirm Password: " requiredMarker="*" placeholder="Confirm Password" component={renderField}
                     validate={[required, confirmValidators]}
                 />
 
-                <Field name="acceptTAndC" component={(props) => {
+                <Field name="AcceptTAndC" component={(props) => {
                     return (
                         <View>
                             <ListItem>

@@ -26,7 +26,7 @@ class RouterComponent extends Component {
             <Scene overlay>
                 <Scene key="lightbox" lightbox initial>
                     <Scene key="modal" modal hideNavBar>
-                        <Scene key="drawer" drawer contentComponent={SideMenu}
+                        <Scene key="drawer" type="overlay" drawer contentComponent={SideMenu}
                             drawerImage={require('./src/images/hamburger-48.png')}>
                             <Scene key="main">
                                 <Scene 

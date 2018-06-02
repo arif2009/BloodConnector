@@ -64,6 +64,6 @@ const loginUserSuccess = (dispatch, tokenInfo) => {
 			type: LOGIN_USER_SUCCESS, 
 			payload: tokenInfo.data
 		});
-		Actions.userList({token: tokenInfo.data.access_token});
+		Actions.userList({token: tokenInfo.data.access_token, rightTitle:''});
 	});
 };

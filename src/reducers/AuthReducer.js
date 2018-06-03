@@ -1,7 +1,6 @@
 import {
-	EMAIL_CHANGED, PASSWORD_CHANGED,
-	LOGIN_USER_SUCCESS, LOGIN_USER_FAIL, LOGIN_USER,
-	AUTH_INFO, AUTH_INFO_DISPATCHED
+	EMAIL_CHANGED, PASSWORD_CHANGED, LOGIN_USER_SUCCESS, LOGIN_USER_FAIL, LOGIN_USER,
+	AUTH_INFO, AUTH_INFO_DISPATCHED, CREATED_ACC
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -29,6 +28,8 @@ export default (state = INITIAL_STATE, action) => {
 			return { ...state, error: 'Login Failed.', password: '', loading: false};
 		case AUTH_INFO_DISPATCHED:
 			return {...state, ...INITIAL_STATE, userInfo: action.payload };
+		case CREATED_ACC:
+			return {...state, key: Math.random()};
 		default:
 			return state;
 

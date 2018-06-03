@@ -15,3 +15,5 @@ export const USER_CREATE_FORM = 'frm_create_user';
 export const LOADING_BLOOD_SUCCESS = 'loading_blood_success';
 export const LOADING_BLOOD_FAIL = 'loading_blood_fail';
 export const LOADING_BLOOD = 'loading_blood';
+
+export const CREATED_ACC = 'created_account';

@@ -37,7 +37,6 @@ export const userFetch = ({ token }) => {
     const url = `${We.apiOrigin}api/users`;
    return axios({
       method:'get',
-      //url:'http://www.bloodconnector.org/',
       url: url,
       timeout: 10000,
       headers: { 'Authorization': 'bearer ' + token },

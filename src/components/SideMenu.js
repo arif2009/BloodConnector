@@ -32,7 +32,7 @@ class SideMenu extends Component {
     };
 
     this.setProperState();
-    
+    console.log("= Sidebar loaded =")
   }
 
   setProperState() {
@@ -47,11 +47,6 @@ class SideMenu extends Component {
         accessTolen: hasObj? userInfo.access_token: this.state.accessTolen
        });
     });
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    //console.log("shouldComponentUpdate > nextProps", nextProps, "nextState", nextState);
-    return true;
   }
 
   logout(){

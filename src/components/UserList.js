@@ -32,9 +32,9 @@ class UserList extends Component {
                 this.setState({
                     error: false,
                     loading: false,
-                    userList: result.data
+                    userList: result.data.users
                 });
-                this.createDataSource(result.data);
+                this.createDataSource(result.data.users);
             })
             .catch((errors)=>{
                 this.setState({

@@ -5,7 +5,9 @@ import { Actions } from 'react-native-router-flux';
 import Button from 'react-native-button';
 import { H1, H2, H3, Badge, Icon } from 'native-base';
 import FontAwesome, { Icons } from 'react-native-fontawesome';
+import axios from 'axios';
 //import RNRestart from 'react-native-restart';
+import We from '../utills/we';
 import { CardSection } from './common';
 var styles = require('./styles');
 
@@ -30,7 +32,6 @@ class SideMenu extends Component {
       similarBlood: 0,
       accessTolen: ""
     };
-
     this.setProperState();
     console.log("= Sidebar loaded =")
   }
@@ -57,6 +58,8 @@ class SideMenu extends Component {
         bloodGroup: "",
         similarBlood: 0
       });
+      const url = `${We.apiOrigin}api/Account/Logout`;
+      axios.post(url)
       Actions.home({rightTitle: <Icon style={styles.txtColor} type="FontAwesome" name="user-plus" />});
     });
   }

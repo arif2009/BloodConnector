@@ -58,9 +58,11 @@ class SideMenu extends Component {
         bloodGroup: "",
         similarBlood: 0
       });
-      const url = `${We.apiOrigin}api/Account/Logout`;
-      axios.post(url)
+      
       Actions.home({rightTitle: <Icon style={styles.txtColor} type="FontAwesome" name="user-plus" />});
+
+      const url = `${We.apiOrigin}api/Account/Logout`;
+      axios.post(url);
     });
   }
 

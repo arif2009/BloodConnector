@@ -11,7 +11,7 @@ import LoginForm from './src/components/LoginForm';
 import UserList from './src/components/UserList';
 import UserCreate from './src/components/UserCreate';
 import SideMenu from './src/components/SideMenu';
-import About from './src/components/About';
+import Help from './src/components/Help';
 var styles = require('./src/components/styles');
 
 class RouterComponent extends Component {
@@ -62,9 +62,9 @@ class RouterComponent extends Component {
                                 />
 
                                 <Scene 
-                                    key="about"
-                                    component={About} 
-                                    title="About" 
+                                    key="help"
+                                    component={Help} 
+                                    title="Help" 
                                     titleStyle={styles.sceneTitle} 
                                 />
                             </Scene>

@@ -113,8 +113,8 @@ class SideMenu extends Component {
         </CardSection>}
 
         <CardSection style={[styles.drawerBtnContainer, {borderBottomWidth: 0}]}>
-          <Button style={styles.drawerBtnTxt} onPress={() => { Actions.about(); }}>
-            <FontAwesome style={styles.drawerIcon}>{Icons.infoCircle}</FontAwesome> About
+          <Button style={styles.drawerBtnTxt} onPress={() => { Actions.help(); }}>
+            <FontAwesome style={styles.drawerIcon}>{Icons.question}</FontAwesome> Help
           </Button>
         </CardSection>
       </View>

@@ -39,6 +39,12 @@ module.exports = StyleSheet.create({
     mlLg:{
         marginLeft: 15
     },
+    mt:{
+        marginTop: 10
+    },
+    mtLg:{
+        marginTop: 15
+    },
     footerBg: {
         backgroundColor: '#ff8080',
         justifyContent:'center'

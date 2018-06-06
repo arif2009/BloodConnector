@@ -20,13 +20,14 @@ class Help extends Component {
 
             <H2 style={[styles.selfAlignCenter, styles.mtLg]}>About</H2>
             <Grid style={styles.msm}>
-                  <Col size={20}>
-                    <Image style={{width: 78, height: 87}} source={require('../images/arif.png')} />
+                  <Col size={25}>
+                    <Image style={styles.bgContainer} resizeMode='cover' source={require('../images/arif.png')} />
                   </Col>
-                  <Col size={80}>
+                  <Col size={75}>
                     <View style={styles.ml}>
                         <Text style={[styles.txtBold, {marginBottom:4}]}>Arifur Rahman (Sazal)</Text>
-                        <Text style={{marginBottom:4}}>Sr. Software Engineer. Graduated from <Text style={styles.txtBlue} onPress={() => Linking.openURL('http://www.duet.ac.bd')}>DUET</Text></Text>
+                        <Text style={{marginBottom:4}}>Sr. Software Engineer.</Text>
+                        <Text style={{marginBottom:4}}>Graduated from <Text style={styles.txtBlue} onPress={() => Linking.openURL('http://www.duet.ac.bd')}>DUET</Text></Text>
                         <Text style={[styles.txtBlue, {marginBottom:4}]} onPress={() => Communications.phonecall('+8801721654450', true)}>
                           +8801721654450
                         </Text>

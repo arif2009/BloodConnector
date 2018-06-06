@@ -133,5 +133,6 @@ module.exports = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row'
-    }
+    },
+    bgContainer: { flex:1, width: null, height: null }
 });

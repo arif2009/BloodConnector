@@ -14,8 +14,8 @@ class Help extends Component {
         <Content style={styles.mlLg}>
           <View>
             <H2 style={styles.selfAlignCenter}>Help</H2>
-            <Text><Icon style={[styles.txtWarning, {fontSize: 22}]} type="FontAwesome" name="bell" /> Password recovery 
-            option is missing in this app. It will be added later version. If you need, you can recover password using our 
+            <Text><Icon style={[styles.txtWarning, {fontSize: 22}]} type="FontAwesome" name="bell" /> Password recovery & Update information
+            options are missing in this app. It will be added later version. If you need, you can do it using our 
             web application <Text style={styles.txtBlue} onPress={() => Linking.openURL('http://www.bloodconnector.org')}>www.bloodconnector.org</Text></Text>
 
             <H2 style={[styles.selfAlignCenter, styles.mtLg]}>About</H2>

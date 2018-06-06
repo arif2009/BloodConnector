@@ -115,7 +115,7 @@ class UserList extends Component {
                             <Input
                                 onChangeText={this.searchFilter.bind(this)}
                                 value={this.text}
-                                placeholder="Search" />
+                                placeholder="Search your donor" />
                             <Icon name="ios-people" />
                         </Item>
                     </Header>

@@ -30,7 +30,7 @@ class Help extends Component {
                         <Text style={[styles.txtBlue, {marginBottom:4}]} onPress={() => Communications.phonecall('+8801721654450', true)}>
                           +8801721654450
                         </Text>
-                        <Text onPress={() => Communications.email(['arif.rahman2009@gmail.com'],null,null,'Bloodconnector: Issue or Openion',null)}>
+                        <Text style={styles.txtBlue} onPress={() => Communications.email(['arif.rahman2009@gmail.com'],null,null,'Bloodconnector: Issue or Openion',null)}>
                           arif.rahman2009@gmail.com
                         </Text>
                     </View>

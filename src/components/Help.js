@@ -21,15 +21,18 @@ class Help extends Component {
             <H2 style={[styles.selfAlignCenter, styles.mtLg]}>About</H2>
             <Grid style={styles.msm}>
                   <Col size={20}>
-                    <Image style={{width: 75, height: 83}} source={require('../images/arif.png')} />
+                    <Image style={{width: 78, height: 87}} source={require('../images/arif.png')} />
                   </Col>
                   <Col size={80}>
                     <View style={styles.ml}>
                         <Text style={[styles.txtBold, {marginBottom:4}]}>Arifur Rahman (Sazal)</Text>
+                        <Text style={{marginBottom:4}}>Sr. Software Engineer. Graduated from <Text style={styles.txtBlue} onPress={() => Linking.openURL('http://www.duet.ac.bd')}>DUET</Text></Text>
                         <Text style={[styles.txtBlue, {marginBottom:4}]} onPress={() => Communications.phonecall('+8801721654450', true)}>
                           +8801721654450
                         </Text>
-                        <Text>arif.rahman2009@gmail.com</Text>
+                        <Text onPress={() => Communications.email(['arif.rahman2009@gmail.com'],null,null,'Bloodconnector: Issue or Openion',null)}>
+                          arif.rahman2009@gmail.com
+                        </Text>
                     </View>
                   </Col>
               </Grid>

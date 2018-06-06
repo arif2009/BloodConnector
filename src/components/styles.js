@@ -85,5 +85,47 @@ module.exports = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row'
     },
-    bgContainer: { flex:1, width: null, height: null }
+    bgContainer: { flex:1, width: null, height: null },
+
+
+
+    wrapper: {
+        paddingTop: 50,
+        flex: 1
+      },
+    
+      modal: {
+        justifyContent: 'center', //justifyContent: "center", "space-between", "flex-end", "space-around", "flex-start"
+        alignItems: 'center' //'flex-start', 'flex-end', 'center', 'stretch', 'baseline'
+      },
+    
+      modal2: {
+        height: 230,
+        backgroundColor: "#3B5998"
+      },
+    
+      modal3: {
+        height: 300,
+        width: 300
+      },
+    
+      modal4: {
+        height: 300
+      },
+    
+      btn: {
+        margin: 10,
+        backgroundColor: "#3B5998",
+        color: "white",
+        padding: 10
+      },
+    
+      btnModal: {
+        position: "absolute",
+        top: 0,
+        right: 0,
+        width: 50,
+        height: 50,
+        backgroundColor: "transparent"
+      }
 });

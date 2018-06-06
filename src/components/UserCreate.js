@@ -27,14 +27,3 @@ export default class UserCreate extends Component {
     );
   }
 }
-
-/*const mapStateToProps = (state) => {
-  const { name, phone, sex } = state.userForm;
-
-  return { name, phone, sex };
-};
-
-export default connect(mapStateToProps, {
-  userUpdate, userCreate
-})(UserCreate);
-*/

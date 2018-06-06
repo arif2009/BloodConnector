@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { StyleSheet, View, Text, TouchableOpacity, TextInput, Button } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, TextInput } from 'react-native';
+import Button from 'react-native-button';
 import { Picker, Item, Icon, CheckBox, ListItem, Spinner } from 'native-base';
-import PopupDialog, { DialogTitle, DialogButton } from 'react-native-popup-dialog';
+import Modal from 'react-native-modalbox';
 import _ from 'lodash';
 import { USER_CREATE_FORM } from '../../actions/types';
 import submit from './submit';
@@ -74,8 +75,26 @@ const parseLoanTerm = value => parseInt(value);
 class UserComponent extends Component {
     constructor(props) {
         super(props);
-        this.state = { acceptTAndC: false };
+        this.state = { 
+            acceptTAndC: false,
+            isOpen: false,
+            swipeToClose: true,
+            sliderValue: 0.3
+        };
     }
+
+    onClose() {
+        console.log('Modal just closed');
+      }
+    
+      onOpen() {
+        console.log('Modal just opened');
+      }
+    
+      onClosingState(state) {
+        console.log('the open/close of the swipeToClose just changed');
+      }
+      
     render() {
         const { handleSubmit, submitting, reset } = this.props;
         //console.log(submitting);
@@ -132,7 +151,7 @@ class UserComponent extends Component {
                                     this.setState({ acceptTAndC: val });
                                 }} />
                                 
-                                <Text> I accept <Text style={styles.txtBlue} onPress={() => { this.popupDialog.show();}}>this terms and conditions</Text></Text>
+                                <Text> I accept <Text style={styles.txtBlue} onPress={() => this.refs.modal3.open()}>this terms and conditions</Text></Text>
                             </ListItem>
                             {props.meta.error && <Text style={[styles.txtDanger, styles.mb, styles.mlLg]}>{props.meta.error}</Text>}
                         </View>
@@ -146,15 +165,11 @@ class UserComponent extends Component {
                     {submitting && <Spinner size={25} color="#fff" />}
                 </TouchableOpacity>
 
-                <PopupDialog dialogTitle={<DialogTitle title="Terms and Conditions" />} width={0.9} height={160}
-                    ref={(popupDialog) => { this.popupDialog = popupDialog; }}
-                    containerStyle = {{ zIndex: 10, elevation: 10 }}
-                    actions={[<DialogButton style={{marginBottom: 10}} text="OK" onPress={() => { this.popupDialog.dismiss();}} key="button-1"/>]}
-                >
-                    <View style={{paddingTop:10, paddingLeft:10, paddingRight:10}}>
-                        <Text>All the registered user can see your <Text style={styles.txtBold}>Contact Number</Text> and <Text style={styles.txtBold}>E-mail</Text>. So they can call you or send email for blood.</Text>
-                    </View>
-                </PopupDialog>
+                <Modal style={[styles.modal, styles.modal3]} position={"center"} ref={"modal3"} isDisabled={this.state.isDisabled}>
+                    <Text style={styles.txtMedium}>Terms and Conditions</Text>
+                    <Text>All the registered user can see your <Text style={styles.txtBold}>Contact Number</Text> and <Text style={styles.txtBold}>E-mail</Text>. So they can call you or send email for blood.</Text>
+                    <Button onPress={() =>{this.refs.modal3.close()}} style={styles.btn}>Ok</Button>
+                </Modal>
             </View>
         );
     }

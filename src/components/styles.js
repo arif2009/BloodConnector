@@ -30,6 +30,15 @@ module.exports = StyleSheet.create({
     selfAlignCenter:{
         alignSelf: 'center'
     },
+    pLg:{
+        padding:15
+    },
+    msm:{
+        margin:5
+    },
+    mLg:{
+        margin:15
+    },
     mb:{
         marginBottom: 10
     },
@@ -38,6 +47,9 @@ module.exports = StyleSheet.create({
     },
     mlLg:{
         marginLeft: 15
+    },
+    mrLg:{
+        marginRight: 15
     },
     mt:{
         marginTop: 10

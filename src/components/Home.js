@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { Text, ListView, View, StatusBar, ActivityIndicator, Linking } from 'react-native';
 import { connect } from 'react-redux';
-import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Spinner } from 'native-base';
+import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Spinner, H1, H2, H3, Badge } from 'native-base';
 import { loadBloodGroups } from '../actions';
 import ListItem from './ListItem';
 import { CardSection } from './common';
-import { H1, H2, H3, Badge } from 'native-base';
 import We from '../utills/we';
 var styles = require('./styles');
 

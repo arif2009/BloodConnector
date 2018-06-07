@@ -5,6 +5,8 @@ import { Text, StyleSheet, View, ListView, TextInput, ActivityIndicator, Alert, 
 import { Container, Content, Footer, FooterTab, Spinner, Header, Item, Input, Icon, H1 } from 'native-base';
 import Communications from 'react-native-communications';
 import { Col, Row, Grid } from "react-native-easy-grid";
+import Button from 'react-native-button';
+import Modal from 'react-native-modalbox';
 import { CardSection } from './common';
 import { userFetch } from '../actions'
 import We from '../utills/we';

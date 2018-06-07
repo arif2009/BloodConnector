@@ -13,12 +13,12 @@ class Help extends Component {
       <Container style={styles.bgColor}>
         <Content style={styles.mlLg}>
           <View>
-            <H2 style={styles.selfAlignCenter}>Help</H2>
+            <H3 style={[styles.selfAlignCenter, styles.mt]}>Help</H3>
             <Text><Icon style={[styles.txtWarning, {fontSize: 22}]} type="FontAwesome" name="bell" /> Password recovery & Update information
             options are missing in this app. It will be added later version. If you need, you can do it using our 
             web application <Text style={styles.txtBlue} onPress={() => Linking.openURL('http://www.bloodconnector.org')}>www.bloodconnector.org</Text></Text>
 
-            <H2 style={[styles.selfAlignCenter, styles.mtLg]}>About</H2>
+            <H3 style={[styles.selfAlignCenter, styles.mtLg]}>Developed By</H3>
             <Grid style={styles.msm}>
                   <Col size={25}>
                     <Image style={styles.bgContainer} resizeMode='cover' source={require('../images/arif.png')} />
@@ -36,6 +36,23 @@ class Help extends Component {
                         </Text>
                     </View>
                   </Col>
+              </Grid>
+              <H3 style={[styles.selfAlignCenter, styles.mtLg]}>Inspaired By</H3>
+              <Grid style={styles.msm}>
+                <Col>
+                  <Text style={styles.txtBold}>Mafi Islam (Mafi)</Text>
+                  <Text style={[styles.txtBold, {marginBottom:4}]}>(TV News Anchor/Reporter at Ekattor)</Text>
+                  <Text style={styles.txtBlue} onPress={() => Communications.email(['mafi30th@yahoo.com'],null,null,'Bloodconnector: Openion',null)}>
+                    mafi30th@yahoo.com
+                  </Text>
+                </Col>
+                <Col>
+                  <Text style={styles.txtBold}>Jahangir Alam (Jahangir)</Text>
+                  <Text style={[styles.txtBold, {marginBottom:4}]}>(Work at Flora Limited)</Text>
+                  <Text style={styles.txtBlue} onPress={() => Communications.email(['jahangirantar@gmail.com'],null,null,'Bloodconnector: Openion',null)}>
+                    jahangirantar@gmail.com
+                  </Text>
+                </Col>
               </Grid>
           </View>
         </Content>

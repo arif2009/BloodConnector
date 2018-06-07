@@ -75,25 +75,8 @@ const parseLoanTerm = value => parseInt(value);
 class UserComponent extends Component {
     constructor(props) {
         super(props);
-        this.state = { 
-            acceptTAndC: false,
-            isOpen: false,
-            swipeToClose: true,
-            sliderValue: 0.3
-        };
+        this.state = {acceptTAndC: false};
     }
-
-    onClose() {
-        console.log('Modal just closed');
-      }
-    
-      onOpen() {
-        console.log('Modal just opened');
-      }
-    
-      onClosingState(state) {
-        console.log('the open/close of the swipeToClose just changed');
-      }
       
     render() {
         const { handleSubmit, submitting, reset } = this.props;
@@ -151,7 +134,7 @@ class UserComponent extends Component {
                                     this.setState({ acceptTAndC: val });
                                 }} />
                                 
-                                <Text> I accept <Text style={styles.txtBlue} onPress={() => this.refs.modal3.open()}>this terms and conditions</Text></Text>
+                                <Text> I accept <Text style={styles.txtBlue} onPress={() => this.refs.termsModal.open()}>this terms and conditions</Text></Text>
                             </ListItem>
                             {props.meta.error && <Text style={[styles.txtDanger, styles.mb, styles.mlLg]}>{props.meta.error}</Text>}
                         </View>
@@ -165,10 +148,11 @@ class UserComponent extends Component {
                     {submitting && <Spinner size={25} color="#fff" />}
                 </TouchableOpacity>
 
-                <Modal style={[styles.modal, styles.modal3]} position={"center"} ref={"modal3"} isDisabled={this.state.isDisabled}>
+                <Modal style={[styles.modal, styles.tAndCmodal, styles.pL, styles.pR]} position={"center"} 
+                    ref={"termsModal"} entry='top'>
                     <Text style={styles.txtMedium}>Terms and Conditions</Text>
                     <Text>All the registered user can see your <Text style={styles.txtBold}>Contact Number</Text> and <Text style={styles.txtBold}>E-mail</Text>. So they can call you or send email for blood.</Text>
-                    <Button onPress={() =>{this.refs.modal3.close()}} style={styles.btn}>Ok</Button>
+                    <Button style={styles.mt} onPress={() =>{this.refs.termsModal.close()}}>Ok</Button>
                 </Modal>
             </View>
         );

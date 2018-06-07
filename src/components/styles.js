@@ -21,6 +21,8 @@ module.exports = StyleSheet.create({
 
     selfAlignCenter:{alignSelf: 'center'},
 
+    pL:{ paddingLeft:10},
+    pR:{ paddingRight:10},
     pLg:{ padding:15},
 
     msm:{margin:5},
@@ -30,6 +32,8 @@ module.exports = StyleSheet.create({
     mb:{marginBottom: 10},
 
     ml:{marginLeft: 10},
+
+    mr:{marginRight: 10},
 
     mlLg:{marginLeft: 15},
 
@@ -86,46 +90,16 @@ module.exports = StyleSheet.create({
         flexDirection: 'row'
     },
     bgContainer: { flex:1, width: null, height: null },
-
-
-
-    wrapper: {
-        paddingTop: 50,
-        flex: 1
-      },
     
-      modal: {
-        justifyContent: 'center', //justifyContent: "center", "space-between", "flex-end", "space-around", "flex-start"
-        alignItems: 'center' //'flex-start', 'flex-end', 'center', 'stretch', 'baseline'
-      },
+    modal: {
+      justifyContent: 'center', //justifyContent: "center", "space-between", "flex-end", "space-around", "flex-start"
+      alignItems: 'center', //'flex-start', 'flex-end', 'center', 'stretch', 'baseline'
+      borderRadius:4
+    },
     
-      modal2: {
-        height: 230,
-        backgroundColor: "#3B5998"
-      },
-    
-      modal3: {
-        height: 300,
-        width: 300
-      },
-    
-      modal4: {
-        height: 300
-      },
-    
-      btn: {
-        margin: 10,
-        backgroundColor: "#3B5998",
-        color: "white",
-        padding: 10
-      },
-    
-      btnModal: {
-        position: "absolute",
-        top: 0,
-        right: 0,
-        width: 50,
-        height: 50,
-        backgroundColor: "transparent"
-      }
+    tAndCmodal: {
+      top:30,
+      height: 150,
+      width: 300
+    }
 });

@@ -96,10 +96,14 @@ module.exports = StyleSheet.create({
       alignItems: 'center', //'flex-start', 'flex-end', 'center', 'stretch', 'baseline'
       borderRadius:4
     },
-    
     tAndCmodal: {
       top:30,
       height: 150,
       width: 300
-    }
+    },
+    detailsmodal: {
+        top:100,
+        height: 150,
+        width: 300
+      }
 });

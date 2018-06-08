@@ -21,7 +21,9 @@ class UserList extends Component {
             loading: props.loading,
             waiting: true,
             userList: [],
-            userListDs: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}).cloneWithRows([])
+            showModal: false,
+            userListDs: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}).cloneWithRows([]),
+            fname:""
         };
     }
 
@@ -65,15 +67,23 @@ class UserList extends Component {
            userListDs: ds.cloneWithRows(userList)
         });
     }
-    
+
     renderRow(person) {
         //console.log(person);
-        let _userDetails = () => {
-            Alert.alert(person.fullName);
+        _userDetails = (user) => {
+            //let msg = `<Text>My Alert Msg ${person.fullName}</Text>`;
+            //Alert.alert(`Blood Group: ${person.bloodGroup}`,msg);
+            this.setState({
+                fullName:user.fullName,
+                phoneNumber: user.phoneNumber
+            });
+            //console.log(user);
+            this.refs.termsModal.open();
+            //console.log(this);
         };
         //onPress={() => _userDetails()} of Grid
         return(
-            <Grid style={{marginLeft:5, marginRight:5, marginBottom: 5}}>
+            <Grid style={{marginLeft:5, marginRight:5, marginBottom: 5}} onPress={() => _userDetails(person)}>
                 <Col size={20} style={[styles.hRed, {borderBottomLeftRadius: 5, borderTopLeftRadius:5}]}>
                     <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
                         <H1 style={[styles.txtColor]}>{person.bloodGroup}</H1>
@@ -84,12 +94,8 @@ class UserList extends Component {
                         <Text style={[styles.txtMedium]} ellipsizeMode='tail' numberOfLines={1}>{person.fullName}</Text>
                     </Row>
                     <Row>
-                        <Col>
-                            <TouchableOpacity onPress={() => Communications.phonecall(person.phoneNumber, true)}>
-                                <Text>{person.phoneNumber}</Text>
-                            </TouchableOpacity>
-                        </Col>
-                        <Col><Text ellipsizeMode='tail' numberOfLines={1}>{person.email}</Text></Col>
+                        <Col size={40}><Text ellipsizeMode='tail' numberOfLines={1}>{person.phoneNumber}</Text></Col>
+                        <Col size={60}><Text ellipsizeMode='tail' numberOfLines={1}>{person.email}</Text></Col>
                     </Row>
                 </Col>
             </Grid>
@@ -126,10 +132,18 @@ class UserList extends Component {
                         enableEmptySections={true}
                         dataSource={this.state.userListDs}
                         //renderSeparator= {this.ListViewItemSeparator}
-                        renderRow={this.renderRow}
+                        renderRow={this.renderRow.bind(this)}
                         renderFooter = {this.renderFooter.bind(this)}
                         onEndReached={this.onEndReached.bind(this)}
                         style={{ marginTop: 10 }} />
+                            <Modal style={[styles.modal, styles.detailsmodal, styles.pL, styles.pR]} position={"top"} 
+        ref={"termsModal"} entry='top'>
+        <Text style={styles.txtMedium}>Terms and Conditions</Text>
+        <Text onPress={() => Communications.phonecall(this.state.phoneNumber, true)}>
+            {this.state.phoneNumber}
+        </Text>
+        <Button style={styles.mt} onPress={() =>{this.refs.termsModal.close()}}>Ok</Button>
+    </Modal>
                 </View>
             );
         }

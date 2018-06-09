@@ -13,6 +13,8 @@ module.exports = StyleSheet.create({
 
     txtBlue:{color: '#0000ff'},
 
+    txtRed:{color: '#ff0000'},
+
     txtWarning:{color: '#ffc107'},
 
     txtDanger:{color: '#dc3545'},
@@ -21,16 +23,16 @@ module.exports = StyleSheet.create({
 
     selfAlignCenter:{alignSelf: 'center'},
 
+    p:{padding:10},
     pL:{ paddingLeft:10},
     pR:{ paddingRight:10},
     pLg:{ padding:15},
 
     msm:{margin:5},
-
     mLg:{margin:15},
 
     mb:{marginBottom: 10},
-
+    mbSm:{marginBottom:4},
     ml:{marginLeft: 10},
 
     mr:{marginRight: 10},
@@ -94,16 +96,14 @@ module.exports = StyleSheet.create({
     modal: {
       justifyContent: 'center', //justifyContent: "center", "space-between", "flex-end", "space-around", "flex-start"
       alignItems: 'center', //'flex-start', 'flex-end', 'center', 'stretch', 'baseline'
-      borderRadius:4
+      borderRadius:4,
+      height: null,
     },
     tAndCmodal: {
-      top:30,
-      height: 150,
       width: 300
     },
     detailsmodal: {
-        top:100,
-        height: 150,
+        top:150,
         width: 300
       }
 });

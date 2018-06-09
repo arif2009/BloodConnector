@@ -22,8 +22,7 @@ class UserList extends Component {
             waiting: true,
             userList: [],
             showModal: false,
-            userListDs: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}).cloneWithRows([]),
-            fname:""
+            userListDs: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}).cloneWithRows([])
         };
     }
 
@@ -75,10 +74,12 @@ class UserList extends Component {
             //Alert.alert(`Blood Group: ${person.bloodGroup}`,msg);
             this.setState({
                 fullName:user.fullName,
-                phoneNumber: user.phoneNumber
+                phoneNumber: user.phoneNumber,
+                bloodGroup: user.bloodGroup,
+                email: user.email
             });
             //console.log(user);
-            this.refs.termsModal.open();
+            this.refs.detailsModal.open();
             //console.log(this);
         };
         //onPress={() => _userDetails()} of Grid
@@ -128,22 +129,23 @@ class UserList extends Component {
                         </Item>
                     </Header>
 
-                    <ListView
-                        enableEmptySections={true}
-                        dataSource={this.state.userListDs}
+                    <ListView enableEmptySections={true} dataSource={this.state.userListDs}
                         //renderSeparator= {this.ListViewItemSeparator}
-                        renderRow={this.renderRow.bind(this)}
-                        renderFooter = {this.renderFooter.bind(this)}
-                        onEndReached={this.onEndReached.bind(this)}
-                        style={{ marginTop: 10 }} />
-                            <Modal style={[styles.modal, styles.detailsmodal, styles.pL, styles.pR]} position={"top"} 
-        ref={"termsModal"} entry='top'>
-        <Text style={styles.txtMedium}>Terms and Conditions</Text>
-        <Text onPress={() => Communications.phonecall(this.state.phoneNumber, true)}>
-            {this.state.phoneNumber}
-        </Text>
-        <Button style={styles.mt} onPress={() =>{this.refs.termsModal.close()}}>Ok</Button>
-    </Modal>
+                        renderRow={this.renderRow.bind(this)} renderFooter = {this.renderFooter.bind(this)}
+                        onEndReached={this.onEndReached.bind(this)} style={{ marginTop: 10 }} />
+
+                    <Modal style={[styles.modal, styles.detailsmodal, styles.p]} position={"top"} 
+                        ref={"detailsModal"} entry='top' coverScreen={true} animationDuration={300}>
+                        <H1 style={[styles.txtRed, styles.txtBold]}>{this.state.bloodGroup}</H1>
+                        <Text style={[styles.txtMedium, styles.mbSm]}>{this.state.fullName}</Text>
+                        <Text style={[styles.txtBlue, styles.mbSm]} onPress={() => Communications.phonecall(this.state.phoneNumber, true)}>
+                            {this.state.phoneNumber}
+                        </Text>
+                        <Text style={[styles.txtBlue, styles.mbSm]} onPress={() => Communications.email([this.state.email],null,null,`Need ${this.state.bloodGroup} blood`,null)}>
+                            {this.state.email}
+                        </Text>
+                        <Button style={styles.mt} onPress={() =>{this.refs.detailsModal.close()}}>Ok</Button>
+                    </Modal>
                 </View>
             );
         }

@@ -25,10 +25,10 @@ class Help extends Component {
                   </Col>
                   <Col size={75}>
                     <View style={styles.ml}>
-                        <Text style={[styles.txtBold, {marginBottom:4}]}>Arifur Rahman (Sazal)</Text>
-                        <Text style={{marginBottom:4}}>Sr. Software Engineer.</Text>
-                        <Text style={{marginBottom:4}}>Graduated from <Text style={styles.txtBlue} onPress={() => Linking.openURL('http://www.duet.ac.bd')}>DUET</Text></Text>
-                        <Text style={[styles.txtBlue, {marginBottom:4}]} onPress={() => Communications.phonecall('+8801721654450', true)}>
+                        <Text style={[styles.txtBold, styles.mbSm]}>Arifur Rahman (Sazal)</Text>
+                        <Text style={styles.mbSm}>Sr. Software Engineer.</Text>
+                        <Text style={styles.mbSm}>Graduated from <Text style={styles.txtBlue} onPress={() => Linking.openURL('http://www.duet.ac.bd')}>DUET</Text></Text>
+                        <Text style={[styles.txtBlue, styles.mbSm]} onPress={() => Communications.phonecall('+8801721654450', true)}>
                           +8801721654450
                         </Text>
                         <Text style={styles.txtBlue} onPress={() => Communications.email(['arif.rahman2009@gmail.com'],null,null,'Bloodconnector: Issue or Openion',null)}>

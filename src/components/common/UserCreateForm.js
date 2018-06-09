@@ -148,8 +148,8 @@ class UserComponent extends Component {
                     {submitting && <Spinner size={25} color="#fff" />}
                 </TouchableOpacity>
 
-                <Modal style={[styles.modal, styles.tAndCmodal, styles.pL, styles.pR]} position={"center"} 
-                    ref={"termsModal"} entry='top'>
+                <Modal style={[styles.modal, styles.tAndCmodal, styles.p]} position={"center"} 
+                    ref={"termsModal"} entry='top' coverScreen={true}>
                     <Text style={styles.txtMedium}>Terms and Conditions</Text>
                     <Text>All the registered user can see your <Text style={styles.txtBold}>Contact Number</Text> and <Text style={styles.txtBold}>E-mail</Text>. So they can call you or send email for blood.</Text>
                     <Button style={styles.mt} onPress={() =>{this.refs.termsModal.close()}}>Ok</Button>

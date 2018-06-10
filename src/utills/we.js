@@ -12,10 +12,9 @@ const we = {
           var field = key.split('.')[1];
           var error = validationErr[key][0];
           errors[field] = error;
-        }
-        //console.log(errors); 
+        } 
       } catch (e) {
-        console.log('Exception Occered');
+        //console.log('Exception Occered');
       }
 
       return errors;

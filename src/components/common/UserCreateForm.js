@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { StyleSheet, View, Text, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import Button from 'react-native-button';
 import { Picker, Item, Icon, CheckBox, ListItem, Spinner } from 'native-base';
 import Modal from 'react-native-modalbox';
@@ -94,7 +94,7 @@ class UserComponent extends Component {
                     validate={[required, isValidEmail]}
                     warn={isYahooMail}
                 />
-                <Field name="PhoneNumber" secureTextEntry="false" keyboardType="numeric" label="Contact Number: " requiredMarker="*" placeholder="E.g. +8801721654450" component={renderField}
+                <Field name="PhoneNumber" secureTextEntry="false" keyboardType="phone-pad" label="Contact Number: " requiredMarker="*" placeholder="E.g. +8801721654450" component={renderField}
                     validate={[required]}
                 />
                 <Field name="BloodGroupId" mode="dropdown" label="Blood Group: " requiredMarker="*" component={renderPicker}

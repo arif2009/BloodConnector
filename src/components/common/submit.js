@@ -14,14 +14,6 @@ const submit = (values, dispatch) => {
 
     const register = axios.post(url, data, header);
     return register.then(() => {
-        
-        Alert.alert(
-            'Congratulations!!',
-            'You are joined successfully with us.',
-            [{text: 'OK'}],
-            {cancelable: false}
-        );
-
         const data = `grant_type=password&username=${encodeURIComponent(Email)}&password=${encodeURIComponent(Password)}`;
         const header = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } };
         const url = `${We.apiOrigin}token`;
@@ -30,6 +22,12 @@ const submit = (values, dispatch) => {
                 AsyncStorage.setItem('@auth:userData', JSON.stringify(tokenInfo.data), () => {
                     dispatch({ type: CREATED_ACC });
                     Actions.userList({ token: tokenInfo.data.access_token, rightTitle: '' });
+                    Alert.alert(
+                        'Congratulations!!',
+                        'You are joined successfully with us.',
+                        [{text: 'OK'}],
+                        {cancelable: false}
+                    );
                 });
             })
             .catch((error) => {

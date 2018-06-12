@@ -52,7 +52,7 @@ class UserList extends Component {
     searchFilter(text){
         //console.log(text);
         const newData = this.state.userList.filter(function(item){
-            const itemData = item.fullName.toUpperCase()
+            const itemData = item.bloodGroup.toUpperCase()
             const textData = text.toUpperCase()
             return itemData.indexOf(textData) > -1;
         });

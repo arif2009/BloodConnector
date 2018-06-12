@@ -4,8 +4,9 @@ import {
     DrawerLayoutAndroid, AsyncStorage
 } from 'react-native';
 import { Icon } from 'native-base';
-import { Scene, Stack, Router, Actions } from 'react-native-router-flux';
+import { Scene, Router, Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
+import SyncStorage from 'sync-storage';
 import Home from './src/components/Home';
 import LoginForm from './src/components/LoginForm';
 import UserList from './src/components/UserList';
@@ -20,7 +21,7 @@ class RouterComponent extends Component {
         this.state = { key: 'in-router' }
     }
     render(){
-
+        const isLogedIn = SyncStorage.get('isLogedIn');
         return(
         <Router key={this.state.key} navigationBarStyle={styles.nabBg} titleStyle={styles.txtColor}>
             <Scene overlay>
@@ -30,10 +31,10 @@ class RouterComponent extends Component {
                             drawerImage={require('./src/images/hamburger-48.png')}>
                             <Scene key="main">
                                 <Scene 
-                                    key="home" 
+                                    key="home"
                                     component={Home} 
                                     title="Blood Connector"
-                                    rightTitle={<Icon style={styles.txtColor} type="FontAwesome" name="user-plus" />}
+                                    rightTitle={isLogedIn? <Icon style={styles.txtColor} type="FontAwesome" name="user-plus" />:''}
                                     onRight={() => Actions.userCreate()}
                                     rightButtonTextStyle = {[styles.txtBolder, styles.txtColor]} 
                                     titleStyle={styles.sceneTitle} 

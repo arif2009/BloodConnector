@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { AsyncStorage } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import SyncStorage from 'sync-storage';
 import {
 	EMAIL_CHANGED, PASSWORD_CHANGED, 
 	LOGIN_USER_SUCCESS, LOGIN_USER_FAIL,
@@ -59,6 +60,7 @@ const loginUserFail = (dispatch, error) => {
 const loginUserSuccess = (dispatch, tokenInfo) => {
 	console.log("Success", tokenInfo.data);
 	AsyncStorage.setItem('@auth:userData', JSON.stringify(tokenInfo.data), ()=>{
+		SyncStorage.set('isLogedIn', true);
 		console.log("Stored auth info");
 		dispatch({
 			type: LOGIN_USER_SUCCESS, 

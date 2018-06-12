@@ -2,6 +2,7 @@ import axios from 'axios';
 import { SubmissionError } from 'redux-form';
 import { AsyncStorage, Alert } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import SyncStorage from 'sync-storage';
 import { CREATED_ACC } from '../../actions/types';
 import We from '../../utills/we';
 
@@ -20,6 +21,7 @@ const submit = (values, dispatch) => {
         axios.post(url, data, header)
             .then(tokenInfo => {
                 AsyncStorage.setItem('@auth:userData', JSON.stringify(tokenInfo.data), () => {
+                    SyncStorage.set('isLogedIn', true);
                     dispatch({ type: CREATED_ACC });
                     Actions.userList({ token: tokenInfo.data.access_token, rightTitle: '' });
                     Alert.alert(

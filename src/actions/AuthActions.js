@@ -58,9 +58,7 @@ const loginUserFail = (dispatch, error) => {
 };
 
 const loginUserSuccess = (dispatch, tokenInfo) => {
-	console.log("Success", tokenInfo.data);
 	AsyncStorage.setItem('@auth:userData', JSON.stringify(tokenInfo.data), ()=>{
-		SyncStorage.set('isLogedIn', true);
 		console.log("Stored auth info");
 		dispatch({
 			type: LOGIN_USER_SUCCESS, 
@@ -68,4 +66,5 @@ const loginUserSuccess = (dispatch, tokenInfo) => {
 		});
 		Actions.userList({token: tokenInfo.data.access_token, rightTitle:''});
 	});
+	SyncStorage.set('isLogedIn', true);
 };

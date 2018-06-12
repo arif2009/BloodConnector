@@ -31,7 +31,7 @@ class UserList extends Component {
         //console.log("token",token);
         this.props.userFetch({token})
             .then((result) => {
-                //console.log("Then",result);
+                //console.log("result",result);
                 this.setState({
                     error: false,
                     loading: false,
@@ -73,7 +73,8 @@ class UserList extends Component {
             //let msg = `<Text>My Alert Msg ${person.fullName}</Text>`;
             //Alert.alert(`Blood Group: ${person.bloodGroup}`,msg);
             this.setState({
-                fullName:user.fullName,
+                fullName: user.fullName,
+                bloodGiven: user.bloodGiven,
                 phoneNumber: user.phoneNumber,
                 bloodGroup: user.bloodGroup,
                 email: user.email
@@ -138,6 +139,7 @@ class UserList extends Component {
                         ref={"detailsModal"} entry='top' coverScreen={true} animationDuration={300}>
                         <H1 style={[styles.txtRed, styles.txtBold]}>{this.state.bloodGroup}</H1>
                         <Text style={[styles.txtMedium, styles.mbSm]}>{this.state.fullName}</Text>
+                        {this.state.bloodGiven > 0 && <Text style={styles.mbSm}>`Given blood {this.state.bloodGiven} times`</Text>}
                         <Text style={[styles.txtBlue, styles.mbSm]} onPress={() => Communications.phonecall(this.state.phoneNumber, true)}>
                             {this.state.phoneNumber}
                         </Text>

@@ -21,7 +21,6 @@ const submit = (values, dispatch) => {
         axios.post(url, data, header)
             .then(tokenInfo => {
                 AsyncStorage.setItem('@auth:userData', JSON.stringify(tokenInfo.data), () => {
-                    SyncStorage.set('isLogedIn', true);
                     dispatch({ type: CREATED_ACC });
                     Actions.userList({ token: tokenInfo.data.access_token, rightTitle: '' });
                     Alert.alert(
@@ -31,6 +30,7 @@ const submit = (values, dispatch) => {
                         {cancelable: false}
                     );
                 });
+                SyncStorage.set('isLogedIn', true);
             })
             .catch((error) => {
                 console.log(error);

@@ -6,7 +6,6 @@ import {
 import { Icon } from 'native-base';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-import SyncStorage from 'sync-storage';
 import Home from './src/components/Home';
 import LoginForm from './src/components/LoginForm';
 import UserList from './src/components/UserList';
@@ -21,7 +20,6 @@ class RouterComponent extends Component {
         this.state = { key: 'in-router' }
     }
     render(){
-        const isLogedIn = SyncStorage.get('isLogedIn');
         return(
         <Router key={this.state.key} navigationBarStyle={styles.nabBg} titleStyle={styles.txtColor}>
             <Scene overlay>
@@ -34,7 +32,7 @@ class RouterComponent extends Component {
                                     key="home"
                                     component={Home} 
                                     title="Blood Connector"
-                                    rightTitle={isLogedIn? <Icon style={styles.txtColor} type="FontAwesome" name="user-plus" />:''}
+                                    //rightTitle={<Icon style={styles.txtColor} type="FontAwesome" name="user-plus" />}
                                     onRight={() => Actions.userCreate()}
                                     rightButtonTextStyle = {[styles.txtBolder, styles.txtColor]} 
                                     titleStyle={styles.sceneTitle} 

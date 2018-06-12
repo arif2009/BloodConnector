@@ -2,7 +2,6 @@ import axios from 'axios';
 import { SubmissionError } from 'redux-form';
 import { AsyncStorage, Alert } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import SyncStorage from 'sync-storage';
 import { CREATED_ACC } from '../../actions/types';
 import We from '../../utills/we';
 
@@ -30,7 +29,6 @@ const submit = (values, dispatch) => {
                         {cancelable: false}
                     );
                 });
-                SyncStorage.set('isLogedIn', true);
             })
             .catch((error) => {
                 console.log(error);

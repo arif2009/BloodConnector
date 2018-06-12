@@ -6,7 +6,6 @@ import Button from 'react-native-button';
 import { H1, H2, H3, Badge, Icon } from 'native-base';
 import FontAwesome, { Icons } from 'react-native-fontawesome';
 import axios from 'axios';
-import SyncStorage from 'sync-storage';
 //import RNRestart from 'react-native-restart';
 import We from '../utills/we';
 import { CardSection } from './common';
@@ -59,7 +58,6 @@ class SideMenu extends Component {
         bloodGroup: "",
         similarBlood: 0
       });
-      SyncStorage.remove('isLogedIn');
       Actions.home({rightTitle: <Icon style={styles.txtColor} type="FontAwesome" name="user-plus" />});
 
       const url = `${We.apiOrigin}api/Account/Logout`;

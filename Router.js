@@ -32,9 +32,9 @@ class RouterComponent extends Component {
                                     key="home"
                                     component={Home} 
                                     title="Blood Connector"
-                                    //rightTitle={<Icon style={styles.txtColor} type="FontAwesome" name="user-plus" />}
-                                    //onRight={() => Actions.userCreate()}
-                                    //rightButtonTextStyle = {[styles.txtBolder, styles.txtColor]} 
+                                    rightTitle={''}
+                                    onRight={() => Actions.userCreate()}
+                                    rightButtonTextStyle = {[styles.txtBolder, styles.txtColor]} 
                                     titleStyle={styles.sceneTitle} 
                                     initial
                                 />

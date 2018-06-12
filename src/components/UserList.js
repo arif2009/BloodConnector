@@ -139,7 +139,7 @@ class UserList extends Component {
                         ref={"detailsModal"} entry='top' coverScreen={true} animationDuration={300}>
                         <H1 style={[styles.txtRed, styles.txtBold]}>{this.state.bloodGroup}</H1>
                         <Text style={[styles.txtMedium, styles.mbSm]}>{this.state.fullName}</Text>
-                        {this.state.bloodGiven > 0 && <Text style={styles.mbSm}>`Given blood {this.state.bloodGiven} times`</Text>}
+                        {this.state.bloodGiven > 0 && <Text style={styles.mbSm}>Given blood {this.state.bloodGiven} times</Text>}
                         <Text style={[styles.txtBlue, styles.mbSm]} onPress={() => Communications.phonecall(this.state.phoneNumber, true)}>
                             {this.state.phoneNumber}
                         </Text>

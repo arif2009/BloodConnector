@@ -1,9 +1,4 @@
 import React, { Component } from 'react';
-import {
-    View, Text, Image, TouchableOpacity, 
-    DrawerLayoutAndroid, AsyncStorage
-} from 'react-native';
-import { Icon } from 'native-base';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import Home from './src/components/Home';

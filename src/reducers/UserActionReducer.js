@@ -1,7 +1,4 @@
-import {
-	USER_UPDATE, USER_CREATE, USERS_FETCHING,
-	USER_SAVE_SUCCESS
-} from '../actions/types';
+import { USERS_FETCHING } from '../actions/types';
 
 const INITIAL_STATE = {
 	error: '',

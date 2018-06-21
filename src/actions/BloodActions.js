@@ -2,15 +2,15 @@ import axios from 'axios';
 import { Actions } from 'react-native-router-flux';
 import { Icon } from 'native-base';
 import {LOADING_BLOOD_SUCCESS, LOADING_BLOOD_FAIL,LOADING_BLOOD} from './types';
-import We from '../utills/we';
-var styles = require('../components/styles');
+import {apiOrigin} from '../utills/we';
+import { txtColor } from '../components/styles';
 
 export const loadBloodGroups = () => {
 	return (dispatch) => {
 		
         dispatch({ type: LOADING_BLOOD });
 		
-		const url = `${We.apiOrigin}api/bloodgroup/getusersbloodgroup`;
+		const url = `${apiOrigin}api/bloodgroup/getusersbloodgroup`;
 		axios.get(url)
         .then(response => loadingSuccess(dispatch, response))
         .catch(error => loadingFail(dispatch, error));
@@ -32,7 +32,7 @@ const loadingSuccess = (dispatch, response) => {
 
 	AsyncStorage.getItem('@auth:userData', (error, result) => {
 		var isLogedIn = !!result;
-		Actions.refresh({rightTitle: isLogedIn?'':<Icon style={styles.txtColor} type="FontAwesome" name="user-plus" />});
+		Actions.refresh({rightTitle: isLogedIn?'':<Icon style={txtColor} type="FontAwesome" name="user-plus" />});
 	});
 	//Actions.main();
 };

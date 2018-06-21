@@ -3,6 +3,7 @@ import { Linking, Image, View, Text } from 'react-native';
 import { Container, H3, Icon, Content, Footer, FooterTab } from 'native-base';
 import { Col, Grid } from "react-native-easy-grid";
 import Communications from 'react-native-communications';
+import arifImage from '../images/arif.png';
 import { twoLetterYear, version } from '../utills/we';
 import { 
   bgColor, selfAlignCenter, txtWarning, txtBlue, bgContainer, txtBold, footerBg,
@@ -23,7 +24,7 @@ class Help extends Component {
             <H3 style={[selfAlignCenter, mtLg]}>Developed By</H3>
             <Grid style={msm}>
                   <Col size={25}>
-                    <Image style={bgContainer} resizeMode='cover' source={require('../images/arif.png')} />
+                    <Image style={bgContainer} resizeMode='cover' source={arifImage} />
                   </Col>
                   <Col size={75}>
                     <View style={ml}>

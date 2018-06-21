@@ -7,7 +7,8 @@ import UserList from './src/components/UserList';
 import UserCreate from './src/components/UserCreate';
 import SideMenu from './src/components/SideMenu';
 import Help from './src/components/Help';
-var styles = require('./src/components/styles');
+import hamburger from './src/images/hamburger-48.png';
+import { nabBg, txtBolder, txtColor, sceneTitle  } from './src/components/styles';
 
 class RouterComponent extends Component {
     constructor(props){
@@ -16,12 +17,12 @@ class RouterComponent extends Component {
     }
     render(){
         return(
-        <Router key={this.state.key} navigationBarStyle={styles.nabBg} titleStyle={styles.txtColor}>
+        <Router key={this.state.key} navigationBarStyle={nabBg} titleStyle={txtColor}>
             <Scene overlay>
                 <Scene key="lightbox" lightbox initial>
                     <Scene key="modal" modal hideNavBar>
                         <Scene key="drawer" type="overlay" drawer contentComponent={SideMenu}
-                            drawerImage={require('./src/images/hamburger-48.png')}>
+                            drawerImage={hamburger}>
                             <Scene key="main">
                                 <Scene 
                                     key="home"
@@ -29,8 +30,8 @@ class RouterComponent extends Component {
                                     title="Blood Connector"
                                     rightTitle={''}
                                     onRight={() => Actions.userCreate()}
-                                    rightButtonTextStyle = {[styles.txtBolder, styles.txtColor]} 
-                                    titleStyle={styles.sceneTitle} 
+                                    rightButtonTextStyle = {[txtBolder, txtColor]} 
+                                    titleStyle={sceneTitle} 
                                     initial
                                 />
 
@@ -38,28 +39,28 @@ class RouterComponent extends Component {
                                     key="userList" 
                                     component={UserList} 
                                     title="Our donor's & receiver's" 
-                                    titleStyle={styles.sceneTitle}
+                                    titleStyle={sceneTitle}
                                 />
 
                                 <Scene 
                                     key="userCreate"
                                     component={UserCreate} 
                                     title="Create Account" 
-                                    titleStyle={styles.sceneTitle} 
+                                    titleStyle={sceneTitle} 
                                 />
 
                                 <Scene 
                                     key="login"
                                     component={LoginForm} 
                                     title="Please Login" 
-                                    titleStyle={styles.sceneTitle} 
+                                    titleStyle={sceneTitle} 
                                 />
 
                                 <Scene 
                                     key="help"
                                     component={Help} 
                                     title="Help" 
-                                    titleStyle={styles.sceneTitle} 
+                                    titleStyle={sceneTitle} 
                                 />
                             </Scene>
                         </Scene>

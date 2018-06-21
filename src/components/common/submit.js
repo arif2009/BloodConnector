@@ -3,20 +3,20 @@ import { SubmissionError } from 'redux-form';
 import { AsyncStorage, Alert } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { CREATED_ACC } from '../../actions/types';
-import We from '../../utills/we';
+import { apiOrigin, processModelstateError } from '../../utills/we';
 
 const submit = (values, dispatch) => {
     
     const data = JSON.stringify(values);
     const header = { headers: { 'Content-Type': 'application/json' } };
-    const url = `${We.apiOrigin}api/account/app_register`;
+    const url = `${apiOrigin}api/account/app_register`;
     const {Email, Password} = values;
 
     const register = axios.post(url, data, header);
     return register.then(() => {
         const data = `grant_type=password&username=${encodeURIComponent(Email)}&password=${encodeURIComponent(Password)}`;
         const header = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } };
-        const url = `${We.apiOrigin}token`;
+        const url = `${apiOrigin}token`;
         axios.post(url, data, header)
             .then(tokenInfo => {
                 AsyncStorage.setItem('@auth:userData', JSON.stringify(tokenInfo.data), () => {
@@ -35,7 +35,7 @@ const submit = (values, dispatch) => {
             });
     })
     .catch((error) => {
-        let errors = We.processModelstateError(error);
+        let errors = processModelstateError(error);
         errors['_error'] = 'Registration Failed!'
         throw new SubmissionError(errors);
     });

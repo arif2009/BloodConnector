@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { Container, Content, Footer, FooterTab } from 'native-base';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
 import { CardSection, Input, Button, Spinner } from './common';
-import We from '../utills/we';
-var styles = require('./styles');
+import { twoLetterYear, version } from '../utills/we';
+import { bgColor, borderBottom0, errorTextStyle, footerBg, selfAlignCenter, txtBlue } from './styles';
 
 class LoginForm extends Component {
 	onEmailChange(text) {
@@ -35,9 +35,9 @@ class LoginForm extends Component {
 
 	render() {
 		return (
-			<Container style={styles.bgColor}>
+			<Container style={bgColor}>
 				<Content>
-					<CardSection style={styles.borderBottom0}>
+					<CardSection style={borderBottom0}>
 						<Input
 							label="Email"
 							placeholder="email"
@@ -47,7 +47,7 @@ class LoginForm extends Component {
 						/>
 					</CardSection>
 
-					<CardSection style={styles.borderBottom0}>
+					<CardSection style={borderBottom0}>
 						<Input
 							secureTextEntry
 							label="Password"
@@ -57,19 +57,19 @@ class LoginForm extends Component {
 						/>
 					</CardSection>
 
-					<Text style={styles.errorTextStyle}>
+					<Text style={errorTextStyle}>
 						{this.props.error}
 					</Text>
 
-					<CardSection style={styles.borderBottom0}>
+					<CardSection style={borderBottom0}>
 						{this.renderButton()}
 					</CardSection>
 				</Content>
 				<Footer>
-					<FooterTab style={styles.footerBg}>
+					<FooterTab style={footerBg}>
 						<View style={{justifyContent:'center'}}>
-							<Text style={styles.selfAlignCenter}>© 2017-{We.twoLetterYear} - BloodConnector {We.version}</Text>
-							<Text>Website <Text style={styles.txtBlue} onPress={() => Linking.openURL('http://www.bloodconnector.org')}>www.bloodconnector.org</Text></Text>
+							<Text style={selfAlignCenter}>© 2017-{twoLetterYear} - BloodConnector {version}</Text>
+							<Text>Website <Text style={txtBlue} onPress={() => Linking.openURL('http://www.bloodconnector.org')}>www.bloodconnector.org</Text></Text>
 						</View>
 					</FooterTab>
 				</Footer>

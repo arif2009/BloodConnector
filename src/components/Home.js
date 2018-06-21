@@ -5,7 +5,7 @@ import { Container, Content, Footer, FooterTab, Spinner, H2 } from 'native-base'
 import { loadBloodGroups } from '../actions';
 import ListItem from './ListItem';
 import { CardSection } from './common';
-import We from '../utills/we';
+import { twoLetterYear, version } from '../utills/we';
 import { bgColor, footerBg, selfAlignCenter, txtBlue, homeTitle } from './styles';
 
 class Home extends Component {
@@ -59,7 +59,7 @@ class Home extends Component {
 				<Footer>
 					<FooterTab style={footerBg}>
 					<View style={{justifyContent:'center'}}>
-						<Text style={selfAlignCenter}>© 2017-{We.twoLetterYear} - BloodConnector {We.version}</Text>
+						<Text style={selfAlignCenter}>© 2017-{twoLetterYear} - BloodConnector {version}</Text>
 						<Text>Website <Text style={txtBlue} onPress={() => Linking.openURL('http://www.bloodconnector.org')}>www.bloodconnector.org</Text></Text>
 					</View>
 					</FooterTab>

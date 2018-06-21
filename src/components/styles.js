@@ -55,6 +55,14 @@ module.exports = StyleSheet.create({
 
     errorTextStyle: {fontSize: 20,alignSelf: 'center',color: '#ff0000'},
 
+    tAndCmodal: { width: 300 },
+
+    detailsmodal: { top:150, width: 300 },
+
+    itemStyle: {borderBottomWidth: 1,borderColor: '#fff'},
+
+    bgContainer: { flex:1, width: null, height: null },
+
     homeTitle: {
         justifyContent: 'space-around', 
         paddingTop: 10, 
@@ -89,11 +97,11 @@ module.exports = StyleSheet.create({
       borderRadius:4,
       height: null,
     },
-    tAndCmodal: { width: 300 },
-
-    detailsmodal: { top:150, width: 300 },
-
-    bgContainer: { flex:1, width: null, height: null },
-
-    itemStyle: {borderBottomWidth: 1,borderColor: '#fff'}
+    listItem: {
+        justifyContent: 'space-around', 
+        paddingTop: 10, 
+        paddingBottom: 10, 
+        backgroundColor:'#fff', 
+        borderColor: '#ffcccc'
+    }
 });

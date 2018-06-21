@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import Button from 'react-native-button';
-import { Picker, Item, Icon, CheckBox, ListItem, Spinner } from 'native-base';
+import { Picker, Item, CheckBox, ListItem, Spinner } from 'native-base';
 import Modal from 'react-native-modalbox';
 import _ from 'lodash';
 import { USER_CREATE_FORM } from '../../actions/types';
 import submit from './submit';
 import { 
-    txtMedium, txtDanger, txtWarning, button, txtColor, modal, 
-    tAndCmodal, txtBlue, txtBold, mb, mlLg, p, mt 
+    txtMedium, txtDanger, txtWarning, button, txtColor, modal, tAndCmodal, txtBlue, txtBold, 
+    mb, mlLg, p, mt 
 } from '../../components/styles';
 
 //Validation

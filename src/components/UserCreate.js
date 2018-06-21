@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 import { Container, Header, Content, Form, Item, Input, Footer, FooterTab, Icon } from 'native-base';
 import Button from 'react-native-button';
 import { connect } from 'react-redux';
-import UserCreateForm from './common/UserCreateForm';
+import UserCreateForm from './UserForm/UserCreateForm';
 import { userUpdate, userCreate } from '../actions';
 import We from '../utills/we';
 var styles = require('./styles');

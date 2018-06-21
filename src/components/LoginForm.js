@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import { Container, Content, Footer, FooterTab } from 'native-base';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
-import { Card, CardSection, Input, Button, Spinner } from './common';
+import { CardSection, Input, Button, Spinner } from './common';
 import We from '../utills/we';
 var styles = require('./styles');
 
@@ -41,6 +41,7 @@ class LoginForm extends Component {
 						<Input
 							label="Email"
 							placeholder="email"
+							keyboardType="email-address"
 							onChangeText={this.onEmailChange.bind(this)}
 							value={this.props.email}
 						/>

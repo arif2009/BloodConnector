@@ -1,10 +1,6 @@
 import axios from 'axios';
-import { Actions } from 'react-native-router-flux';
-import We from '../utills/we';
-import {
-  USER_UPDATE, USER_CREATE, USERS_FETCHING,
-  USER_SAVE_SUCCESS
-} from './types';
+import { apiOrigin } from '../utills/we';
+import { USER_UPDATE, USERS_FETCHING } from './types';
 
 export const userUpdate = ({ prop, value }) => {
   return {
@@ -13,28 +9,11 @@ export const userUpdate = ({ prop, value }) => {
   };
 };
 
-export const userCreate = ({ name, phone, sex }) => {
-  return () => {
-    console.log(name, phone, sex);
-  };
-  
-  /*const { currentUser } = firebase.auth();
-
-  return (dispatch) => {
-    firebase.database().ref(`/users/${currentUser.uid}/employees`)
-      .push({ name, phone, shift })
-      .then(() => {
-        dispatch({ type: EMPLOYEE_CREATE });
-        Actions.employeeList({ type: 'reset' });
-      });
-  };*/
-};
-
 export const userFetch = ({ token }) => {
 	return (dispatch) => {
     dispatch({ type: USERS_FETCHING });
 
-    const url = `${We.apiOrigin}api/users`;
+    const url = `${apiOrigin}api/users`;
    return axios({
       method:'get',
       url: url,
@@ -44,39 +23,3 @@ export const userFetch = ({ token }) => {
     });
 	};
 };
-
-/*export const employeesFetch = () => {
-  const { currentUser } = firebase.auth();
-
-  return (dispatch) => {
-    firebase.database().ref(`/users/${currentUser.uid}/employees`)
-      .on('value', snapshot => {
-        dispatch({ type: EMPLOYEES_FETCH_SUCCESS, payload: snapshot.val() });
-      });
-  };
-};
-
-export const employeeSave = ({ name, phone, shift, uid }) => {
-  const { currentUser } = firebase.auth();
-
-  return (dispatch) => {
-    firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
-      .set({ name, phone, shift })
-      .then(() => {
-        dispatch({ type: EMPLOYEE_SAVE_SUCCESS });
-        Actions.employeeList({ type: 'reset' });
-      });
-  };
-};
-
-export const employeeDelete = ({ uid }) => {
-  const { currentUser } = firebase.auth();
-
-  return () => {
-    firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
-      .remove()
-      .then(() => {
-        Actions.employeeList({ type: 'reset' });
-      });
-  };
-};*/

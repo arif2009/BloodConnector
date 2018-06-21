@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Actions } from 'react-native-router-flux';
 import { Icon } from 'native-base';
 import {LOADING_BLOOD_SUCCESS, LOADING_BLOOD_FAIL,LOADING_BLOOD} from './types';
-import {apiOrigin} from '../utills/we';
+import { apiOrigin } from '../utills/we';
 import { txtColor } from '../components/styles';
 
 export const loadBloodGroups = () => {

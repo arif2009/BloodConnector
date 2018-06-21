@@ -1,4 +1,4 @@
-const we = {
+module.exports = {
     version: '2.5.0',
     twoLetterYear: new Date().getFullYear().toString().substr(-2),
     apiOrigin: 'http://www.bloodconnector.org/', //'http://10.0.2.2/'
@@ -19,6 +19,4 @@ const we = {
 
       return errors;
     }
-  }
-  
-  export default we;
+  };

@@ -7,7 +7,10 @@ import Modal from 'react-native-modalbox';
 import _ from 'lodash';
 import { USER_CREATE_FORM } from '../../actions/types';
 import submit from './submit';
-var styles = require('../../components/styles');
+import { 
+    txtMedium, txtDanger, txtWarning, button, txtColor, modal, 
+    tAndCmodal, txtBlue, txtBold, mb, mlLg, p, mt 
+} from '../../components/styles';
 
 //Validation
 const reqMsg = 'Required'
@@ -40,16 +43,16 @@ const isYahooMail = value =>
 const renderField = ({ secureTextEntry, label, requiredMarker, keyboardType, placeholder, meta: { touched, error, warning }, input: { onChange, ...restInput } }) => {
     return (
         <View>
-            <Text style={styles.txtMedium}>
+            <Text style={txtMedium}>
                 {label}
-                <Text style={styles.txtDanger}>{requiredMarker}</Text>
-                {touched && (error && error==reqMsg && <Text style={styles.txtDanger}>{error}</Text>)}
+                <Text style={txtDanger}>{requiredMarker}</Text>
+                {touched && (error && error==reqMsg && <Text style={txtDanger}>{error}</Text>)}
             </Text>
             <TextInput secureTextEntry={JSON.parse(secureTextEntry)} style={{ padding: 5 }} keyboardType={keyboardType}
                 onChangeText={onChange} {...restInput} placeholder={placeholder} autoCapitalize='none'>
             </TextInput>
-            {touched && ((error && error!=reqMsg && <Text style={styles.txtDanger}>{error}</Text>) ||
-                (warning && <Text style={styles.txtWarning}>{warning}</Text>))}
+            {touched && ((error && error!=reqMsg && <Text style={txtDanger}>{error}</Text>) ||
+                (warning && <Text style={txtWarning}>{warning}</Text>))}
         </View>
     );
 };
@@ -57,10 +60,10 @@ const renderField = ({ secureTextEntry, label, requiredMarker, keyboardType, pla
 const renderPicker = ({ label, requiredMarker, meta: { touched, error, warning }, input: { onChange, value, ...inputProps }, children, ...pickerProps }) => {
     return (
         <View>
-            <Text style={styles.txtMedium}>
+            <Text style={txtMedium}>
                 {label}
-                <Text style={styles.txtDanger}>{requiredMarker}</Text>
-                {touched && (error && <Text style={styles.txtDanger}>{error}</Text>)}
+                <Text style={txtDanger}>{requiredMarker}</Text>
+                {touched && (error && <Text style={txtDanger}>{error}</Text>)}
             </Text>
             <Picker selectedValue={value} onValueChange={value => requestAnimationFrame(() => { onChange(value); })} {...inputProps} {...pickerProps} >
                 {children}
@@ -134,25 +137,25 @@ class UserComponent extends Component {
                                     this.setState({ acceptTAndC: val });
                                 }} />
                                 
-                                <Text> I accept <Text style={styles.txtBlue} onPress={() => this.refs.termsModal.open()}>this terms and conditions</Text></Text>
+                                <Text> I accept <Text style={txtBlue} onPress={() => this.refs.termsModal.open()}>this terms and conditions</Text></Text>
                             </ListItem>
-                            {props.meta.error && <Text style={[styles.txtDanger, styles.mb, styles.mlLg]}>{props.meta.error}</Text>}
+                            {props.meta.error && <Text style={[txtDanger, mb, mlLg]}>{props.meta.error}</Text>}
                         </View>
                     )
                 }} validate={[acceptTerms]}/>
 
                 <TouchableOpacity disabled={submitting}
                     onPress={this.state.acceptTAndC ? handleSubmit(submit) : null}
-                    style={[styles.button, { backgroundColor: this.state.acceptTAndC ? '#337ab7' : '#808080' }]}>
-                    <Text style={[styles.txtColor, styles.txtMedium]}>Submit {' '}</Text>
+                    style={[button, { backgroundColor: this.state.acceptTAndC ? '#337ab7' : '#808080' }]}>
+                    <Text style={[txtColor, txtMedium]}>Submit {' '}</Text>
                     {submitting && <Spinner size={25} color="#fff" />}
                 </TouchableOpacity>
 
-                <Modal style={[styles.modal, styles.tAndCmodal, styles.p]} position={"center"} 
+                <Modal style={[modal, tAndCmodal, p]} position={"center"} 
                     ref={"termsModal"} entry='top' coverScreen={true}>
-                    <Text style={styles.txtMedium}>Terms and Conditions</Text>
-                    <Text>All the registered user can see your <Text style={styles.txtBold}>Contact Number</Text> and <Text style={styles.txtBold}>E-mail</Text>. So they can call you or send email for blood.</Text>
-                    <Button style={styles.mt} onPress={() =>{this.refs.termsModal.close()}}>Ok</Button>
+                    <Text style={txtMedium}>Terms and Conditions</Text>
+                    <Text>All the registered user can see your <Text style={txtBold}>Contact Number</Text> and <Text style={txtBold}>E-mail</Text>. So they can call you or send email for blood.</Text>
+                    <Button style={mt} onPress={() =>{this.refs.termsModal.close()}}>Ok</Button>
                 </Modal>
             </View>
         );

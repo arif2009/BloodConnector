@@ -1,25 +1,22 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
-import { Container, Header, Content, Form, Item, Input, Footer, FooterTab, Icon } from 'native-base';
-import Button from 'react-native-button';
-import { connect } from 'react-redux';
+import { Container, Content, Footer, FooterTab } from 'native-base';
 import UserCreateForm from './UserForm/UserCreateForm';
-import { userUpdate, userCreate } from '../actions';
-import We from '../utills/we';
-var styles = require('./styles');
+import { twoLetterYear, version } from '../utills/we';
+import { bgColor, footerBg, selfAlignCenter, txtBlue } from './styles';
 
 export default class UserCreate extends Component {
   render() {
     return (
-			<Container style={styles.bgColor}>
+			<Container style={bgColor}>
 				<Content>
           <UserCreateForm />
 				</Content>
 				<Footer>
-					<FooterTab style={styles.footerBg}>
+					<FooterTab style={footerBg}>
 						<View style={{justifyContent:'center'}}>
-							<Text style={styles.selfAlignCenter}>© 2017-{We.twoLetterYear} - BloodConnector {We.version}</Text>
-							<Text>Website <Text style={styles.txtBlue} onPress={() => Linking.openURL('http://www.bloodconnector.org')}>www.bloodconnector.org</Text></Text>
+							<Text style={selfAlignCenter}>© 2017-{twoLetterYear} - BloodConnector {version}</Text>
+							<Text>Website <Text style={txtBlue} onPress={() => Linking.openURL('http://www.bloodconnector.org')}>www.bloodconnector.org</Text></Text>
 						</View>
 					</FooterTab>
 				</Footer>

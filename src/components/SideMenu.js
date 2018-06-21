@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, Text, View, ViewPropTypes, AsyncStorage } from 'react-native';
+import { Text, View, ViewPropTypes, AsyncStorage } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Button from 'react-native-button';
-import { H1, H2, H3, Badge, Icon } from 'native-base';
+import { H1, H2, Icon } from 'native-base';
 import FontAwesome, { Icons } from 'react-native-fontawesome';
 import axios from 'axios';
-//import RNRestart from 'react-native-restart';
-import We from '../utills/we';
+import { apiOrigin } from '../utills/we';
 import { CardSection } from './common';
-var styles = require('./styles');
+import { 
+  drawerContainer, drawerHeader, txtBolder, selfAlignCenter,txtBlue,drawerBtnContainer,
+  drawerBtnTxt,txtColor,drawerIcon 
+} from './styles';
 
 const contextTypes = {
   drawer: PropTypes.object,
@@ -58,16 +60,16 @@ class SideMenu extends Component {
         bloodGroup: "",
         similarBlood: 0
       });
-      Actions.home({rightTitle: <Icon style={styles.txtColor} type="FontAwesome" name="user-plus" />});
+      Actions.home({rightTitle: <Icon style={txtColor} type="FontAwesome" name="user-plus" />});
 
-      const url = `${We.apiOrigin}api/Account/Logout`;
+      const url = `${apiOrigin}api/Account/Logout`;
       axios.post(url);
     });
   }
 
   render() {
     return (
-      <View style={[styles.drawerContainer, this.props.sceneStyle]}>
+      <View style={[drawerContainer, this.props.sceneStyle]}>
 
         {!this.state.isLogedIn && <CardSection style={{padding: 25}}>
           <Button onPress={() => { Actions.userCreate(); }}>
@@ -75,45 +77,45 @@ class SideMenu extends Component {
           </Button>
         </CardSection>}
 
-        {this.state.isLogedIn && <View style={styles.drawerHeader}>
-          <Text style={[styles.txtBolder,styles.selfAlignCenter]}>{this.state.fullName}</Text>
-          <H1 style={[styles.selfAlignCenter, styles.txtBlue]}>{this.state.bloodGroup}</H1>
-          <Text style={[styles.txtBolder,styles.selfAlignCenter]}>Similar Blood : <H2 style={styles.txtBlue}>{this.state.similarBlood}</H2></Text>
+        {this.state.isLogedIn && <View style={drawerHeader}>
+          <Text style={[txtBolder,selfAlignCenter]}>{this.state.fullName}</Text>
+          <H1 style={[selfAlignCenter, txtBlue]}>{this.state.bloodGroup}</H1>
+          <Text style={[txtBolder,selfAlignCenter]}>Similar Blood : <H2 style={txtBlue}>{this.state.similarBlood}</H2></Text>
         </View>}
         
-        <CardSection style={styles.drawerBtnContainer}>
-          <Button style={styles.drawerBtnTxt} onPress={() => { Actions.home({ rightTitle: this.state.isLogedIn ? '': <Icon style={styles.txtColor} type="FontAwesome" name="user-plus" /> }); }}>
-            <FontAwesome style={styles.drawerIcon}>{Icons.home}</FontAwesome> Home Page
+        <CardSection style={drawerBtnContainer}>
+          <Button style={drawerBtnTxt} onPress={() => { Actions.home({ rightTitle: this.state.isLogedIn ? '': <Icon style={txtColor} type="FontAwesome" name="user-plus" /> }); }}>
+            <FontAwesome style={drawerIcon}>{Icons.home}</FontAwesome> Home Page
           </Button>
         </CardSection>
 
-        {!this.state.isLogedIn && <CardSection style={styles.drawerBtnContainer}>
-          <Button style={styles.drawerBtnTxt} onPress={() => { Actions.userCreate(); }}>
-            <FontAwesome style={styles.drawerIcon}>{Icons.userPlus}</FontAwesome> Sign Up
+        {!this.state.isLogedIn && <CardSection style={drawerBtnContainer}>
+          <Button style={drawerBtnTxt} onPress={() => { Actions.userCreate(); }}>
+            <FontAwesome style={drawerIcon}>{Icons.userPlus}</FontAwesome> Sign Up
           </Button>
         </CardSection>}
 
-        {this.state.isLogedIn && <CardSection style={styles.drawerBtnContainer}>
-          <Button style={styles.drawerBtnTxt} onPress={() => { Actions.userList({token: this.state.accessTolen}); }}>
-            <FontAwesome style={styles.drawerIcon}>{Icons.odnoklassniki}</FontAwesome> Our Donors
+        {this.state.isLogedIn && <CardSection style={drawerBtnContainer}>
+          <Button style={drawerBtnTxt} onPress={() => { Actions.userList({token: this.state.accessTolen}); }}>
+            <FontAwesome style={drawerIcon}>{Icons.odnoklassniki}</FontAwesome> Our Donors
           </Button>
         </CardSection>}
         
-        {!this.state.isLogedIn && <CardSection style={styles.drawerBtnContainer}>
-          <Button style={styles.drawerBtnTxt} onPress={() => { Actions.login(); }}>
-            <FontAwesome style={styles.drawerIcon}>{Icons.signIn}</FontAwesome> Log In
+        {!this.state.isLogedIn && <CardSection style={drawerBtnContainer}>
+          <Button style={drawerBtnTxt} onPress={() => { Actions.login(); }}>
+            <FontAwesome style={drawerIcon}>{Icons.signIn}</FontAwesome> Log In
           </Button>
         </CardSection>}
 
-        {this.state.isLogedIn && <CardSection style={styles.drawerBtnContainer}>
-          <Button style={styles.drawerBtnTxt} onPress={() => { this.logout(); }}>
-            <FontAwesome style={styles.drawerIcon}>{Icons.signOut}</FontAwesome> Log Out
+        {this.state.isLogedIn && <CardSection style={drawerBtnContainer}>
+          <Button style={drawerBtnTxt} onPress={() => { this.logout(); }}>
+            <FontAwesome style={drawerIcon}>{Icons.signOut}</FontAwesome> Log Out
           </Button>
         </CardSection>}
 
-        <CardSection style={[styles.drawerBtnContainer, {borderBottomWidth: 0}]}>
-          <Button style={styles.drawerBtnTxt} onPress={() => { Actions.help(); }}>
-            <FontAwesome style={styles.drawerIcon}>{Icons.question}</FontAwesome> Help
+        <CardSection style={[drawerBtnContainer, {borderBottomWidth: 0}]}>
+          <Button style={drawerBtnTxt} onPress={() => { Actions.help(); }}>
+            <FontAwesome style={drawerIcon}>{Icons.question}</FontAwesome> Help
           </Button>
         </CardSection>
       </View>

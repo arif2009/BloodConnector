@@ -1,16 +1,17 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
-import { Text, StyleSheet, View, ListView, TextInput, ActivityIndicator, Alert, AsyncStorage, TouchableOpacity } from 'react-native';
+import { Text, View, ListView } from 'react-native';
 import { Container, Content, Footer, FooterTab, Spinner, Header, Item, Input, Icon, H1 } from 'native-base';
 import Communications from 'react-native-communications';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import Button from 'react-native-button';
 import Modal from 'react-native-modalbox';
-import { CardSection } from './common';
 import { userFetch } from '../actions'
-import We from '../utills/we';
-var styles = require('./styles');
+import { twoLetterYear, version} from '../utills/we';
+import { 
+    hRed, txtColor, errorTextStyle, modal, detailsmodal, txtRed, txtBold, txtBlue,
+    txtMedium, bgColor, footerBg, selfAlignCenter, mbSm, p, mt
+} from './styles';
 
 class UserList extends Component {
 
@@ -86,14 +87,14 @@ class UserList extends Component {
         //onPress={() => _userDetails()} of Grid
         return(
             <Grid style={{marginLeft:5, marginRight:5, marginBottom: 5}} onPress={() => _userDetails(person)}>
-                <Col size={20} style={[styles.hRed, {borderBottomLeftRadius: 5, borderTopLeftRadius:5}]}>
+                <Col size={20} style={[hRed, {borderBottomLeftRadius: 5, borderTopLeftRadius:5}]}>
                     <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
-                        <H1 style={[styles.txtColor]}>{person.bloodGroup}</H1>
+                        <H1 style={txtColor}>{person.bloodGroup}</H1>
                     </View>
                 </Col>
                 <Col size={80} style={{backgroundColor: '#fff', padding:5, borderBottomRightRadius: 5, borderTopRightRadius:5}}>
                     <Row>
-                        <Text style={[styles.txtMedium]} ellipsizeMode='tail' numberOfLines={1}>{person.fullName}</Text>
+                        <Text style={txtMedium} ellipsizeMode='tail' numberOfLines={1}>{person.fullName}</Text>
                     </Row>
                     <Row>
                         <Col size={40}><Text ellipsizeMode='tail' numberOfLines={1}>{person.phoneNumber}</Text></Col>
@@ -111,7 +112,7 @@ class UserList extends Component {
         }
         else if(!!this.state.error){
             return(
-                <Text style={styles.errorTextStyle}>
+                <Text style={errorTextStyle}>
                     {this.state.error}
                 </Text>
             );
@@ -119,7 +120,7 @@ class UserList extends Component {
         else if(!!this.state.userList){
             return(
                 <View>
-                    <Header searchBar rounded style={styles.hRed}>
+                    <Header searchBar rounded style={hRed}>
                         <Item>
                             <Icon name="ios-search" />
                             <Input
@@ -135,18 +136,18 @@ class UserList extends Component {
                         renderRow={this.renderRow.bind(this)} renderFooter = {this.renderFooter.bind(this)}
                         onEndReached={this.onEndReached.bind(this)} style={{ marginTop: 10 }} />
 
-                    <Modal style={[styles.modal, styles.detailsmodal, styles.p]} position={"top"} 
+                    <Modal style={[modal, detailsmodal, p]} position={"top"} 
                         ref={"detailsModal"} entry='top' coverScreen={true} animationDuration={300}>
-                        <H1 style={[styles.txtRed, styles.txtBold]}>{this.state.bloodGroup}</H1>
-                        <Text style={[styles.txtMedium, styles.mbSm]}>{this.state.fullName}</Text>
-                        {this.state.bloodGiven > 0 && <Text style={styles.mbSm}>Given blood {this.state.bloodGiven} times</Text>}
-                        <Text style={[styles.txtBlue, styles.mbSm]} onPress={() => Communications.phonecall(this.state.phoneNumber, true)}>
+                        <H1 style={[txtRed, txtBold]}>{this.state.bloodGroup}</H1>
+                        <Text style={[txtMedium, mbSm]}>{this.state.fullName}</Text>
+                        {this.state.bloodGiven > 0 && <Text style={mbSm}>Given blood {this.state.bloodGiven} times</Text>}
+                        <Text style={[txtBlue, mbSm]} onPress={() => Communications.phonecall(this.state.phoneNumber, true)}>
                             {this.state.phoneNumber}
                         </Text>
-                        <Text style={[styles.txtBlue, styles.mbSm]} onPress={() => Communications.email([this.state.email],null,null,`Need ${this.state.bloodGroup} blood`,null)}>
+                        <Text style={[txtBlue, mbSm]} onPress={() => Communications.email([this.state.email],null,null,`Need ${this.state.bloodGroup} blood`,null)}>
                             {this.state.email}
                         </Text>
-                        <Button style={styles.mt} onPress={() =>{this.refs.detailsModal.close()}}>Ok</Button>
+                        <Button style={mt} onPress={() =>{this.refs.detailsModal.close()}}>Ok</Button>
                     </Modal>
                 </View>
             );
@@ -170,16 +171,16 @@ class UserList extends Component {
 
     render(){
         return (
-			<Container style={styles.bgColor}>
+			<Container style={bgColor}>
 				<Content>
 					{this.renderList()}
 				</Content>
 
 				<Footer>
-					<FooterTab style={styles.footerBg}>
+					<FooterTab style={footerBg}>
                         <View style={{justifyContent:'center'}}>
-                            <Text style={styles.selfAlignCenter}>© 2017-{We.twoLetterYear} - BloodConnector {We.version}</Text>
-                            <Text>Website <Text style={styles.txtBlue} onPress={() => Linking.openURL('http://www.bloodconnector.org')}>www.bloodconnector.org</Text></Text>
+                            <Text style={selfAlignCenter}>© 2017-{twoLetterYear} - BloodConnector {version}</Text>
+                            <Text>Website <Text style={txtBlue} onPress={() => Linking.openURL('http://www.bloodconnector.org')}>www.bloodconnector.org</Text></Text>
                         </View>
 					</FooterTab>
 				</Footer>

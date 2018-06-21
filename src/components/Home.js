@@ -6,7 +6,7 @@ import { loadBloodGroups } from '../actions';
 import ListItem from './ListItem';
 import { CardSection } from './common';
 import We from '../utills/we';
-import { bgColor, footerBg, selfAlignCenter, txtBlue } from './styles';
+import { bgColor, footerBg, selfAlignCenter, txtBlue, homeTitle } from './styles';
 
 class Home extends Component {
 	constructor(props){
@@ -42,7 +42,7 @@ class Home extends Component {
 
 	renderHeader() {
 		return (
-			<CardSection style={{justifyContent: 'space-around', paddingTop: 10, paddingBottom: 10, backgroundColor:'#fff', borderColor: '#ffcccc'}}>
+			<CardSection style={homeTitle}>
 				<H2> NUMBER OF DONOR : { this.dataSource.totalNumberOfUser }</H2>
 			</CardSection>
 		);

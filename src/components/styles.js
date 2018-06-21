@@ -67,6 +67,13 @@ module.exports = StyleSheet.create({
 
     errorTextStyle: {fontSize: 20,alignSelf: 'center',color: '#ff0000'},
 
+    homeTitle: {
+        justifyContent: 'space-around', 
+        paddingTop: 10, 
+        paddingBottom: 10, 
+        backgroundColor:'#fff', 
+        borderColor: '#ffcccc'
+    },
     btnBlock:{
         padding:10, 
         height:45, 

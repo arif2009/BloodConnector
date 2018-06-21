@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Text, ListView, View, StatusBar, ActivityIndicator, Linking } from 'react-native';
+import { Text, ListView, View, StatusBar, Linking } from 'react-native';
 import { connect } from 'react-redux';
-import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Spinner, H1, H2, H3, Badge } from 'native-base';
+import { Container, Content, Footer, FooterTab, Spinner, H2 } from 'native-base';
 import { loadBloodGroups } from '../actions';
 import ListItem from './ListItem';
 import { CardSection } from './common';
 import We from '../utills/we';
-var styles = require('./styles');
+import { bgColor, footerBg, selfAlignCenter, txtBlue } from './styles';
 
 class Home extends Component {
 	constructor(props){
@@ -50,17 +50,17 @@ class Home extends Component {
 
 	render() {
 		return (
-			<Container style={styles.bgColor}>
+			<Container style={bgColor}>
 				<StatusBar backgroundColor="#324291" barStyle="light-content" />
 				<Content>
 					{this.renderGroups()}
 				</Content>
 
 				<Footer>
-					<FooterTab style={styles.footerBg}>
+					<FooterTab style={footerBg}>
 					<View style={{justifyContent:'center'}}>
-						<Text style={styles.selfAlignCenter}>© 2017-{We.twoLetterYear} - BloodConnector {We.version}</Text>
-						<Text>Website <Text style={styles.txtBlue} onPress={() => Linking.openURL('http://www.bloodconnector.org')}>www.bloodconnector.org</Text></Text>
+						<Text style={selfAlignCenter}>© 2017-{We.twoLetterYear} - BloodConnector {We.version}</Text>
+						<Text>Website <Text style={txtBlue} onPress={() => Linking.openURL('http://www.bloodconnector.org')}>www.bloodconnector.org</Text></Text>
 					</View>
 					</FooterTab>
 				</Footer>

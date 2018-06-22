@@ -17,17 +17,19 @@ const submit = (values, dispatch) => {
         const data = `grant_type=password&username=${encodeURIComponent(Email)}&password=${encodeURIComponent(Password)}`;
         const header = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } };
         const url = `${apiOrigin}token`;
+
+        Alert.alert(
+            'Congratulations!!',
+            'You are joined successfully with us.',
+            [{text: 'OK'}],
+            {cancelable: false}
+        );
+        
         axios.post(url, data, header)
             .then(tokenInfo => {
                 AsyncStorage.setItem('@auth:userData', JSON.stringify(tokenInfo.data), () => {
                     dispatch({ type: CREATED_ACC });
                     Actions.userList({ token: tokenInfo.data.access_token, rightTitle: '' });
-                    Alert.alert(
-                        'Congratulations!!',
-                        'You are joined successfully with us.',
-                        [{text: 'OK'}],
-                        {cancelable: false}
-                    );
                 });
             })
             .catch((error) => {

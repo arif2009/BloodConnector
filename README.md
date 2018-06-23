@@ -1,10 +1,11 @@
-# BloodConnector
+### BloodConnector
+---
 Blood Connector is a real time online database of blood donors. Anyone can find the desired blood donors through the web portal(http://bloodconnector.org) and mobile app.
 
 [![License](https://img.shields.io/npm/l/express.svg)](http://opensource.org/licenses/MIT)
 
-# Technologies
-
+#### Development Tools & Technology
+---
 * [React 16.3.2](https://reactjs.org/)
 * [React Native 0.55](https://facebook.github.io/react-native/)
 * ["axios 0.18.0" For promise based HTTP client](https://github.com/axios/axios)
@@ -18,9 +19,11 @@ Blood Connector is a real time online database of blood donors. Anyone can find 
 * ["redux-thunk 2.2.0" For action creators](https://www.npmjs.com/package/redux-thunk)
 * ["react-native-easy-grid 0.1.17" For grid layout](https://github.com/GeekyAnts/react-native-easy-grid.git)
 * ["react-native-fontawesome 5.7.0" For Icons](https://github.com/entria/react-native-fontawesome.git)
+* ["react-native-modalbox 1.5.0" For modal](https://github.com/maxs15/react-native-modalbox.git)
+* ["react-native-button 2.3.0" For button](https://github.com/ide/react-native-button.git)
 
-# Installation
-
+#### Installation
+---
 Cloning the repository:
 
 ```bash
@@ -42,15 +45,37 @@ $ npm i --do-not-make-me-cry
 
 # Build and run the solution
 ```
+#### Some of app views
+---
+*Home page:*
 
-# License
+![alt text](https://github.com/arif2009/BloodConnector/blob/master/screenshots/1_home.png "Home Page")
+
+*Registration page:*
+
+![alt text](https://github.com/arif2009/BloodConnector/blob/master/screenshots/2_register.png "Registration page")
+
+*After registration success:*
+
+![alt text](https://github.com/arif2009/BloodConnector/blob/master/screenshots/3_success_reg.png "Registration success")
+
+*Search page:* This page will show after login.
+
+![alt text](https://github.com/arif2009/BloodConnector/blob/master/screenshots/4_search.png "Search")
+
+*User details popup:* This popup will show when press on a user row. From this popup you can call directly by pressing on user contact number and send email by pressing on user email.
+
+![alt text](https://github.com/arif2009/BloodConnector/blob/master/screenshots/5_details.png "Details popup")
+
+*App sidebar view:*
+
+![alt text](https://github.com/arif2009/BloodConnector/blob/master/screenshots/6_sidebar.png "Details popup")
+
+#### Author
+Arifur Rahman ( arif.rahman2009@gmail.com )
+
+#### License
 
 This application is released under the [MIT](http://www.opensource.org/licenses/MIT) License.
 
 Copyright (c) 2017 [Arifur Rahman (Sazal)](http://arifur-rahman-sazal.blogspot.com/)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

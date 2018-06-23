@@ -76,6 +76,6 @@ Arifur Rahman ( arif.rahman2009@gmail.com )
 
 #### License
 
-This application is released under the [MIT](http://www.opensource.org/licenses/MIT) License.
+This application is released under the [Mozilla Public License 2.0](https://choosealicense.com/licenses/mpl-2.0/)
 
 Copyright (c) 2017 [Arifur Rahman (Sazal)](http://arifur-rahman-sazal.blogspot.com/)

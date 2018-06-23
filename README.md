@@ -1,6 +1,6 @@
 ### BloodConnector
 ---
-Blood Connector is a real time online database of blood donors. Anyone can find the desired blood donors through the web portal(http://bloodconnector.org) and mobile app.
+Blood Connector is a real time online database of blood donors. Anyone can find the desired blood donors through the mobile app. It has a web portal(http://bloodconnector.org) also.
 
 [![License](https://img.shields.io/badge/license-MPL--2.0-green.svg)](https://opensource.org/licenses/mpl-2.0/)
 [![WebApp](https://img.shields.io/badge/bloodconnector-web-brightgreen.svg)](http://bloodconnector.org)

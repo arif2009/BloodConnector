@@ -2,8 +2,8 @@
 ---
 Blood Connector is a real time online database of blood donors. Anyone can find the desired blood donors through the mobile app. It has a web portal(http://bloodconnector.org) also.
 
-[![License](https://github.com/arif2009/BloodConnector/blob/master/screenshots/license-MPL-2.0-green.svg "License MPL-2.0")](https://opensource.org/licenses/mpl-2.0/)
-[![WebApp](https://github.com/arif2009/BloodConnector/blob/master/screenshots/bloodconnector-web-brightgreen.svg "Blood Connector")](http://bloodconnector.org)
+[![License](https://github.com/arif2009/BloodConnector/blob/master/screenshots/license-MPL-2.0-green.png "License MPL-2.0")](https://opensource.org/licenses/mpl-2.0/)
+[![WebApp](https://github.com/arif2009/BloodConnector/blob/master/screenshots/bloodconnector-web-brightgreen.png "Blood Connector")](http://bloodconnector.org)
 
 #### Development Tools & Technology
 ---

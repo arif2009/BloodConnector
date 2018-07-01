@@ -46,16 +46,17 @@ class UserList extends Component {
                     loading: false,
                     userList: []
                 });
-                console.log("Catch > ",errors);
+                //console.log("Catch > ",errors);
         });
     }
 
     searchFilter(text){
         //console.log(text);
         const newData = this.state.userList.filter(function(item){
-            const itemData = item.bloodGroup.toUpperCase()
-            const textData = text.toUpperCase()
-            return itemData.indexOf(textData) > -1;
+            const itemData = (item.bloodGroup + ' ' + item.bloodGroupName + ' ' + item.addressM).toLowerCase();
+            const searchText = text.toLowerCase();
+            //console.log(itemData);
+            return itemData.indexOf(searchText) > -1;
         });
         this.createDataSource(newData);
         this.text = text;
@@ -130,7 +131,7 @@ class UserList extends Component {
                     <ListView enableEmptySections={true} dataSource={this.state.userListDs}
                         //renderSeparator= {this.ListViewItemSeparator}
                         renderRow={this.renderRow.bind(this)} renderFooter = {this.renderFooter.bind(this)}
-                        onEndReached={this.onEndReached.bind(this)} style={{ marginTop: 10 }} />
+                        onEndReached={this.onEndReached.bind(this)} style={mt} />
 
                     <Modal style={[modal, detailsmodal, p]} position={"top"} 
                         ref={"detailsModal"} entry='top' coverScreen={true} animationDuration={300}>

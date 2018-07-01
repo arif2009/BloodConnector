@@ -17,6 +17,9 @@ module.exports = StyleSheet.create({
     pLg:{ padding:15},
 
     msm:{margin:5},
+    ml5:{marginLeft:5},
+    mr5:{marginRight:5},
+    mb5:{marginBottom: 5},
     mLg:{margin:15},
     mb:{marginBottom: 10},
     mbSm:{marginBottom:4},
@@ -62,6 +65,12 @@ module.exports = StyleSheet.create({
     itemStyle: {borderBottomWidth: 1,borderColor: '#fff'},
 
     bgContainer: { flex:1, width: null, height: null },
+
+    bloodStyle: {flex:1, justifyContent: 'center', alignItems: 'center'},
+    
+    borderLeft:{ borderBottomLeftRadius: 5, borderTopLeftRadius:5 },
+
+    borderRight:{ borderBottomRightRadius: 5, borderTopRightRadius:5 },
 
     homeTitle: {
         justifyContent: 'space-around', 

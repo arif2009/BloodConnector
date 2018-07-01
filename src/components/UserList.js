@@ -9,8 +9,8 @@ import Modal from 'react-native-modalbox';
 import { userFetch } from '../actions'
 import { twoLetterYear, version} from '../utills/we';
 import { 
-    hRed, txtColor, errorTextStyle, modal, detailsmodal, txtRed, txtBold, txtBlue,
-    txtMedium, bgColor, footerBg, selfAlignCenter, mbSm, p, mt
+    hRed, txtColor, errorTextStyle, modal, detailsmodal, txtRed, txtBold, txtBlue, txtMedium, borderLeft,
+    borderRight, bloodStyle, bgColor, footerBg, selfAlignCenter, mbSm, p, mt, ml5, mr5, mb5
 } from './styles';
 
 class UserList extends Component {
@@ -46,16 +46,17 @@ class UserList extends Component {
                     loading: false,
                     userList: []
                 });
-                console.log("Catch > ",errors);
+                //console.log("Catch > ",errors);
         });
     }
 
     searchFilter(text){
         //console.log(text);
         const newData = this.state.userList.filter(function(item){
-            const itemData = item.bloodGroup.toUpperCase()
-            const textData = text.toUpperCase()
-            return itemData.indexOf(textData) > -1;
+            const itemData = (item.bloodGroup + ' ' + item.bloodGroupName + ' ' + item.addressM).toLowerCase();
+            const searchText = text.toLowerCase();
+            //console.log(itemData);
+            return itemData.indexOf(searchText) > -1;
         });
         this.createDataSource(newData);
         this.text = text;
@@ -71,8 +72,6 @@ class UserList extends Component {
     renderRow(person) {
         //console.log(person);
         _userDetails = (user) => {
-            //let msg = `<Text>My Alert Msg ${person.fullName}</Text>`;
-            //Alert.alert(`Blood Group: ${person.bloodGroup}`,msg);
             this.setState({
                 fullName: user.fullName,
                 bloodGiven: user.bloodGiven,
@@ -84,21 +83,19 @@ class UserList extends Component {
             this.refs.detailsModal.open();
             //console.log(this);
         };
-        //onPress={() => _userDetails()} of Grid
         return(
-            <Grid style={{marginLeft:5, marginRight:5, marginBottom: 5}} onPress={() => _userDetails(person)}>
-                <Col size={20} style={[hRed, {borderBottomLeftRadius: 5, borderTopLeftRadius:5}]}>
-                    <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
+            <Grid style={[ml5, mr5, mb5]} onPress={() => _userDetails(person)}>
+                <Col size={20} style={[hRed, borderLeft]}>
+                    <View style={bloodStyle}>
                         <H1 style={txtColor}>{person.bloodGroup}</H1>
                     </View>
                 </Col>
-                <Col size={80} style={{backgroundColor: '#fff', padding:5, borderBottomRightRadius: 5, borderTopRightRadius:5}}>
+                <Col size={80} style={[{backgroundColor: '#fff', padding:5}, borderRight]}>
                     <Row>
                         <Text style={txtMedium} ellipsizeMode='tail' numberOfLines={1}>{person.fullName}</Text>
                     </Row>
                     <Row>
-                        <Col size={40}><Text ellipsizeMode='tail' numberOfLines={1}>{person.phoneNumber}</Text></Col>
-                        <Col size={60}><Text ellipsizeMode='tail' numberOfLines={1}>{person.email}</Text></Col>
+                        <Text>{person.addressM}</Text>
                     </Row>
                 </Col>
             </Grid>
@@ -134,14 +131,14 @@ class UserList extends Component {
                     <ListView enableEmptySections={true} dataSource={this.state.userListDs}
                         //renderSeparator= {this.ListViewItemSeparator}
                         renderRow={this.renderRow.bind(this)} renderFooter = {this.renderFooter.bind(this)}
-                        onEndReached={this.onEndReached.bind(this)} style={{ marginTop: 10 }} />
+                        onEndReached={this.onEndReached.bind(this)} style={mt} />
 
                     <Modal style={[modal, detailsmodal, p]} position={"top"} 
                         ref={"detailsModal"} entry='top' coverScreen={true} animationDuration={300}>
                         <H1 style={[txtRed, txtBold]}>{this.state.bloodGroup}</H1>
-                        <Text style={[txtMedium, mbSm]}>{this.state.fullName}</Text>
-                        {this.state.bloodGiven > 0 && <Text style={mbSm}>Given blood {this.state.bloodGiven} times</Text>}
-                        <Text style={[txtBlue, mbSm]} onPress={() => Communications.phonecall(this.state.phoneNumber, true)}>
+                        <Text style={[txtMedium, mb5]}>{this.state.fullName}</Text>
+                        {this.state.bloodGiven > 0 && <Text style={mb5}>Given blood {this.state.bloodGiven} times</Text>}
+                        <Text style={[txtBlue, mb5]} onPress={() => Communications.phonecall(this.state.phoneNumber, true)}>
                             {this.state.phoneNumber}
                         </Text>
                         <Text style={[txtBlue, mbSm]} onPress={() => Communications.email([this.state.email],null,null,`Need ${this.state.bloodGroup} blood`,null)}>

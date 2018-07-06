@@ -42,6 +42,7 @@ class LoginForm extends Component {
 							label="Email"
 							placeholder="email"
 							keyboardType="email-address"
+							autoFocus={true}
 							onChangeText={this.onEmailChange.bind(this)}
 							value={this.props.email}
 						/>

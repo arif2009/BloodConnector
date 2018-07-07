@@ -7,6 +7,7 @@ module.exports = StyleSheet.create({
     txtRed:{color: '#ff0000'},
     txtWarning:{color: '#ffc107'},
     txtDanger:{color: '#dc3545'},
+    txtSuccess:{color: '#28a745'},
     txtMedium: {fontSize: 16,fontWeight: '600'},
     txtBold: {fontWeight: 'bold'},
     txtBolder: {fontSize: 18,fontWeight: 'bold'},

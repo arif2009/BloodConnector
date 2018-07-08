@@ -32,14 +32,15 @@ module.exports = StyleSheet.create({
     mtLg:{marginTop: 15},
 
     bgColor: {backgroundColor: '#ffcccc'},
-
     hRed:{backgroundColor: '#e60000'},
-
+    bgSoftRed:{backgroundColor: '#ff8080'},
     nabBg: {backgroundColor: '#ff0000'},
 
     borderBottom0:{borderBottomWidth:0},
 
     selfAlignCenter:{alignSelf: 'center'},
+
+    row:{flexDirection: 'row'},
 
     footerBg: {backgroundColor: '#ff8080',justifyContent:'center'},
 
@@ -56,6 +57,8 @@ module.exports = StyleSheet.create({
     drawerBtnTxt: {fontSize: 18,color: '#404040'},
 
     drawerIcon:{fontSize: 22,color: '#404040'},
+
+    footerIcon:{fontSize: 21,color: '#fff'},
 
     errorTextStyle: {fontSize: 20,alignSelf: 'center',color: '#ff0000'},
 

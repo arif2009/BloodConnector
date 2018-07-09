@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { Text, View, ListView, TouchableOpacity } from 'react-native';
-import { Container, Content, Footer, FooterTab, Spinner, Header, Item, Input, Icon, H1, Button, Fab } from 'native-base';
-import FontAwesome, { Icons } from 'react-native-fontawesome';
+import { Text, View, ListView } from 'react-native';
+import { Container, Content, Spinner, Header, Item, Input, Icon, H1, Button, Fab } from 'native-base';
 import Communications from 'react-native-communications';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import Modal from 'react-native-modalbox';

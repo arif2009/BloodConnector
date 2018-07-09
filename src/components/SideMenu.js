@@ -90,7 +90,7 @@ class SideMenu extends Component {
 
         {!this.state.isLogedIn && <CardSection style={drawerBtnContainer}>
           <Button style={drawerBtnTxt} onPress={() => { Actions.userCreate(); }}>
-            <Icon style={drawerIcon} type="FontAwesome" name="user-plus" /> Sign Up
+            <Icon style={drawerIcon} type="Entypo" name="add-user" /> Sign Up
           </Button>
         </CardSection>}
 

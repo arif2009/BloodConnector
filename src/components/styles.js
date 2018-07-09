@@ -58,7 +58,8 @@ module.exports = StyleSheet.create({
 
     drawerIcon:{fontSize: 22,color: '#404040'},
 
-    footerIcon:{fontSize: 21,color: '#fff'},
+    footerIcon:{fontSize: 16,color: '#fff'},
+    footerIconS:{fontSize: 12,color: '#fff'},
 
     errorTextStyle: {fontSize: 20,alignSelf: 'center',color: '#ff0000'},
 

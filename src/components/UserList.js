@@ -204,6 +204,32 @@ class UserList extends Component {
                         position="bottomRight"
                         onPress={() => this.setState({ active: !this.state.active })}>
                         <Icon name="share" />
+                        
+                        {(this.state.selectedGroup === 'O+') && <Button bordered light active>
+                        <TouchableOpacity style={row} onPress={()=>{this.groupBy('O+')}}>
+                            <FontAwesome style={footerIcon}>{Icons.circleO}</FontAwesome><Text>{' '}</Text>
+                            <FontAwesome style={txtColor}>{Icons.plus}</FontAwesome>
+                        </TouchableOpacity>
+                        </Button>}
+                        {(this.state.selectedGroup !== 'O+') && <Button bordered light>
+                        <TouchableOpacity style={row} onPress={()=>{this.groupBy('O+')}}>
+                            <FontAwesome style={footerIcon}>{Icons.circleO}</FontAwesome><Text>{' '}</Text>
+                            <FontAwesome style={txtColor}>{Icons.plus}</FontAwesome>
+                        </TouchableOpacity>
+                        </Button>}
+
+                        {(this.state.selectedGroup === 'O-') && <Button bordered light active>
+                        <TouchableOpacity style={row} onPress={()=>{this.groupBy('O-')}}>
+                            <FontAwesome style={footerIcon}>{Icons.circleO}</FontAwesome><Text>{' '}</Text>
+                            <FontAwesome style={txtColor}>{Icons.minus}</FontAwesome>
+                        </TouchableOpacity>
+                        </Button>}
+                        {(this.state.selectedGroup !== 'O-') && <Button bordered light>
+                        <TouchableOpacity style={row} onPress={()=>{this.groupBy('O-')}}>
+                            <FontAwesome style={footerIcon}>{Icons.circleO}</FontAwesome><Text>{' '}</Text>
+                            <FontAwesome style={txtColor}>{Icons.minus}</FontAwesome>
+                        </TouchableOpacity>
+                        </Button>}
 
                         {(this.state.selectedGroup === 'AB+') && <Button style={hRed} onPress={()=>{this.groupBy('AB+')}}>
                             <FontAwesome style={footerIconS}>{Icons.font}</FontAwesome>

@@ -16,7 +16,6 @@
     "react-native-button": "^2.3.0",
     "react-native-communications": "^2.2.1",
     "react-native-easy-grid": "^0.1.17",
-    "react-native-fontawesome": "^5.7.0",
     "react-native-modalbox": "^1.5.0",
     "react-native-router-flux": "^4.0.0-beta.27",
     "react-redux": "5.0.7",

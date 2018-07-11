@@ -205,21 +205,21 @@ class UserList extends Component {
                         <Icon type="MaterialIcons" name="dialpad" />
                         
                         {(this.state.selectedGroup === 'O+') && <Button onPress={()=>{this.groupBy('O+')}} style={hRed}>
-                            <Icon type="FontAwesome" name="circle-o" style={font17} /><Text>{' '}</Text>
-                            <Icon type="FontAwesome" name="plus" style={font15} />
+                            <Icon type="FontAwesome" name="circle-o" style={font15} /><Text>{' '}</Text>
+                            <Icon type="FontAwesome" name="plus" style={font12} />
                         </Button>}
                         {(this.state.selectedGroup !== 'O+') && <Button style={bgSoftRed} onPress={()=>{this.groupBy('O+')}}>
-                            <Icon type="FontAwesome" name="circle-o" style={font17} /><Text>{' '}</Text>
-                            <Icon type="FontAwesome" name="plus" style={font15} />
+                            <Icon type="FontAwesome" name="circle-o" style={font15} /><Text>{' '}</Text>
+                            <Icon type="FontAwesome" name="plus" style={font12} />
                         </Button>}
 
                         {(this.state.selectedGroup === 'O-') && <Button style={hRed} onPress={()=>{this.groupBy('O-')}}>
-                            <Icon type="FontAwesome" name="circle-o" style={font17} /><Text>{' '}</Text>
-                            <Icon type="FontAwesome" name="minus" style={font15} />
+                            <Icon type="FontAwesome" name="circle-o" style={font15} /><Text>{' '}</Text>
+                            <Icon type="FontAwesome" name="minus" style={font12} />
                         </Button>}
                         {(this.state.selectedGroup !== 'O-') && <Button style={bgSoftRed} onPress={()=>{this.groupBy('O-')}}>
-                            <Icon type="FontAwesome" name="circle-o" style={font17} /><Text>{' '}</Text>
-                            <Icon type="FontAwesome" name="minus" style={font15} />
+                            <Icon type="FontAwesome" name="circle-o" style={font15} /><Text>{' '}</Text>
+                            <Icon type="FontAwesome" name="minus" style={font12} />
                         </Button>}
 
                         {(this.state.selectedGroup === 'AB+') && <Button style={hRed} onPress={()=>{this.groupBy('AB+')}}>
@@ -244,37 +244,37 @@ class UserList extends Component {
                             <Icon type="FontAwesome" name="minus" style={font12} />
                         </Button>}
                         {(this.state.selectedGroup === 'B+') && <Button style={hRed} onPress={()=>{this.groupBy('B+')}}>
-                            <Icon type="FontAwesome" name="bold" style={font17} /><Text>{' '}</Text>
-                            <Icon type="FontAwesome" name="plus" style={font15} />
+                            <Icon type="FontAwesome" name="bold" style={font15} /><Text>{' '}</Text>
+                            <Icon type="FontAwesome" name="plus" style={font12} />
                         </Button>}
                         {(this.state.selectedGroup !== 'B+') && <Button style={bgSoftRed} onPress={()=>{this.groupBy('B+')}}>
-                            <Icon type="FontAwesome" name="bold" style={font17} /><Text>{' '}</Text>
-                            <Icon type="FontAwesome" name="plus" style={font15} />
+                            <Icon type="FontAwesome" name="bold" style={font15} /><Text>{' '}</Text>
+                            <Icon type="FontAwesome" name="plus" style={font12} />
                         </Button>}
 
                         {(this.state.selectedGroup === 'B-') && <Button style={hRed} onPress={()=>{this.groupBy('B-')}}>
-                            <Icon type="FontAwesome" name="bold" style={font17} /><Text>{' '}</Text>
-                            <Icon type="FontAwesome" name="minus" style={font15} />
+                            <Icon type="FontAwesome" name="bold" style={font15} /><Text>{' '}</Text>
+                            <Icon type="FontAwesome" name="minus" style={font12} />
                         </Button>}
                         {(this.state.selectedGroup !== 'B-') && <Button style={bgSoftRed} onPress={()=>{this.groupBy('B-')}}>
-                            <Icon type="FontAwesome" name="bold" style={font17} /><Text>{' '}</Text>
-                            <Icon type="FontAwesome" name="minus" style={font15}/>
+                            <Icon type="FontAwesome" name="bold" style={font15} /><Text>{' '}</Text>
+                            <Icon type="FontAwesome" name="minus" style={font12}/>
                         </Button>}
                         {(this.state.selectedGroup === 'A-') && <Button style={hRed} onPress={()=>{this.groupBy('A-')}}>
-                            <Icon type="FontAwesome" name="font" style={font17} />
-                            <Icon type="FontAwesome" name="minus" style={font15} />
+                            <Icon type="FontAwesome" name="font" style={font15} />
+                            <Icon type="FontAwesome" name="minus" style={font12} />
                         </Button>}
                         {(this.state.selectedGroup !== 'A-') && <Button style={bgSoftRed} onPress={()=>{this.groupBy('A-')}}>
-                            <Icon type="FontAwesome" name="font" style={font17} />
-                            <Icon type="FontAwesome" name="minus" style={font15}/>
+                            <Icon type="FontAwesome" name="font" style={font15} />
+                            <Icon type="FontAwesome" name="minus" style={font12}/>
                         </Button>}
                         {(this.state.selectedGroup === 'A+') && <Button style={hRed} onPress={()=>{this.groupBy('A+')}}>
-                            <Icon type="FontAwesome" name="font" style={font17} />
-                            <Icon type="FontAwesome" name="plus" style={font15} />
+                            <Icon type="FontAwesome" name="font" style={font15} />
+                            <Icon type="FontAwesome" name="plus" style={font12} />
                         </Button>}
                         {(this.state.selectedGroup !== 'A+') && <Button style={bgSoftRed} onPress={()=>{this.groupBy('A+')}}>
-                            <Icon type="FontAwesome" name="font" style={font17} />
-                            <Icon type="FontAwesome" name="plus" style={font15} />
+                            <Icon type="FontAwesome" name="font" style={font15} />
+                            <Icon type="FontAwesome" name="plus" style={font12} />
                         </Button>}
                     </Fab>
 			</Container>

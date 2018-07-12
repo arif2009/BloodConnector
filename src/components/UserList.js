@@ -202,7 +202,7 @@ class UserList extends Component {
                         style={bgSoftRed}
                         position="bottomRight"
                         onPress={() => this.setState({ active: !this.state.active })}>
-                        <Icon type="MaterialIcons" name="dialpad" />
+                        <Icon type="Entypo" name="water" />
                         
                         {(this.state.selectedGroup === 'O+') && <Button onPress={()=>{this.groupBy('O+')}} style={hRed}>
                             <Icon type="FontAwesome" name="circle-o" style={font15} /><Text>{' '}</Text>

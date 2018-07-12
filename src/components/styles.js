@@ -38,7 +38,10 @@ module.exports = StyleSheet.create({
     bgColor: {backgroundColor: '#ffcccc'},
     hRed:{backgroundColor: '#e60000'},
     bgSoftRed:{backgroundColor: '#DD5144'},
+    bgSoftBlue:{ backgroundColor: '#5067FF' },
     nabBg: {backgroundColor: '#ff0000'},
+    bgWhatsApp:{ backgroundColor: '#34A34F' },
+    bgFb:{ backgroundColor: '#3B5998' },
 
     borderBottom0:{borderBottomWidth:0},
 

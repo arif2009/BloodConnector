@@ -5,6 +5,7 @@ import { Container, Content, Fab, Icon, Spinner, H2, Button } from 'native-base'
 import { loadBloodGroups } from '../actions';
 import ListItem from './ListItem';
 import { CardSection } from './common';
+import { appLink } from '../utills/we';
 import { bgColor, bgFb, bgSoftRed, bgSoftBlue, bgWhatsApp, homeTitle } from './styles';
 
 class Home extends Component {
@@ -51,8 +52,7 @@ class Home extends Component {
 
 	shareToWhatsApp = () => {
 		this.setState({active: !this.state.active})
-		const text = 'https://play.google.com/store/apps/details?id=com.bloodconnector';
-		const url = `whatsapp://send?text=${text}`;
+		const url = `whatsapp://send?text=${appLink}`;
 		Linking.canOpenURL(url).then(supported => {
 			if (!supported) {
 			  alert('It seems WhatsApp is not installed.');

@@ -18,6 +18,7 @@
     "react-native-easy-grid": "^0.1.17",
     "react-native-modalbox": "^1.5.0",
     "react-native-router-flux": "^4.0.0-beta.27",
+    "react-native-share": "^1.0.27",
     "react-redux": "5.0.7",
     "redux": "4.0.0",
     "redux-form": "^7.3.0",

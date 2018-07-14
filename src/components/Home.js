@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Text, ListView, View, StatusBar, Linking } from 'react-native';
+import { ListView, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import { Container, Content, Fab, Icon, Spinner, H2, Button } from 'native-base';
-import Share, {ShareSheet} from 'react-native-share';
+import Share from 'react-native-share';
 import { loadBloodGroups } from '../actions';
 import ListItem from './ListItem';
 import { CardSection } from './common';
@@ -49,18 +49,6 @@ class Home extends Component {
 				<H2> NUMBER OF DONOR : { this.dataSource.totalNumberOfUser }</H2>
 			</CardSection>
 		);
-	}
-
-	shareToWhatsApp = () => {
-		this.setState({active: !this.state.active})
-		const url = `whatsapp://send?text=${appLink}`;
-		Linking.canOpenURL(url).then(supported => {
-			if (!supported) {
-			  alert('It seems WhatsApp is not installed.');
-			} else {
-			  return Linking.openURL(url);
-			}
-		  }).catch(err => alert('An error occurred', err));
 	}
 
 	render() {

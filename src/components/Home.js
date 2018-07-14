@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 import { Text, ListView, View, StatusBar, Linking } from 'react-native';
 import { connect } from 'react-redux';
-import { Container, Content, Footer, FooterTab, Spinner, H2 } from 'native-base';
+import { Container, Content, Fab, Icon, Spinner, H2, Button } from 'native-base';
+import Share, {ShareSheet} from 'react-native-share';
 import { loadBloodGroups } from '../actions';
 import ListItem from './ListItem';
 import { CardSection } from './common';
-import { twoLetterYear, version } from '../utills/we';
-import { bgColor, footerBg, selfAlignCenter, txtBlue, homeTitle } from './styles';
+import { appLink } from '../utills/we';
+import { bgColor, bgFb, bgSoftRed, bgTwitter, bgWhatsApp, homeTitle } from './styles';
 
 class Home extends Component {
 	constructor(props){
 		super(props);
 		this.props.loadBloodGroups();
+		
+		this.state = {active: false}
 	}
 
 	createDataSource(bloodGroups, totalUser) {
@@ -48,7 +51,26 @@ class Home extends Component {
 		);
 	}
 
+	shareToWhatsApp = () => {
+		this.setState({active: !this.state.active})
+		const url = `whatsapp://send?text=${appLink}`;
+		Linking.canOpenURL(url).then(supported => {
+			if (!supported) {
+			  alert('It seems WhatsApp is not installed.');
+			} else {
+			  return Linking.openURL(url);
+			}
+		  }).catch(err => alert('An error occurred', err));
+	}
+
 	render() {
+		let shareOptions = {
+			title: "Blood Connector",
+			message: "Its an awesome app for blood donor's and receiver's",
+			url: appLink,
+			subject: "Awesome app for blood donor's and receiver's" //  for email
+		  };
+		  
 		return (
 			<Container style={bgColor}>
 				<StatusBar backgroundColor="#324291" barStyle="light-content" />
@@ -56,14 +78,55 @@ class Home extends Component {
 					{this.renderGroups()}
 				</Content>
 
-				<Footer>
-					<FooterTab style={footerBg}>
-					<View style={{justifyContent:'center'}}>
-						<Text style={selfAlignCenter}>© 2017-{twoLetterYear} - BloodConnector {version}</Text>
-						<Text>Website <Text style={txtBlue} onPress={() => Linking.openURL('http://www.bloodconnector.org')}>www.bloodconnector.org</Text></Text>
-					</View>
-					</FooterTab>
-				</Footer>
+				<Fab
+					active={this.state.active}
+					direction="right"
+					containerStyle={{ }}
+					style={bgSoftRed}
+					position="bottomLeft"
+					onPress={() => this.setState({ active: !this.state.active })}>
+					<Icon name="share" />
+
+					<Button style={bgWhatsApp} onPress={()=>{
+						this.setState({active: !this.state.active});
+						setTimeout(() => {
+							Share.shareSingle(Object.assign(shareOptions, {
+							"social": "whatsapp"
+							}));
+						},300);
+						}}>
+						<Icon name="logo-whatsapp" />
+					</Button>
+					<Button style={bgFb} onPress={()=>{
+						this.setState({active: !this.state.active});
+						setTimeout(() => {
+							Share.shareSingle(Object.assign(shareOptions, {
+							"social": "facebook"
+							}));
+						},300);}}>
+						<Icon name="logo-facebook" />
+					</Button>
+					<Button style={bgSoftRed} onPress={()=>{
+						this.setState({active: !this.state.active});
+						setTimeout(() => {
+							Share.shareSingle(Object.assign(shareOptions, {
+							"social": "email"
+							}));
+						},300);
+						}}>
+						<Icon name="mail" />
+					</Button>
+					<Button style={bgTwitter} onPress={()=>{
+						this.setState({active: !this.state.active});
+						setTimeout(() => {
+							Share.shareSingle(Object.assign(shareOptions, {
+								"social": "twitter"
+							}));
+						},300);
+						}}>
+						<Icon type="FontAwesome" name="twitter" />
+					</Button>
+				</Fab>
 			</Container>
 		);
 	}

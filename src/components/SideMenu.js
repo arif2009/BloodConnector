@@ -4,7 +4,6 @@ import { Text, View, ViewPropTypes, AsyncStorage } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Button from 'react-native-button';
 import { H1, H2, Icon } from 'native-base';
-import FontAwesome, { Icons } from 'react-native-fontawesome';
 import axios from 'axios';
 import { apiOrigin } from '../utills/we';
 import { CardSection } from './common';
@@ -60,7 +59,7 @@ class SideMenu extends Component {
         bloodGroup: "",
         similarBlood: 0
       });
-      Actions.home({rightTitle: <Icon style={txtColor} type="FontAwesome" name="user-plus" />});
+      Actions.home({rightTitle: <Icon style={txtColor} type="Entypo" name="add-user" />});
 
       const url = `${apiOrigin}api/Account/Logout`;
       axios.post(url);
@@ -84,38 +83,38 @@ class SideMenu extends Component {
         </View>}
         
         <CardSection style={drawerBtnContainer}>
-          <Button style={drawerBtnTxt} onPress={() => { Actions.home({ rightTitle: this.state.isLogedIn ? '': <Icon style={txtColor} type="FontAwesome" name="user-plus" /> }); }}>
-            <FontAwesome style={drawerIcon}>{Icons.home}</FontAwesome> Home Page
+          <Button style={drawerBtnTxt} onPress={() => { Actions.home({ rightTitle: this.state.isLogedIn ? '': <Icon style={txtColor} type="Entypo" name="add-user" /> }); }}>
+            <Icon style={drawerIcon} type="FontAwesome" name="home" /> Home Page
           </Button>
         </CardSection>
 
         {!this.state.isLogedIn && <CardSection style={drawerBtnContainer}>
           <Button style={drawerBtnTxt} onPress={() => { Actions.userCreate(); }}>
-            <FontAwesome style={drawerIcon}>{Icons.userPlus}</FontAwesome> Sign Up
+            <Icon style={drawerIcon} type="Entypo" name="add-user" /> Sign Up
           </Button>
         </CardSection>}
 
         {this.state.isLogedIn && <CardSection style={drawerBtnContainer}>
           <Button style={drawerBtnTxt} onPress={() => { Actions.userList({token: this.state.accessTolen}); }}>
-            <FontAwesome style={drawerIcon}>{Icons.odnoklassniki}</FontAwesome> Our Donors
+            <Icon style={drawerIcon} type="FontAwesome" name="odnoklassniki" /> Our Donors
           </Button>
         </CardSection>}
         
         {!this.state.isLogedIn && <CardSection style={drawerBtnContainer}>
           <Button style={drawerBtnTxt} onPress={() => { Actions.login(); }}>
-            <FontAwesome style={drawerIcon}>{Icons.signIn}</FontAwesome> Log In
+            <Icon style={drawerIcon} type="FontAwesome" name="sign-in" /> Log In
           </Button>
         </CardSection>}
 
         {this.state.isLogedIn && <CardSection style={drawerBtnContainer}>
           <Button style={drawerBtnTxt} onPress={() => { this.logout(); }}>
-            <FontAwesome style={drawerIcon}>{Icons.signOut}</FontAwesome> Log Out
+            <Icon style={drawerIcon} type="FontAwesome" name="sign-out" /> Log Out
           </Button>
         </CardSection>}
 
         <CardSection style={[drawerBtnContainer, {borderBottomWidth: 0}]}>
           <Button style={drawerBtnTxt} onPress={() => { Actions.help(); }}>
-            <FontAwesome style={drawerIcon}>{Icons.question}</FontAwesome> Help
+          <Icon style={drawerIcon} type="FontAwesome" name="question" /> Help
           </Button>
         </CardSection>
       </View>

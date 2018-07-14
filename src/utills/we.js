@@ -2,6 +2,7 @@ module.exports = {
     version: '2.5.1',
     twoLetterYear: new Date().getFullYear().toString().substr(-2),
     apiOrigin: 'http://www.bloodconnector.org/', //'http://10.0.2.2/'
+    appLink: 'https://play.google.com/store/apps/details?id=com.bloodconnector',
     makeFirstCharecterLower: string => string.charAt(0).toLowerCase() + string.slice(1),
     processModelstateError: function(modelErr){
 

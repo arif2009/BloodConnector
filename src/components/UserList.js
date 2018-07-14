@@ -1,16 +1,15 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { Text, View, ListView } from 'react-native';
-import { Container, Content, Footer, FooterTab, Spinner, Header, Item, Input, Icon, H1 } from 'native-base';
+import { Container, Content, Spinner, Header, Item, Input, Icon, H1, Button, Fab } from 'native-base';
 import Communications from 'react-native-communications';
 import { Col, Row, Grid } from "react-native-easy-grid";
-import Button from 'react-native-button';
 import Modal from 'react-native-modalbox';
 import { userFetch } from '../actions'
-import { twoLetterYear, version} from '../utills/we';
 import { 
-    hRed, txtColor, errorTextStyle, modal, detailsmodal, txtRed, txtBold, txtBlue, txtMedium, borderLeft,
-    borderRight, bloodStyle, bgColor, footerBg, selfAlignCenter, mbSm, p, mt, ml5, mr5, mb5
+    hRed, txtColor, errorTextStyle, modal, detailsmodal, txtRed, txtBold, txtBlue, 
+    txtSuccess, txtMedium, borderLeft, txtDanger, borderRight, bloodStyle, bgColor, bgSoftRed, 
+    txtBolder, selfAlignCenter, font12, font15, font17, mbSm, p, mt, ml5, mr5, mb5,
 } from './styles';
 
 class UserList extends Component {
@@ -23,6 +22,8 @@ class UserList extends Component {
             waiting: true,
             userList: [],
             showModal: false,
+            selectedGroup: '',
+            active: false,
             userListDs: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}).cloneWithRows([])
         };
     }
@@ -55,11 +56,25 @@ class UserList extends Component {
         const newData = this.state.userList.filter(function(item){
             const itemData = (item.bloodGroup + ' ' + item.bloodGroupName + ' ' + item.addressM).toLowerCase();
             const searchText = text.toLowerCase();
-            //console.log(itemData);
+            //console.log(item.bloodGroup);
             return itemData.indexOf(searchText) > -1;
         });
         this.createDataSource(newData);
         this.text = text;
+    }
+
+    groupBy(groupName){
+        const newData = this.state.userList.filter(function(item){
+            return item.bloodGroup === groupName;
+        });
+        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+
+        this.setState({
+           userListDs: ds.cloneWithRows(newData),
+           noGroupData: newData.length == 0,
+           active: !this.state.active,
+           selectedGroup: groupName
+        });
     }
 
     createDataSource(userList) {
@@ -103,7 +118,7 @@ class UserList extends Component {
     }
 
     renderList() {
-        //console.log("!!this.state.error", !!this.state.error)
+        //console.log(this.state.userList)
 		if(this.state.loading){
 			  return <Spinner color='blue' />
         }
@@ -113,6 +128,11 @@ class UserList extends Component {
                     {this.state.error}
                 </Text>
             );
+        }
+        else if(this.state.noGroupData){
+            return (
+               <Text style={[selfAlignCenter, txtBolder, txtDanger, mt]}>No donor found</Text>
+           );
         }
         else if(!!this.state.userList){
             return(
@@ -144,7 +164,9 @@ class UserList extends Component {
                         <Text style={[txtBlue, mbSm]} onPress={() => Communications.email([this.state.email],null,null,`Need ${this.state.bloodGroup} blood`,null)}>
                             {this.state.email}
                         </Text>
-                        <Button style={mt} onPress={() =>{this.refs.detailsModal.close()}}>Ok</Button>
+                        <Button style={selfAlignCenter} transparent onPress={() =>{this.refs.detailsModal.close()}}>
+                            <Text style={[txtBolder, txtSuccess]}>Ok</Text>
+                        </Button>
                     </Modal>
                 </View>
             );
@@ -173,14 +195,88 @@ class UserList extends Component {
 					{this.renderList()}
 				</Content>
 
-				<Footer>
-					<FooterTab style={footerBg}>
-                        <View style={{justifyContent:'center'}}>
-                            <Text style={selfAlignCenter}>© 2017-{twoLetterYear} - BloodConnector {version}</Text>
-                            <Text>Website <Text style={txtBlue} onPress={() => Linking.openURL('http://www.bloodconnector.org')}>www.bloodconnector.org</Text></Text>
-                        </View>
-					</FooterTab>
-				</Footer>
+                    <Fab
+                        active={this.state.active}
+                        direction="up"
+                        containerStyle={{ }}
+                        style={bgSoftRed}
+                        position="bottomRight"
+                        onPress={() => this.setState({ active: !this.state.active })}>
+                        <Icon type="Entypo" name="water" />
+                        
+                        {(this.state.selectedGroup === 'O+') && <Button onPress={()=>{this.groupBy('O+')}} style={hRed}>
+                            <Icon type="FontAwesome" name="circle-o" style={font15} /><Text>{' '}</Text>
+                            <Icon type="FontAwesome" name="plus" style={font12} />
+                        </Button>}
+                        {(this.state.selectedGroup !== 'O+') && <Button style={bgSoftRed} onPress={()=>{this.groupBy('O+')}}>
+                            <Icon type="FontAwesome" name="circle-o" style={font15} /><Text>{' '}</Text>
+                            <Icon type="FontAwesome" name="plus" style={font12} />
+                        </Button>}
+
+                        {(this.state.selectedGroup === 'O-') && <Button style={hRed} onPress={()=>{this.groupBy('O-')}}>
+                            <Icon type="FontAwesome" name="circle-o" style={font15} /><Text>{' '}</Text>
+                            <Icon type="FontAwesome" name="minus" style={font12} />
+                        </Button>}
+                        {(this.state.selectedGroup !== 'O-') && <Button style={bgSoftRed} onPress={()=>{this.groupBy('O-')}}>
+                            <Icon type="FontAwesome" name="circle-o" style={font15} /><Text>{' '}</Text>
+                            <Icon type="FontAwesome" name="minus" style={font12} />
+                        </Button>}
+
+                        {(this.state.selectedGroup === 'AB+') && <Button style={hRed} onPress={()=>{this.groupBy('AB+')}}>
+                            <Icon type="FontAwesome" name="font" style={font12} />
+                            <Icon type="FontAwesome" name="bold" style={font12} /><Text>{' '}</Text>
+                            <Icon type="FontAwesome" name="plus" style={font12} />
+                        </Button>}
+                        {(this.state.selectedGroup !== 'AB+') && <Button style={bgSoftRed} onPress={()=>{this.groupBy('AB+')}}>
+                            <Icon type="FontAwesome" name="font" style={font12} />
+                            <Icon type="FontAwesome" name="bold" style={font12} /><Text>{' '}</Text>
+                            <Icon type="FontAwesome" name="plus" style={font12} />
+                        </Button>}
+
+                        {(this.state.selectedGroup === 'AB-') && <Button style={hRed} onPress={()=>{this.groupBy('AB-')}}>
+                            <Icon type="FontAwesome" name="font" style={font12} />
+                            <Icon type="FontAwesome" name="bold" style={font12} /><Text>{' '}</Text>
+                            <Icon type="FontAwesome" name="minus" style={font12} />
+                        </Button>}
+                        {(this.state.selectedGroup !== 'AB-') && <Button style={bgSoftRed} onPress={()=>{this.groupBy('AB-')}}>
+                            <Icon type="FontAwesome" name="font" style={font12} />
+                            <Icon type="FontAwesome" name="bold" style={font12} /><Text>{' '}</Text>
+                            <Icon type="FontAwesome" name="minus" style={font12} />
+                        </Button>}
+                        {(this.state.selectedGroup === 'B+') && <Button style={hRed} onPress={()=>{this.groupBy('B+')}}>
+                            <Icon type="FontAwesome" name="bold" style={font15} /><Text>{' '}</Text>
+                            <Icon type="FontAwesome" name="plus" style={font12} />
+                        </Button>}
+                        {(this.state.selectedGroup !== 'B+') && <Button style={bgSoftRed} onPress={()=>{this.groupBy('B+')}}>
+                            <Icon type="FontAwesome" name="bold" style={font15} /><Text>{' '}</Text>
+                            <Icon type="FontAwesome" name="plus" style={font12} />
+                        </Button>}
+
+                        {(this.state.selectedGroup === 'B-') && <Button style={hRed} onPress={()=>{this.groupBy('B-')}}>
+                            <Icon type="FontAwesome" name="bold" style={font15} /><Text>{' '}</Text>
+                            <Icon type="FontAwesome" name="minus" style={font12} />
+                        </Button>}
+                        {(this.state.selectedGroup !== 'B-') && <Button style={bgSoftRed} onPress={()=>{this.groupBy('B-')}}>
+                            <Icon type="FontAwesome" name="bold" style={font15} /><Text>{' '}</Text>
+                            <Icon type="FontAwesome" name="minus" style={font12}/>
+                        </Button>}
+                        {(this.state.selectedGroup === 'A-') && <Button style={hRed} onPress={()=>{this.groupBy('A-')}}>
+                            <Icon type="FontAwesome" name="font" style={font15} />
+                            <Icon type="FontAwesome" name="minus" style={font12} />
+                        </Button>}
+                        {(this.state.selectedGroup !== 'A-') && <Button style={bgSoftRed} onPress={()=>{this.groupBy('A-')}}>
+                            <Icon type="FontAwesome" name="font" style={font15} />
+                            <Icon type="FontAwesome" name="minus" style={font12}/>
+                        </Button>}
+                        {(this.state.selectedGroup === 'A+') && <Button style={hRed} onPress={()=>{this.groupBy('A+')}}>
+                            <Icon type="FontAwesome" name="font" style={font15} />
+                            <Icon type="FontAwesome" name="plus" style={font12} />
+                        </Button>}
+                        {(this.state.selectedGroup !== 'A+') && <Button style={bgSoftRed} onPress={()=>{this.groupBy('A+')}}>
+                            <Icon type="FontAwesome" name="font" style={font15} />
+                            <Icon type="FontAwesome" name="plus" style={font12} />
+                        </Button>}
+                    </Fab>
 			</Container>
 		);
     }

@@ -7,9 +7,14 @@ module.exports = StyleSheet.create({
     txtRed:{color: '#ff0000'},
     txtWarning:{color: '#ffc107'},
     txtDanger:{color: '#dc3545'},
+    txtSuccess:{color: '#28a745'},
     txtMedium: {fontSize: 16,fontWeight: '600'},
     txtBold: {fontWeight: 'bold'},
     txtBolder: {fontSize: 18,fontWeight: 'bold'},
+
+    font12:{fontSize: 12},
+    font15:{fontSize:15},
+    font17:{fontSize:17},
 
     p:{padding:10},
     pL:{ paddingLeft:10},
@@ -31,14 +36,19 @@ module.exports = StyleSheet.create({
     mtLg:{marginTop: 15},
 
     bgColor: {backgroundColor: '#ffcccc'},
-
     hRed:{backgroundColor: '#e60000'},
-
+    bgSoftRed:{backgroundColor: '#DD5144'},
+    bgSoftBlue:{ backgroundColor: '#5067FF' },
     nabBg: {backgroundColor: '#ff0000'},
+    bgWhatsApp:{ backgroundColor: '#34A34F' },
+    bgTwitter:{backgroundColor: '#1DA1F2'},
+    bgFb:{ backgroundColor: '#3B5998' },
 
     borderBottom0:{borderBottomWidth:0},
 
     selfAlignCenter:{alignSelf: 'center'},
+
+    row:{flexDirection: 'row'},
 
     footerBg: {backgroundColor: '#ff8080',justifyContent:'center'},
 

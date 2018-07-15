@@ -7,7 +7,7 @@ Blood Connector is a real-time online database of blood donors. Anyone can find 
 
 #### Development Tools & Technology
 ---
-* [React 16.3.2](https://reactjs.org/)
+* [React 16.4.1](https://reactjs.org/)
 * [React Native 0.55](https://facebook.github.io/react-native/)
 * ["axios 0.18.0" For promise based HTTP client](https://github.com/axios/axios)
 * ["lodash 4.17.5" For JavaScript utility](https://lodash.com/)
@@ -22,6 +22,7 @@ Blood Connector is a real-time online database of blood donors. Anyone can find 
 * ["react-native-fontawesome 5.7.0" For Icons](https://github.com/entria/react-native-fontawesome.git)
 * ["react-native-modalbox 1.5.0" For modal](https://github.com/maxs15/react-native-modalbox.git)
 * ["react-native-button 2.3.0" For button](https://github.com/ide/react-native-button.git)
+* ["react-native-share 1.0.27" For social share](https://github.com/react-native-community/react-native-share.git)
 
 #### Installation
 ---

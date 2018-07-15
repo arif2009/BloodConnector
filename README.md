@@ -50,27 +50,33 @@ $ npm i --do-not-make-me-cry
 ---
 *Home page:*
 
-![alt text](https://github.com/arif2009/BloodConnector/blob/master/screenshots/1_home.png "Home Page")
+![alt text](https://i.imgur.com/kbb6hci.png "Home Page")
 
-*Registration page:*
+![alt text](https://i.imgur.com/b52SOmS.png "Home Page")
 
-![alt text](https://github.com/arif2009/BloodConnector/blob/master/screenshots/2_register.png "Registration page")
+*Login page:*
 
-*After registration success:*
-
-![alt text](https://github.com/arif2009/BloodConnector/blob/master/screenshots/3_success_reg.png "Registration success")
-
-*Search page:* This page will show after login.
-
-![alt text](https://github.com/arif2009/BloodConnector/blob/master/screenshots/4_search.png "Search")
-
-*User details popup:* This popup will show when press on a user row. From this popup you can call directly by pressing on user contact number and send email by pressing on user email.
-
-![alt text](https://github.com/arif2009/BloodConnector/blob/master/screenshots/5_details.png "Details popup")
+![alt text](https://i.imgur.com/rEFTrGV.png "Login Page")
 
 *App sidebar view:*
 
-![alt text](https://github.com/arif2009/BloodConnector/blob/master/screenshots/6_sidebar.png "Details popup")
+![alt text](https://i.imgur.com/LFjCbpf.png "Details popup")
+
+*Registration page:*
+
+![alt text](https://i.imgur.com/qA8WYy0.png "Registration page")
+
+*After registration success:*
+
+![alt text](https://i.imgur.com/AIKDixT.png "Registration success")
+
+*Search page:* This page will show after login.
+
+![alt text](https://i.imgur.com/gp3NKEC.png "Search")
+
+*User details popup:* This popup will show when press on a user row. From this popup you can call directly by pressing on user contact number and send email by pressing on user email.
+
+![alt text](https://i.imgur.com/0ch1Ifk.png "Details popup")
 
 #### Author
 Arifur Rahman ( arif.rahman2009@gmail.com )

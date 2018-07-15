@@ -1,5 +1,5 @@
 module.exports = {
-    version: '2.5.1',
+    version: '3.0',
     twoLetterYear: new Date().getFullYear().toString().substr(-2),
     apiOrigin: 'http://www.bloodconnector.org/', //'http://10.0.2.2/'
     appLink: 'https://play.google.com/store/apps/details?id=com.bloodconnector',

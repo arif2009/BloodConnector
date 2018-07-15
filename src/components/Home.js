@@ -14,7 +14,7 @@ class Home extends Component {
 		super(props);
 		this.props.loadBloodGroups();
 		
-		this.state = {active: false}
+		this.state = {activeShare: false}
 	}
 
 	createDataSource(bloodGroups, totalUser) {
@@ -67,16 +67,16 @@ class Home extends Component {
 				</Content>
 
 				<Fab
-					active={this.state.active}
+					active={this.state.activeShare}
 					direction="right"
 					containerStyle={{ }}
 					style={bgSoftRed}
 					position="bottomLeft"
-					onPress={() => this.setState({ active: !this.state.active })}>
+					onPress={() => this.setState({ activeShare: !this.state.activeShare })}>
 					<Icon name="share" />
 
 					<Button style={bgWhatsApp} onPress={()=>{
-						this.setState({active: !this.state.active});
+						this.setState({activeShare: !this.state.activeShare});
 						setTimeout(() => {
 							Share.shareSingle(Object.assign(shareOptions, {
 							"social": "whatsapp"
@@ -86,7 +86,7 @@ class Home extends Component {
 						<Icon name="logo-whatsapp" />
 					</Button>
 					<Button style={bgFb} onPress={()=>{
-						this.setState({active: !this.state.active});
+						this.setState({activeShare: !this.state.activeShare});
 						setTimeout(() => {
 							Share.shareSingle(Object.assign(shareOptions, {
 							"social": "facebook"
@@ -95,7 +95,7 @@ class Home extends Component {
 						<Icon name="logo-facebook" />
 					</Button>
 					<Button style={bgSoftRed} onPress={()=>{
-						this.setState({active: !this.state.active});
+						this.setState({activeShare: !this.state.activeShare});
 						setTimeout(() => {
 							Share.shareSingle(Object.assign(shareOptions, {
 							"social": "email"
@@ -105,7 +105,7 @@ class Home extends Component {
 						<Icon name="mail" />
 					</Button>
 					<Button style={bgTwitter} onPress={()=>{
-						this.setState({active: !this.state.active});
+						this.setState({activeShare: !this.state.activeShare});
 						setTimeout(() => {
 							Share.shareSingle(Object.assign(shareOptions, {
 								"social": "twitter"

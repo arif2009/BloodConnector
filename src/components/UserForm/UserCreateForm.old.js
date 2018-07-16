@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import Button from 'react-native-button';
-import { Picker, Item, Input, CheckBox, ListItem, Spinner, Icon } from 'native-base';
+import { Picker, Item, Input, CheckBox, ListItem, Spinner } from 'native-base';
 import Modal from 'react-native-modalbox';
 import _ from 'lodash';
 import { USER_CREATE_FORM } from '../../actions/types';
 import submit from './submit';
 import { 
     txtMedium, txtDanger, txtWarning, button, txtColor, modal, tAndCmodal, txtBlue, txtBold, 
-    itemStyles, borderLeft, borderRight, mb, mlLg, p, mt, mbSm
+    mb, mlLg, p, mt 
 } from '../../components/styles';
 
 //Validation
@@ -40,24 +40,31 @@ const over70YearsOld = value =>
 const isYahooMail = value =>
     value && /.+@yahoo\.com/.test(value) ? 'Really? You still use yahoo mail ?' : undefined;
 
-const renderField = ({ secureTextEntry, iconName, label, requiredMarker, keyboardType, placeholder, meta: { touched, error, warning }, input: { onChange, ...restInput } }) => {
+const renderField = ({ secureTextEntry, label, requiredMarker, keyboardType, placeholder, meta: { touched, error, warning }, input: { onChange, ...restInput } }) => {
     return (
-        <View style={mbSm}>
-            <Item success rounded>
-                <Icon name={iconName} />
-                <Input secureTextEntry={JSON.parse(secureTextEntry)} keyboardType={keyboardType}
-                    onChangeText={onChange} {...restInput} placeholder={placeholder} autoCapitalize='none'>
-                </Input>
-                </Item>
-                {touched && ((error && error!=reqMsg && <Text style={txtDanger}>{error}</Text>) ||
-                    (warning && <Text style={txtWarning}>{warning}</Text>))}
+        <View>
+            <Text style={txtMedium}>
+                {label}
+                <Text style={txtDanger}>{requiredMarker}</Text>
+                {touched && (error && error==reqMsg && <Text style={txtDanger}>{error}</Text>)}
+            </Text>
+            <TextInput secureTextEntry={JSON.parse(secureTextEntry)} style={{ padding: 5 }} keyboardType={keyboardType}
+                onChangeText={onChange} {...restInput} placeholder={placeholder} autoCapitalize='none'>
+            </TextInput>
+            {touched && ((error && error!=reqMsg && <Text style={txtDanger}>{error}</Text>) ||
+                (warning && <Text style={txtWarning}>{warning}</Text>))}
         </View>
     );
 };
 
 const renderPicker = ({ label, requiredMarker, meta: { touched, error, warning }, input: { onChange, value, ...inputProps }, children, ...pickerProps }) => {
     return (
-        <View style={[itemStyles, mbSm]}>
+        <View>
+            <Text style={txtMedium}>
+                {label}
+                <Text style={txtDanger}>{requiredMarker}</Text>
+                {touched && (error && <Text style={txtDanger}>{error}</Text>)}
+            </Text>
             <Picker selectedValue={value} onValueChange={value => requestAnimationFrame(() => { onChange(value); })} {...inputProps} {...pickerProps} >
                 {children}
             </Picker>
@@ -80,7 +87,7 @@ class UserComponent extends Component {
         return (
             <View style={{ flex: 1, flexDirection: 'column', padding: 20, justifyContent: 'flex-start', }}>
 
-                <Field name="Name" iconName="home" secureTextEntry="false" keyboardType="default" label="Name: " requiredMarker="*" placeholder="FirstName LastName NikeName" component={renderField}
+                <Field name="Name" secureTextEntry="false" keyboardType="default" label="Name: " requiredMarker="*" placeholder="FirstName LastName NikeName" component={renderField}
                     validate={[required, maxLength40]}
                 />
                 <Field name="BloodGiven" secureTextEntry="false" keyboardType="numeric" label="Number of times given blood: " placeholder="E.g. 5" component={renderField}

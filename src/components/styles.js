@@ -73,6 +73,7 @@ module.exports = StyleSheet.create({
     detailsmodal: { top:150, width: 300 },
 
     itemStyle: {borderBottomWidth: 1,borderColor: '#fff'},
+    itemStyles: {borderBottomWidth: 1,borderColor: '#00ff00'},
 
     bgContainer: { flex:1, width: null, height: null },
 

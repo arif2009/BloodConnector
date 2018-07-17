@@ -40,15 +40,15 @@ const over70YearsOld = value =>
 const isYahooMail = value =>
     value && /.+@yahoo\.com/.test(value) ? 'Really? You still use yahoo mail ?' : undefined;
 
-const renderField = ({ secureTextEntry, iconName, label, requiredMarker, keyboardType, placeholder, meta: { touched, error, warning }, input: { onChange, ...restInput } }) => {
+const renderField = ({ secureTextEntry, iconType, iconName, label, requiredMarker, keyboardType, placeholder, meta: { touched, error, warning }, input: { onChange, ...restInput } }) => {
     return (
         <View style={mbSm}>
             <Item rounded>
-                <Icon name={iconName} />
+                <Icon type={iconType} name={iconName} />
                 <Input secureTpickerStyleextEntry={JSON.parse(secureTextEntry)} keyboardType={keyboardType}
                     onChangeText={onChange} {...restInput} placeholder={placeholder} autoCapitalize='none'>
                 </Input>
-                </Item>
+            </Item>
                 {touched && ((error && error!=reqMsg && <Text style={txtDanger}>{error}</Text>) ||
                     (warning && <Text style={txtWarning}>{warning}</Text>))}
         </View>
@@ -58,9 +58,12 @@ const renderField = ({ secureTextEntry, iconName, label, requiredMarker, keyboar
 const renderPicker = ({ label, requiredMarker, meta: { touched, error, warning }, input: { onChange, value, ...inputProps }, children, ...pickerProps }) => {
     return (
         <View style={[pickerStyle, mbSm]}>
+        <View>
+        <Icon name="home" />
             <Picker selectedValue={value} onValueChange={value => requestAnimationFrame(() => { onChange(value); })} {...inputProps} {...pickerProps} >
                 {children}
             </Picker>
+            </View>
         </View>
     );
 };
@@ -80,17 +83,17 @@ class UserComponent extends Component {
         return (
             <View style={{ flex: 1, flexDirection: 'column', padding: 20, justifyContent: 'flex-start', }}>
 
-                <Field name="Name" iconName="home" secureTextEntry="false" keyboardType="default" label="Name: " requiredMarker="*" placeholder="FirstName LastName NikeName" component={renderField}
+                <Field name="Name" iconType="SimpleLineIcons" iconName="user" secureTextEntry="false" keyboardType="default" label="Name: " requiredMarker="*" placeholder="FirstName LastName NikeName" component={renderField}
                     validate={[required, maxLength40]}
                 />
-                <Field name="BloodGiven" secureTextEntry="false" keyboardType="numeric" label="Number of times given blood: " placeholder="E.g. 5" component={renderField}
+                <Field name="BloodGiven" iconType="FontAwesome" iconName="eyedropper" secureTextEntry="false" keyboardType="numeric" label="Number of times given blood: " placeholder="Number of times given blood" component={renderField}
                     validate={[number]}
                 />
-                <Field name="Email" secureTextEntry="false" keyboardType="email-address" label="Email: " requiredMarker="*" placeholder="Enter email" component={renderField}
+                <Field name="Email" iconType="FontAwesome" iconName="envelope-o" secureTextEntry="false" keyboardType="email-address" label="Email: " requiredMarker="*" placeholder="Your email" component={renderField}
                     validate={[required, isValidEmail]}
                     warn={isYahooMail}
                 />
-                <Field name="PhoneNumber" secureTextEntry="false" keyboardType="phone-pad" label="Contact Number: " requiredMarker="*" placeholder="E.g. +8801721654450" component={renderField}
+                <Field name="PhoneNumber" iconType="SimpleLineIcons" iconName="phone" secureTextEntry="false" keyboardType="phone-pad" label="Contact Number: " requiredMarker="*" placeholder="Your contact number" component={renderField}
                     validate={[required]}
                 />
                 <Field name="BloodGroupId" mode="dropdown" label="Blood Group: " requiredMarker="*" component={renderPicker}

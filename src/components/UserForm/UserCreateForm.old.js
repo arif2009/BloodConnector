@@ -90,7 +90,7 @@ class UserComponent extends Component {
                 <Field name="Name" secureTextEntry="false" keyboardType="default" label="Name: " requiredMarker="*" placeholder="FirstName LastName NikeName" component={renderField}
                     validate={[required, maxLength40]}
                 />
-                <Field name="BloodGiven" secureTextEntry="false" keyboardType="numeric" label="Number of times given blood: " placeholder="E.g. 5" component={renderField}
+                <Field name="BloodGiven" secureTextEntry="false" keyboardType="numeric" label="Number of times given blood: " placeholder="Number of times given blood" component={renderField}
                     validate={[number]}
                 />
                 <Field name="Email" secureTextEntry="false" keyboardType="email-address" label="Email: " requiredMarker="*" placeholder="Enter email" component={renderField}

@@ -74,11 +74,6 @@ module.exports = StyleSheet.create({
     detailsmodal: { top:150, width: 300 },
 
     itemStyle: {borderBottomWidth: 1,borderColor: '#fff'},
-    pickerStyle: {
-        borderRadius: 25,
-        borderWidth: 1,
-        borderColor: '#d6d7da',
-    },
 
     bgContainer: { flex:1, width: null, height: null },
 
@@ -128,5 +123,10 @@ module.exports = StyleSheet.create({
         paddingBottom: 10, 
         backgroundColor:'#fff', 
         borderColor: '#ffcccc'
+    },
+    pickerStyle: {
+        borderRadius: 25,
+        borderWidth: 1,
+        borderColor: '#d6d7da',
     }
 });

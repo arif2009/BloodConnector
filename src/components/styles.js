@@ -36,6 +36,7 @@ module.exports = StyleSheet.create({
     mtLg:{marginTop: 15},
 
     bgColor: {backgroundColor: '#ffcccc'},
+    bgWhite:{backgroundColor:'#fff'},
     hRed:{backgroundColor: '#e60000'},
     bgSoftRed:{backgroundColor: '#DD5144'},
     bgSoftBlue:{ backgroundColor: '#5067FF' },
@@ -73,7 +74,11 @@ module.exports = StyleSheet.create({
     detailsmodal: { top:150, width: 300 },
 
     itemStyle: {borderBottomWidth: 1,borderColor: '#fff'},
-    itemStyles: {borderBottomWidth: 1,borderColor: '#00ff00'},
+    pickerStyle: {
+        borderRadius: 25,
+        borderWidth: 1,
+        borderColor: '#d6d7da',
+    },
 
     bgContainer: { flex:1, width: null, height: null },
 

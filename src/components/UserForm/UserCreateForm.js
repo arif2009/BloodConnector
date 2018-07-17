@@ -9,7 +9,7 @@ import { USER_CREATE_FORM } from '../../actions/types';
 import submit from './submit';
 import { 
     txtMedium, txtDanger, txtWarning, button, txtColor, modal, tAndCmodal, txtBlue, txtBold, 
-    itemStyles, borderLeft, borderRight, mb, mlLg, p, mt, mbSm
+    pickerStyle, borderLeft, borderRight, mb, mlLg, p, mt, mbSm
 } from '../../components/styles';
 
 //Validation
@@ -43,9 +43,9 @@ const isYahooMail = value =>
 const renderField = ({ secureTextEntry, iconName, label, requiredMarker, keyboardType, placeholder, meta: { touched, error, warning }, input: { onChange, ...restInput } }) => {
     return (
         <View style={mbSm}>
-            <Item success rounded>
+            <Item rounded>
                 <Icon name={iconName} />
-                <Input secureTextEntry={JSON.parse(secureTextEntry)} keyboardType={keyboardType}
+                <Input secureTpickerStyleextEntry={JSON.parse(secureTextEntry)} keyboardType={keyboardType}
                     onChangeText={onChange} {...restInput} placeholder={placeholder} autoCapitalize='none'>
                 </Input>
                 </Item>
@@ -57,7 +57,7 @@ const renderField = ({ secureTextEntry, iconName, label, requiredMarker, keyboar
 
 const renderPicker = ({ label, requiredMarker, meta: { touched, error, warning }, input: { onChange, value, ...inputProps }, children, ...pickerProps }) => {
     return (
-        <View style={[itemStyles, mbSm]}>
+        <View style={[pickerStyle, mbSm]}>
             <Picker selectedValue={value} onValueChange={value => requestAnimationFrame(() => { onChange(value); })} {...inputProps} {...pickerProps} >
                 {children}
             </Picker>

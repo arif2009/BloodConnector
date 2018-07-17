@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { View, Text, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import Button from 'react-native-button';
 import { Picker, Item, Input, CheckBox, ListItem, Spinner, Icon } from 'native-base';
 import Modal from 'react-native-modalbox';
+import { Col, Grid } from "react-native-easy-grid";
 import _ from 'lodash';
 import { USER_CREATE_FORM } from '../../actions/types';
 import submit from './submit';
 import { 
     txtMedium, txtDanger, txtWarning, button, txtColor, modal, tAndCmodal, txtBlue, txtBold, 
-    pickerStyle, borderLeft, borderRight, mb, mlLg, p, mt, mbSm
+    pickerStyle, mb, mlLg, p, mt, mbSm
 } from '../../components/styles';
 
 //Validation
@@ -55,15 +56,19 @@ const renderField = ({ secureTextEntry, iconType, iconName, label, requiredMarke
     );
 };
 
-const renderPicker = ({ label, requiredMarker, meta: { touched, error, warning }, input: { onChange, value, ...inputProps }, children, ...pickerProps }) => {
+const renderPicker = ({ iconType, iconName, label, requiredMarker, meta: { touched, error, warning }, input: { onChange, value, ...inputProps }, children, ...pickerProps }) => {
     return (
         <View style={[pickerStyle, mbSm]}>
-        <View>
-        <Icon name="home" />
-            <Picker selectedValue={value} onValueChange={value => requestAnimationFrame(() => { onChange(value); })} {...inputProps} {...pickerProps} >
-                {children}
-            </Picker>
-            </View>
+            <Grid>
+                <Col size={15} style={{justifyContent: 'center', alignItems: 'center'}}>
+                    <Icon type={iconType} name={iconName} />
+                </Col>
+                <Col size={85}>
+                    <Picker selectedValue={value} onValueChange={value => requestAnimationFrame(() => { onChange(value); })} {...inputProps} {...pickerProps} >
+                        {children}
+                    </Picker>
+                </Col>
+            </Grid>
         </View>
     );
 };
@@ -96,10 +101,10 @@ class UserComponent extends Component {
                 <Field name="PhoneNumber" iconType="SimpleLineIcons" iconName="phone" secureTextEntry="false" keyboardType="phone-pad" label="Contact Number: " requiredMarker="*" placeholder="Your contact number" component={renderField}
                     validate={[required]}
                 />
-                <Field name="BloodGroupId" mode="dropdown" label="Blood Group: " requiredMarker="*" component={renderPicker}
-                    iosHeader="--SELECT--" format={formatLoanTerm} parse={parseLoanTerm}
+                <Field name="BloodGroupId" iconType="SimpleLineIcons" iconName="drop" mode="dropdown" label="Blood Group: " requiredMarker="*" component={renderPicker}
+                    iosHeader="--Select Blood Group--" format={formatLoanTerm} parse={parseLoanTerm}
                     validate={[in1To8]}>
-                    <Item label="--SELECT--" />
+                    <Item label="--SELECT BLOOD GROUP--" />
                     <Item label="O-" value="1" />
                     <Item label="O+" value="2" />
                     <Item label="A-" value="3" />
@@ -109,17 +114,17 @@ class UserComponent extends Component {
                     <Item label="AB-" value="7" />
                     <Item label="AB+" value="8" />
                 </Field>
-                <Field name="Gender" mode="dropdown" label="Gender: " requiredMarker="*" component={renderPicker}
-                    iosHeader="--SELECT--" format={formatLoanTerm} parse={parseLoanTerm}
+                <Field name="Gender" iconType="FontAwesome" iconName="transgender" mode="dropdown" label="Gender: " requiredMarker="*" component={renderPicker}
+                    iosHeader="--SELECT GENDER--" format={formatLoanTerm} parse={parseLoanTerm}
                     validate={[is0Or1]}>
-                    <Item label="--SELECT--" />
+                    <Item label="--SELECT GENDER--" />
                     <Item label="Male" value="1" />
                     <Item label="Female" value="0" />
                 </Field>
-                <Field name="Password" secureTextEntry="true" keyboardType="default" label="Password: " requiredMarker="*" placeholder="Password" component={renderField}
+                <Field name="Password" iconType="MaterialIcons" iconName="vpn-key" secureTextEntry="true" keyboardType="default" label="Password: " requiredMarker="*" placeholder="Password" component={renderField}
                     validate={[required, minValue6, maxLength12]}
                 />
-                <Field name="ConfirmPassword" secureTextEntry="true" keyboardType="default" label="Confirm Password: " requiredMarker="*" placeholder="Confirm Password" component={renderField}
+                <Field name="ConfirmPassword" iconType="Foundation" iconName="key" secureTextEntry="true" keyboardType="default" label="Confirm Password: " requiredMarker="*" placeholder="Confirm Password" component={renderField}
                     validate={[required, confirmValidators]}
                 />
 

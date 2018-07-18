@@ -3,7 +3,10 @@ module.exports = {
     twoLetterYear: new Date().getFullYear().toString().substr(-2),
     apiOrigin: 'http://www.bloodconnector.org/', //'http://10.0.2.2/'
     appLink: 'https://play.google.com/store/apps/details?id=com.bloodconnector',
+    reqMsg: 'Required',
     makeFirstCharecterLower: string => string.charAt(0).toLowerCase() + string.slice(1),
+    maxLength: max => value => value && value.length > max ? `Must be ${max} characters or less` : undefined,
+    minValue: min => value => value && value.length < min ? `Must be at least ${min} characters` : undefined,
     processModelstateError: function(modelErr){
 
       var errors = {};

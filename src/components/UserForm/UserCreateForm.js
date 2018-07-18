@@ -5,41 +5,16 @@ import Button from 'react-native-button';
 import { Picker, Item, Input, CheckBox, ListItem, Spinner, Icon } from 'native-base';
 import Modal from 'react-native-modalbox';
 import { Col, Grid } from "react-native-easy-grid";
-import _ from 'lodash';
 import { USER_CREATE_FORM } from '../../actions/types';
 import submit from './submit';
+import { 
+    required, in1To8, is0Or1, number, maxLength12, maxLength40, minValue6, isValidEmail, confirmValidators, 
+    acceptTerms, isYahooMail
+} from '../forms/validations';
 import { 
     txtMedium, txtDanger, txtWarning, txtColor, modal, tAndCmodal, txtBlue, txtBold, pickerStyle, 
     selfAlignCenter, font24, button, drpIconLeft, drpIconRight, mb, mlLg, p, mt, mbSm
 } from '../../components/styles';
-
-//Validation
-const reqMsg = 'Required'
-const required = value => value ? undefined : reqMsg;
-const in1To8 = value => _.inRange(value, 1, 9)? undefined : reqMsg;
-const is0Or1 = value => _.inRange(value, 0, 2)? undefined : reqMsg;
-
-const number = value => value && isNaN(Number(value)) ? 'Must be a number' : undefined;
-
-const maxLength = max => value => value && value.length > max ? `Must be ${max} characters or less` : undefined;
-const maxLength12 = maxLength(12);
-const maxLength40 = maxLength(40);
-
-const minValue = min => value => value && value.length < min ? `Must be at least ${min} characters` : undefined;
-const minValue6 = minValue(6);
-
-const isValidEmail = value =>
-    value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) ? 'Invalid email address' : undefined;
-
-const confirmValidators = (value, values) => value === values.Password ? undefined : 'Confirm password doesn\'t match with password!';
-
-const acceptTerms = value => value? undefined : 'You must accept this terms and conditions!!';
-
-//Warning
-const over70YearsOld = value =>
-    value && value > 70 ? 'You might be too old for using this' : undefined;
-const isYahooMail = value =>
-    value && /.+@yahoo\.com/.test(value) ? 'Really? You still use yahoo mail ?' : undefined;
 
 const renderField = ({ secureTextEntry, iconType, iconName, keyboardType, placeholder, meta: { touched, error, warning }, input: { onChange, ...restInput } }) => {
     return (

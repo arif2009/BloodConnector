@@ -51,7 +51,9 @@ module.exports = StyleSheet.create({
 
     row:{flexDirection: 'row'},
 
-    footerBg: {backgroundColor: '#ff8080',justifyContent:'center'},
+    footerBg: {backgroundColor: '#ff8080', justifyContent:'center'},
+
+    pickerStyle: {borderRadius: 25,borderWidth: 1},
 
     budgetTxt: {color: '#fff',fontSize: 18,fontWeight: 'bold'},
 
@@ -60,6 +62,8 @@ module.exports = StyleSheet.create({
     drawerContainer: {flex: 1,backgroundColor: '#ffcccc'},
 
     drawerHeader: {borderBottomWidth: 1,flexDirection: 'column',marginTop: 5,paddingBottom: 5},
+
+    drpIcone: {paddingLeft:10, justifyContent: 'center', alignItems: 'flex-start'},
 
     drawerBtnContainer:{paddingLeft:15, paddingTop:10, paddingBottom:10},
 
@@ -123,10 +127,5 @@ module.exports = StyleSheet.create({
         paddingBottom: 10, 
         backgroundColor:'#fff', 
         borderColor: '#ffcccc'
-    },
-    pickerStyle: {
-        borderRadius: 25,
-        borderWidth: 1,
-        borderColor: '#d6d7da',
     }
 });

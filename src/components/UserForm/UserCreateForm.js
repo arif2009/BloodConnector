@@ -9,8 +9,8 @@ import _ from 'lodash';
 import { USER_CREATE_FORM } from '../../actions/types';
 import submit from './submit';
 import { 
-    txtMedium, txtDanger, txtWarning, button, txtColor, modal, tAndCmodal, txtBlue, txtBold, 
-    pickerStyle, mb, mlLg, p, mt, mbSm
+    txtMedium, txtDanger, txtWarning, button, txtColor, modal, tAndCmodal, txtBlue, txtBold, pickerStyle, 
+    selfAlignCenter, drpIcone, mb, mlLg, p, mt, mbSm
 } from '../../components/styles';
 
 //Validation
@@ -41,34 +41,37 @@ const over70YearsOld = value =>
 const isYahooMail = value =>
     value && /.+@yahoo\.com/.test(value) ? 'Really? You still use yahoo mail ?' : undefined;
 
-const renderField = ({ secureTextEntry, iconType, iconName, label, requiredMarker, keyboardType, placeholder, meta: { touched, error, warning }, input: { onChange, ...restInput } }) => {
+const renderField = ({ secureTextEntry, iconType, iconName, keyboardType, placeholder, meta: { touched, error, warning }, input: { onChange, ...restInput } }) => {
     return (
         <View style={mbSm}>
-            <Item rounded>
+            <Item error={touched && !!error} rounded>
                 <Icon type={iconType} name={iconName} />
                 <Input secureTpickerStyleextEntry={JSON.parse(secureTextEntry)} keyboardType={keyboardType}
                     onChangeText={onChange} {...restInput} placeholder={placeholder} autoCapitalize='none'>
                 </Input>
             </Item>
-                {touched && ((error && error!=reqMsg && <Text style={txtDanger}>{error}</Text>) ||
-                    (warning && <Text style={txtWarning}>{warning}</Text>))}
+                {touched && ((!!error && <Text style={[txtDanger, selfAlignCenter]}>{error}</Text>) ||
+                    (warning && <Text style={[txtWarning, selfAlignCenter]}>{warning}</Text>))}
         </View>
     );
 };
 
-const renderPicker = ({ iconType, iconName, label, requiredMarker, meta: { touched, error, warning }, input: { onChange, value, ...inputProps }, children, ...pickerProps }) => {
+const renderPicker = ({ iconType, iconName, requiredMarker, meta: { touched, error, warning }, input: { onChange, value, ...inputProps }, children, ...pickerProps }) => {
     return (
-        <View style={[pickerStyle, mbSm]}>
-            <Grid>
-                <Col size={15} style={{justifyContent: 'center', alignItems: 'center'}}>
-                    <Icon type={iconType} name={iconName} />
-                </Col>
-                <Col size={85}>
-                    <Picker selectedValue={value} onValueChange={value => requestAnimationFrame(() => { onChange(value); })} {...inputProps} {...pickerProps} >
-                        {children}
-                    </Picker>
-                </Col>
-            </Grid>
+        <View>
+            <View style={[pickerStyle, mbSm, {borderColor: touched && !!error ?'#DD5144':'#d6d7da'}]}>
+                <Grid>
+                    <Col size={10} style={drpIcone}>
+                        <Icon style={{color: touched && !!error ?'#DD5144':'#000'}} type={iconType} name={iconName} />
+                    </Col>
+                    <Col size={90}>
+                        <Picker selectedValue={value} onValueChange={value => requestAnimationFrame(() => { onChange(value); })} {...inputProps} {...pickerProps} >
+                            {children}
+                        </Picker>
+                    </Col>
+                </Grid>
+            </View>
+            {touched && ((!!error && <Text style={[txtDanger, selfAlignCenter]}>{error}</Text>))}
         </View>
     );
 };
@@ -86,22 +89,22 @@ class UserComponent extends Component {
         const { handleSubmit, submitting, reset } = this.props;
         //console.log(submitting);
         return (
-            <View style={{ flex: 1, flexDirection: 'column', padding: 20, justifyContent: 'flex-start', }}>
+            <View style={{ flex: 1, flexDirection: 'column', padding: 20, justifyContent: 'flex-start' }}>
 
-                <Field name="Name" iconType="SimpleLineIcons" iconName="user" secureTextEntry="false" keyboardType="default" label="Name: " requiredMarker="*" placeholder="FirstName LastName NikeName" component={renderField}
+                <Field name="Name" iconType="SimpleLineIcons" iconName="user" secureTextEntry="false" keyboardType="default" placeholder="FirstName LastName NikeName" component={renderField}
                     validate={[required, maxLength40]}
                 />
-                <Field name="BloodGiven" iconType="FontAwesome" iconName="eyedropper" secureTextEntry="false" keyboardType="numeric" label="Number of times given blood: " placeholder="Number of times given blood" component={renderField}
+                <Field name="BloodGiven" iconType="FontAwesome" iconName="eyedropper" secureTextEntry="false" keyboardType="numeric" placeholder="Number of times given blood" component={renderField}
                     validate={[number]}
                 />
-                <Field name="Email" iconType="FontAwesome" iconName="envelope-o" secureTextEntry="false" keyboardType="email-address" label="Email: " requiredMarker="*" placeholder="Your email" component={renderField}
+                <Field name="Email" iconType="FontAwesome" iconName="envelope-o" secureTextEntry="false" keyboardType="email-address" placeholder="Your email" component={renderField}
                     validate={[required, isValidEmail]}
                     warn={isYahooMail}
                 />
-                <Field name="PhoneNumber" iconType="SimpleLineIcons" iconName="phone" secureTextEntry="false" keyboardType="phone-pad" label="Contact Number: " requiredMarker="*" placeholder="Your contact number" component={renderField}
+                <Field name="PhoneNumber" iconType="SimpleLineIcons" iconName="phone" secureTextEntry="false" keyboardType="phone-pad" placeholder="Your contact number" component={renderField}
                     validate={[required]}
                 />
-                <Field name="BloodGroupId" iconType="SimpleLineIcons" iconName="drop" mode="dropdown" label="Blood Group: " requiredMarker="*" component={renderPicker}
+                <Field name="BloodGroupId" iconType="SimpleLineIcons" iconName="drop" mode="dropdown" component={renderPicker}
                     iosHeader="--Select Blood Group--" format={formatLoanTerm} parse={parseLoanTerm}
                     validate={[in1To8]}>
                     <Item label="--SELECT BLOOD GROUP--" />
@@ -114,17 +117,17 @@ class UserComponent extends Component {
                     <Item label="AB-" value="7" />
                     <Item label="AB+" value="8" />
                 </Field>
-                <Field name="Gender" iconType="FontAwesome" iconName="transgender" mode="dropdown" label="Gender: " requiredMarker="*" component={renderPicker}
+                <Field name="Gender" iconType="FontAwesome" iconName="transgender" mode="dropdown" component={renderPicker}
                     iosHeader="--SELECT GENDER--" format={formatLoanTerm} parse={parseLoanTerm}
                     validate={[is0Or1]}>
                     <Item label="--SELECT GENDER--" />
                     <Item label="Male" value="1" />
                     <Item label="Female" value="0" />
                 </Field>
-                <Field name="Password" iconType="MaterialIcons" iconName="vpn-key" secureTextEntry="true" keyboardType="default" label="Password: " requiredMarker="*" placeholder="Password" component={renderField}
+                <Field name="Password" iconType="MaterialIcons" iconName="vpn-key" secureTextEntry="true" keyboardType="default" placeholder="Password" component={renderField}
                     validate={[required, minValue6, maxLength12]}
                 />
-                <Field name="ConfirmPassword" iconType="Foundation" iconName="key" secureTextEntry="true" keyboardType="default" label="Confirm Password: " requiredMarker="*" placeholder="Confirm Password" component={renderField}
+                <Field name="ConfirmPassword" iconType="Foundation" iconName="key" secureTextEntry="true" keyboardType="default" placeholder="Confirm Password" component={renderField}
                     validate={[required, confirmValidators]}
                 />
 

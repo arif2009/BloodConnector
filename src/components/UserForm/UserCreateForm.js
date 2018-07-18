@@ -9,8 +9,8 @@ import _ from 'lodash';
 import { USER_CREATE_FORM } from '../../actions/types';
 import submit from './submit';
 import { 
-    txtMedium, txtDanger, txtWarning, button, txtColor, modal, tAndCmodal, txtBlue, txtBold, pickerStyle, 
-    selfAlignCenter, drpIcone, mb, mlLg, p, mt, mbSm
+    txtMedium, txtDanger, txtWarning, txtColor, modal, tAndCmodal, txtBlue, txtBold, pickerStyle, 
+    selfAlignCenter, font24, button, drpIconLeft, drpIconRight, mb, mlLg, p, mt, mbSm
 } from '../../components/styles';
 
 //Validation
@@ -49,6 +49,7 @@ const renderField = ({ secureTextEntry, iconType, iconName, keyboardType, placeh
                 <Input secureTpickerStyleextEntry={JSON.parse(secureTextEntry)} keyboardType={keyboardType}
                     onChangeText={onChange} {...restInput} placeholder={placeholder} autoCapitalize='none'>
                 </Input>
+                {touched && !!error && <Icon name='close-circle' />}
             </Item>
                 {touched && ((!!error && <Text style={[txtDanger, selfAlignCenter]}>{error}</Text>) ||
                     (warning && <Text style={[txtWarning, selfAlignCenter]}>{warning}</Text>))}
@@ -61,14 +62,17 @@ const renderPicker = ({ iconType, iconName, requiredMarker, meta: { touched, err
         <View>
             <View style={[pickerStyle, mbSm, {borderColor: touched && !!error ?'#DD5144':'#d6d7da'}]}>
                 <Grid>
-                    <Col size={10} style={drpIcone}>
+                    <Col size={10} style={drpIconLeft}>
                         <Icon style={{color: touched && !!error ?'#DD5144':'#000'}} type={iconType} name={iconName} />
                     </Col>
-                    <Col size={90}>
+                    <Col size={touched && !!error? 80:90}>
                         <Picker selectedValue={value} onValueChange={value => requestAnimationFrame(() => { onChange(value); })} {...inputProps} {...pickerProps} >
                             {children}
                         </Picker>
                     </Col>
+                    {touched && !!error && <Col size={10} style={drpIconRight}>
+                        <Icon style={[txtDanger, font24]} name='close-circle' />
+                    </Col>}
                 </Grid>
             </View>
             {touched && ((!!error && <Text style={[txtDanger, selfAlignCenter]}>{error}</Text>))}
@@ -117,7 +121,7 @@ class UserComponent extends Component {
                     <Item label="AB-" value="7" />
                     <Item label="AB+" value="8" />
                 </Field>
-                <Field name="Gender" iconType="FontAwesome" iconName="transgender" mode="dropdown" component={renderPicker}
+                <Field name="Gender" iconType="FontAwesome" iconName="venus-mars" mode="dropdown" component={renderPicker}
                     iosHeader="--SELECT GENDER--" format={formatLoanTerm} parse={parseLoanTerm}
                     validate={[is0Or1]}>
                     <Item label="--SELECT GENDER--" />

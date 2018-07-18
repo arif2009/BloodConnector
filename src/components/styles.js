@@ -8,6 +8,7 @@ module.exports = StyleSheet.create({
     txtWarning:{color: '#ffc107'},
     txtDanger:{color: '#dc3545'},
     txtSuccess:{color: '#28a745'},
+    txtSoftRed:{color: '#DD5144'},
     txtMedium: {fontSize: 16,fontWeight: '600'},
     txtBold: {fontWeight: 'bold'},
     txtBolder: {fontSize: 18,fontWeight: 'bold'},
@@ -15,6 +16,7 @@ module.exports = StyleSheet.create({
     font12:{fontSize: 12},
     font15:{fontSize:15},
     font17:{fontSize:17},
+    font24:{fontSize:24},
 
     p:{padding:10},
     pL:{ paddingLeft:10},
@@ -63,7 +65,9 @@ module.exports = StyleSheet.create({
 
     drawerHeader: {borderBottomWidth: 1,flexDirection: 'column',marginTop: 5,paddingBottom: 5},
 
-    drpIcone: {paddingLeft:10, justifyContent: 'center', alignItems: 'flex-start'},
+    drpIconLeft: {paddingLeft:10, justifyContent: 'center', alignItems: 'flex-start'},
+
+    drpIconRight: {paddingRight:10, justifyContent: 'center', alignItems: 'flex-end'},
 
     drawerBtnContainer:{paddingLeft:15, paddingTop:10, paddingBottom:10},
 

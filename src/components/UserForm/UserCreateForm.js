@@ -1,73 +1,56 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { View, Text, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import Button from 'react-native-button';
-import { Picker, Item, CheckBox, ListItem, Spinner } from 'native-base';
+import { Picker, Item, Input, CheckBox, ListItem, Spinner, Icon } from 'native-base';
 import Modal from 'react-native-modalbox';
-import _ from 'lodash';
+import { Col, Grid } from "react-native-easy-grid";
 import { USER_CREATE_FORM } from '../../actions/types';
 import submit from './submit';
 import { 
-    txtMedium, txtDanger, txtWarning, button, txtColor, modal, tAndCmodal, txtBlue, txtBold, 
-    mb, mlLg, p, mt 
+    required, in1To8, is0Or1, number, maxLength12, maxLength40, minValue6, isValidEmail, confirmValidators, 
+    acceptTerms, isYahooMail
+} from '../forms/validations';
+import { 
+    txtMedium, txtDanger, txtWarning, txtColor, modal, tAndCmodal, txtBlue, txtBold, pickerStyle, 
+    selfAlignCenter, font24, button, drpIconLeft, drpIconRight, mb, mlLg, p, mt, mbSm
 } from '../../components/styles';
 
-//Validation
-const reqMsg = 'Required'
-const required = value => value ? undefined : reqMsg;
-const in1To8 = value => _.inRange(value, 1, 9)? undefined : reqMsg;
-const is0Or1 = value => _.inRange(value, 0, 2)? undefined : reqMsg;
-
-const number = value => value && isNaN(Number(value)) ? 'Must be a number' : undefined;
-
-const maxLength = max => value => value && value.length > max ? `Must be ${max} characters or less` : undefined;
-const maxLength12 = maxLength(12);
-const maxLength40 = maxLength(40);
-
-const minValue = min => value => value && value.length < min ? `Must be at least ${min} characters` : undefined;
-const minValue6 = minValue(6);
-
-const isValidEmail = value =>
-    value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) ? 'Invalid email address' : undefined;
-
-const confirmValidators = (value, values) => value === values.Password ? undefined : 'Confirm password doesn\'t match with password!';
-
-const acceptTerms = value => value? undefined : 'You must accept this terms and conditions!!';
-
-//Warning
-const over70YearsOld = value =>
-    value && value > 70 ? 'You might be too old for using this' : undefined;
-const isYahooMail = value =>
-    value && /.+@yahoo\.com/.test(value) ? 'Really? You still use yahoo mail ?' : undefined;
-
-const renderField = ({ secureTextEntry, label, requiredMarker, keyboardType, placeholder, meta: { touched, error, warning }, input: { onChange, ...restInput } }) => {
+const renderField = ({ secureTextEntry, iconType, iconName, keyboardType, placeholder, meta: { touched, error, warning }, input: { onChange, ...restInput } }) => {
     return (
-        <View>
-            <Text style={txtMedium}>
-                {label}
-                <Text style={txtDanger}>{requiredMarker}</Text>
-                {touched && (error && error==reqMsg && <Text style={txtDanger}>{error}</Text>)}
-            </Text>
-            <TextInput secureTextEntry={JSON.parse(secureTextEntry)} style={{ padding: 5 }} keyboardType={keyboardType}
-                onChangeText={onChange} {...restInput} placeholder={placeholder} autoCapitalize='none'>
-            </TextInput>
-            {touched && ((error && error!=reqMsg && <Text style={txtDanger}>{error}</Text>) ||
-                (warning && <Text style={txtWarning}>{warning}</Text>))}
+        <View style={mbSm}>
+            <Item error={touched && !!error} rounded>
+                <Icon type={iconType} name={iconName} />
+                <Input secureTpickerStyleextEntry={JSON.parse(secureTextEntry)} keyboardType={keyboardType}
+                    onChangeText={onChange} {...restInput} placeholder={placeholder} autoCapitalize='none'>
+                </Input>
+                {touched && !!error && <Icon name='close-circle' />}
+            </Item>
+                {touched && ((!!error && <Text style={[txtDanger, selfAlignCenter]}>{error}</Text>) ||
+                    (warning && <Text style={[txtWarning, selfAlignCenter]}>{warning}</Text>))}
         </View>
     );
 };
 
-const renderPicker = ({ label, requiredMarker, meta: { touched, error, warning }, input: { onChange, value, ...inputProps }, children, ...pickerProps }) => {
+const renderPicker = ({ iconType, iconName, requiredMarker, meta: { touched, error, warning }, input: { onChange, value, ...inputProps }, children, ...pickerProps }) => {
     return (
         <View>
-            <Text style={txtMedium}>
-                {label}
-                <Text style={txtDanger}>{requiredMarker}</Text>
-                {touched && (error && <Text style={txtDanger}>{error}</Text>)}
-            </Text>
-            <Picker selectedValue={value} onValueChange={value => requestAnimationFrame(() => { onChange(value); })} {...inputProps} {...pickerProps} >
-                {children}
-            </Picker>
+            <View style={[pickerStyle, mbSm, {borderColor: touched && !!error ?'#DD5144':'#d6d7da'}]}>
+                <Grid>
+                    <Col size={10} style={drpIconLeft}>
+                        <Icon style={{color: touched && !!error ?'#DD5144':'#000'}} type={iconType} name={iconName} />
+                    </Col>
+                    <Col size={touched && !!error? 80:90}>
+                        <Picker selectedValue={value} onValueChange={value => requestAnimationFrame(() => { onChange(value); })} {...inputProps} {...pickerProps} >
+                            {children}
+                        </Picker>
+                    </Col>
+                    {touched && !!error && <Col size={10} style={drpIconRight}>
+                        <Icon style={[txtDanger, font24]} name='close-circle' />
+                    </Col>}
+                </Grid>
+            </View>
+            {touched && ((!!error && <Text style={[txtDanger, selfAlignCenter]}>{error}</Text>))}
         </View>
     );
 };
@@ -85,25 +68,25 @@ class UserComponent extends Component {
         const { handleSubmit, submitting, reset } = this.props;
         //console.log(submitting);
         return (
-            <View style={{ flex: 1, flexDirection: 'column', padding: 20, justifyContent: 'flex-start', }}>
+            <View style={{ flex: 1, flexDirection: 'column', padding: 20, justifyContent: 'flex-start' }}>
 
-                <Field name="Name" secureTextEntry="false" keyboardType="default" label="Name: " requiredMarker="*" placeholder="FirstName LastName NikeName" component={renderField}
+                <Field name="Name" iconType="SimpleLineIcons" iconName="user" secureTextEntry="false" keyboardType="default" placeholder="FirstName LastName NikeName" component={renderField}
                     validate={[required, maxLength40]}
                 />
-                <Field name="BloodGiven" secureTextEntry="false" keyboardType="numeric" label="Number of times given blood: " placeholder="E.g. 5" component={renderField}
+                <Field name="BloodGiven" iconType="FontAwesome" iconName="eyedropper" secureTextEntry="false" keyboardType="numeric" placeholder="Number of times given blood" component={renderField}
                     validate={[number]}
                 />
-                <Field name="Email" secureTextEntry="false" keyboardType="email-address" label="Email: " requiredMarker="*" placeholder="Enter email" component={renderField}
+                <Field name="Email" iconType="FontAwesome" iconName="envelope-o" secureTextEntry="false" keyboardType="email-address" placeholder="Your email" component={renderField}
                     validate={[required, isValidEmail]}
                     warn={isYahooMail}
                 />
-                <Field name="PhoneNumber" secureTextEntry="false" keyboardType="phone-pad" label="Contact Number: " requiredMarker="*" placeholder="E.g. +8801721654450" component={renderField}
+                <Field name="PhoneNumber" iconType="SimpleLineIcons" iconName="phone" secureTextEntry="false" keyboardType="phone-pad" placeholder="Your contact number" component={renderField}
                     validate={[required]}
                 />
-                <Field name="BloodGroupId" mode="dropdown" label="Blood Group: " requiredMarker="*" component={renderPicker}
-                    iosHeader="--SELECT--" format={formatLoanTerm} parse={parseLoanTerm}
+                <Field name="BloodGroupId" iconType="SimpleLineIcons" iconName="drop" mode="dropdown" component={renderPicker}
+                    iosHeader="--Select Blood Group--" format={formatLoanTerm} parse={parseLoanTerm}
                     validate={[in1To8]}>
-                    <Item label="--SELECT--" />
+                    <Item label="--SELECT BLOOD GROUP--" />
                     <Item label="O-" value="1" />
                     <Item label="O+" value="2" />
                     <Item label="A-" value="3" />
@@ -113,17 +96,17 @@ class UserComponent extends Component {
                     <Item label="AB-" value="7" />
                     <Item label="AB+" value="8" />
                 </Field>
-                <Field name="Gender" mode="dropdown" label="Gender: " requiredMarker="*" component={renderPicker}
-                    iosHeader="--SELECT--" format={formatLoanTerm} parse={parseLoanTerm}
+                <Field name="Gender" iconType="FontAwesome" iconName="venus-mars" mode="dropdown" component={renderPicker}
+                    iosHeader="--SELECT GENDER--" format={formatLoanTerm} parse={parseLoanTerm}
                     validate={[is0Or1]}>
-                    <Item label="--SELECT--" />
+                    <Item label="--SELECT GENDER--" />
                     <Item label="Male" value="1" />
                     <Item label="Female" value="0" />
                 </Field>
-                <Field name="Password" secureTextEntry="true" keyboardType="default" label="Password: " requiredMarker="*" placeholder="Password" component={renderField}
+                <Field name="Password" iconType="MaterialIcons" iconName="vpn-key" secureTextEntry="true" keyboardType="default" placeholder="Password" component={renderField}
                     validate={[required, minValue6, maxLength12]}
                 />
-                <Field name="ConfirmPassword" secureTextEntry="true" keyboardType="default" label="Confirm Password: " requiredMarker="*" placeholder="Confirm Password" component={renderField}
+                <Field name="ConfirmPassword" iconType="Foundation" iconName="key" secureTextEntry="true" keyboardType="default" placeholder="Confirm Password" component={renderField}
                     validate={[required, confirmValidators]}
                 />
 

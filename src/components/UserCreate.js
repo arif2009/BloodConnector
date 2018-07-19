@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Content } from 'native-base';
-import UserCreateForm from './UserForm/UserCreateForm';
+import UserCreateForm from './forms/UserCreateForm';
 import { bgColor, bgWhite } from './styles';
 
 export default class UserCreate extends Component {

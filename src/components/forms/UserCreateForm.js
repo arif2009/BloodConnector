@@ -7,7 +7,7 @@ import Modal from 'react-native-modalbox';
 import { Col, Grid } from "react-native-easy-grid";
 import { USER_CREATE_FORM } from '../../actions/types';
 import { intToString, stringToInt } from '../../utills/we';
-import {submitUserCreate as submit} from './submitUserCreate';
+import submitUserCreate from './submitUserCreate';
 import { 
     required, in1To8, is0Or1, number, maxLength12, maxLength40, minValue6, isValidEmail, confirmValidators, 
     acceptTerms, isYahooMail
@@ -126,7 +126,7 @@ class UserComponent extends Component {
                 }} validate={[acceptTerms]}/>
 
                 <TouchableOpacity disabled={submitting}
-                    onPress={this.state.acceptTAndC ? handleSubmit(submit) : null}
+                    onPress={this.state.acceptTAndC ? handleSubmit(submitUserCreate) : null}
                     style={[button, { backgroundColor: this.state.acceptTAndC ? '#337ab7' : '#808080' }]}>
                     <Text style={[txtColor, txtMedium]}>Submit {' '}</Text>
                     {submitting && <Spinner size={25} color="#fff" />}

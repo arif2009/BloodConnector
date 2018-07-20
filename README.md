@@ -51,8 +51,6 @@ $ npm i --do-not-make-me-cry
 ---
 *Home page:*
 
-![alt text](https://i.imgur.com/kbb6hci.png "Home Page")
-
 ![alt text](https://i.imgur.com/b52SOmS.png "Home Page")
 
 *Login page:*
@@ -65,7 +63,11 @@ $ npm i --do-not-make-me-cry
 
 *Registration page:*
 
-![alt text](https://i.imgur.com/qA8WYy0.png "Registration page")
+![alt text](https://i.imgur.com/REJbiww.png "Registration page")
+
+*Registration page with validations:*
+
+![alt text](https://i.imgur.com/POLLkgl.png "validations")
 
 *After registration success:*
 

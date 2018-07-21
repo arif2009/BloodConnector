@@ -9,8 +9,8 @@ import { USER_CREATE_FORM } from '../../actions/types';
 import { intToString, stringToInt } from '../../utills/we';
 import submitUserCreate from './submitUserCreate';
 import { 
-    required, in1To8, is0Or1, number, maxLength12, maxLength40, minValue6, isValidEmail, confirmValidators, 
-    acceptTerms, isYahooMail
+    required, in1To8, is0Or1, number, maxLength12, maxLength40, minValue6, isValidEmail, 
+    confirmValidators, acceptTerms, isYahooMail
 } from './validations';
 import { 
     txtMedium, txtDanger, txtWarning, txtColor, modal, tAndCmodal, txtBlue, txtBold, pickerStyle, 

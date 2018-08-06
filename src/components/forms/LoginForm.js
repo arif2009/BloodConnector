@@ -42,17 +42,15 @@ class UserComponent extends Component {
         return (
             <View style={{ flex: 1, flexDirection: 'column', padding: 20, justifyContent: 'flex-start' }}>
 
-                <Field name="Email" iconType="FontAwesome" iconName="envelope-o" secureTextEntry="false" keyboardType="email-address" placeholder="Your email" component={renderField}
+                <Field name="email" iconType="FontAwesome" iconName="envelope-o" secureTextEntry="false" keyboardType="email-address" placeholder="Your email" component={renderField}
                     validate={[required, isValidEmail]}
                     warn={isYahooMail}
                 />
-                <Field name="Password" iconType="SimpleLineIcons" iconName="lock-open" secureTextEntry="true" keyboardType="default" placeholder="Password" component={renderField}
+                <Field name="password" iconType="SimpleLineIcons" iconName="lock-open" secureTextEntry="true" keyboardType="default" placeholder="Password" component={renderField}
                     validate={[required, minValue6, maxLength12]}
                 />
 
-                <TouchableOpacity disabled={submitting}
-                    onPress={handleSubmit(submitLoginForm)}
-                    style={[button, { backgroundColor: '#337ab7' }]}>
+                <TouchableOpacity disabled={submitting} onPress={handleSubmit(submitLoginForm)} style={[button, { backgroundColor: '#337ab7' }]}>
                     <Text style={[txtColor, txtMedium]}>Submit {' '}</Text>
                     {submitting && <Spinner size={25} color="#fff" />}
                 </TouchableOpacity>

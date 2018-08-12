@@ -35,6 +35,7 @@ module.exports = StyleSheet.create({
     mlLg:{marginLeft: 15},
     mrLg:{marginRight: 15},
     mt:{marginTop: 10},
+    mtSm:{marginTop: 5},
     mtLg:{marginTop: 15},
 
     bgColor: {backgroundColor: '#ffcccc'},

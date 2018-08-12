@@ -1,19 +1,11 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { View, Text, TouchableOpacity } from 'react-native';
-import Button from 'react-native-button';
-import { Picker, Item, Input, CheckBox, ListItem, Spinner, Icon } from 'native-base';
+import { Item, Input, Spinner, Icon } from 'native-base';
 import { USER_LOGIN_FORM } from '../../actions/types';
-import { intToString, stringToInt } from '../../utills/we';
 import submitLoginForm from './submitLoginForm';
-import { 
-    required, in1To8, is0Or1, number, maxLength12, maxLength40, minValue6, isValidEmail, 
-    confirmValidators, acceptTerms, isYahooMail
-} from './validations';
-import { 
-    txtMedium, txtDanger, txtWarning, txtColor, modal, tAndCmodal, txtBlue, txtBold, pickerStyle, 
-    selfAlignCenter, font24, button, drpIconLeft, drpIconRight, mb, mlLg, p, mt, mbSm
-} from '../../components/styles';
+import { required, maxLength12, minValue6, isValidEmail, isYahooMail } from './validations';
+import { txtMedium, txtDanger, txtWarning, txtColor, selfAlignCenter, button, mbSm, mtSm } from '../../components/styles';
 
 const renderField = ({ secureTextEntry, iconType, iconName, keyboardType, placeholder, meta: { touched, error, warning }, input: { onChange, ...restInput } }) => {
     return (
@@ -37,10 +29,12 @@ class UserComponent extends Component {
     }
       
     render() {
-        const { handleSubmit, submitting, reset } = this.props;
-        //console.log(submitting);
+        const { handleSubmit, submitting, reset, submitFailed, error } = this.props;
+
         return (
             <View style={{ flex: 1, flexDirection: 'column', padding: 20, justifyContent: 'flex-start' }}>
+
+                {submitFailed  && <Text style={[mbSm, txtDanger, selfAlignCenter]}>{error}</Text>}
 
                 <Field name="email" iconType="FontAwesome" iconName="envelope-o" secureTextEntry="false" keyboardType="email-address" placeholder="Your email" component={renderField}
                     validate={[required, isValidEmail]}
@@ -50,7 +44,7 @@ class UserComponent extends Component {
                     validate={[required, minValue6, maxLength12]}
                 />
 
-                <TouchableOpacity disabled={submitting} onPress={handleSubmit(submitLoginForm)} style={[button, { backgroundColor: '#337ab7' }]}>
+                <TouchableOpacity disabled={submitting} onPress={handleSubmit(submitLoginForm)} style={[button, mtSm, { backgroundColor: '#337ab7' }]}>
                     <Text style={[txtColor, txtMedium]}>Submit {' '}</Text>
                     {submitting && <Spinner size={25} color="#fff" />}
                 </TouchableOpacity>

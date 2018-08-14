@@ -6,11 +6,12 @@ import { Picker, Item, Input, CheckBox, ListItem, Spinner, Icon } from 'native-b
 import Modal from 'react-native-modalbox';
 import { Col, Grid } from "react-native-easy-grid";
 import { USER_CREATE_FORM } from '../../actions/types';
-import submit from './submit';
+import { intToString, stringToInt } from '../../utills/we';
+import submitUserCreate from './submitUserCreate';
 import { 
-    required, in1To8, is0Or1, number, maxLength12, maxLength40, minValue6, isValidEmail, confirmValidators, 
-    acceptTerms, isYahooMail
-} from '../forms/validations';
+    required, in1To8, is0Or1, number, maxLength12, maxLength40, minValue6, isValidEmail, 
+    confirmValidators, acceptTerms, isYahooMail
+} from './validations';
 import { 
     txtMedium, txtDanger, txtWarning, txtColor, modal, tAndCmodal, txtBlue, txtBold, pickerStyle, 
     selfAlignCenter, font24, button, drpIconLeft, drpIconRight, mb, mlLg, p, mt, mbSm
@@ -55,9 +56,6 @@ const renderPicker = ({ iconType, iconName, requiredMarker, meta: { touched, err
     );
 };
 
-const formatLoanTerm = value => value + '';
-const parseLoanTerm = value => parseInt(value);
-
 class UserComponent extends Component {
     constructor(props) {
         super(props);
@@ -84,7 +82,7 @@ class UserComponent extends Component {
                     validate={[required]}
                 />
                 <Field name="BloodGroupId" iconType="SimpleLineIcons" iconName="drop" mode="dropdown" component={renderPicker}
-                    iosHeader="--Select Blood Group--" format={formatLoanTerm} parse={parseLoanTerm}
+                    iosHeader="--Select Blood Group--" format={intToString} parse={stringToInt}
                     validate={[in1To8]}>
                     <Item label="--SELECT BLOOD GROUP--" />
                     <Item label="O-" value="1" />
@@ -97,7 +95,7 @@ class UserComponent extends Component {
                     <Item label="AB+" value="8" />
                 </Field>
                 <Field name="Gender" iconType="FontAwesome" iconName="venus-mars" mode="dropdown" component={renderPicker}
-                    iosHeader="--SELECT GENDER--" format={formatLoanTerm} parse={parseLoanTerm}
+                    iosHeader="--SELECT GENDER--" format={intToString} parse={stringToInt}
                     validate={[is0Or1]}>
                     <Item label="--SELECT GENDER--" />
                     <Item label="Male" value="1" />
@@ -128,7 +126,7 @@ class UserComponent extends Component {
                 }} validate={[acceptTerms]}/>
 
                 <TouchableOpacity disabled={submitting}
-                    onPress={this.state.acceptTAndC ? handleSubmit(submit) : null}
+                    onPress={this.state.acceptTAndC ? handleSubmit(submitUserCreate) : null}
                     style={[button, { backgroundColor: this.state.acceptTAndC ? '#337ab7' : '#808080' }]}>
                     <Text style={[txtColor, txtMedium]}>Submit {' '}</Text>
                     {submitting && <Spinner size={25} color="#fff" />}

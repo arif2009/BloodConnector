@@ -5,7 +5,7 @@ import { Actions } from 'react-native-router-flux';
 import { CREATED_ACC } from '../../actions/types';
 import { apiOrigin, processModelstateError } from '../../utills/we';
 
-const submit = (values, dispatch) => {
+const submitUserCreate = (values, dispatch) => {
     
     const data = JSON.stringify(values);
     const header = { headers: { 'Content-Type': 'application/json' } };
@@ -42,4 +42,4 @@ const submit = (values, dispatch) => {
         throw new SubmissionError(errors);
     });
 };
-export default submit;
+export default submitUserCreate;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import Home from './src/components/Home';
-import LoginForm from './src/components/LoginForm';
+import Login from './src/components/Login';
 import UserList from './src/components/UserList';
 import UserCreate from './src/components/UserCreate';
 import SideMenu from './src/components/SideMenu';
@@ -51,7 +51,7 @@ class RouterComponent extends Component {
 
                                 <Scene 
                                     key="login"
-                                    component={LoginForm} 
+                                    component={Login} 
                                     title="Please Login" 
                                     titleStyle={sceneTitle} 
                                 />

@@ -55,7 +55,7 @@ $ npm i --do-not-make-me-cry
 
 *Login page:*
 
-![alt text](https://i.imgur.com/rEFTrGV.png "Login Page")
+![alt text](https://i.imgur.com/EpKMaaa.png "Login Page")
 
 *App sidebar view:*
 

@@ -9,7 +9,7 @@ import { userFetch } from '../actions'
 import { 
     hRed, txtColor, errorTextStyle, modal, detailsmodal, txtRed, txtBold, txtBlue, 
     txtSuccess, txtMedium, borderLeft, txtDanger, borderRight, bloodStyle, bgColor, bgSoftRed, 
-    txtBolder, selfAlignCenter, font12, font15, font17, mbSm, p, mt, ml5, mr5, mb5,
+    txtBolder, selfAlignCenter, bgWhite, font12, font15, mbSm, p, mt, ml5, mr5, mb5, msm
 } from './styles';
 
 class UserList extends Component {
@@ -137,8 +137,8 @@ class UserList extends Component {
         else if(!!this.state.userList){
             return(
                 <View>
-                    <Header searchBar rounded style={hRed}>
-                        <Item>
+                    <View style={hRed}>
+                        <Item style={[bgWhite, msm]} rounded>
                             <Icon name="ios-search" />
                             <Input
                                 onChangeText={this.searchFilter.bind(this)}
@@ -146,7 +146,7 @@ class UserList extends Component {
                                 placeholder="Search your donor" />
                             <Icon name="ios-people" />
                         </Item>
-                    </Header>
+                    </View>
 
                     <ListView enableEmptySections={true} dataSource={this.state.userListDs}
                         //renderSeparator= {this.ListViewItemSeparator}

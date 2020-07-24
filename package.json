@@ -3,33 +3,25 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "eslint ."
   },
   "dependencies": {
-    "axios": "0.18.0",
-    "lodash": "^4.17.5",
-    "native-base": "2.4.2",
-    "prop-types": "15.6.1",
-    "react": "16.4.1",
-    "react-native": "0.55",
-    "react-native-button": "^2.3.0",
-    "react-native-communications": "^2.2.1",
-    "react-native-easy-grid": "^0.1.17",
-    "react-native-modalbox": "^1.5.0",
-    "react-native-router-flux": "^4.0.0-beta.27",
-    "react-native-share": "^1.0.27",
-    "react-redux": "5.0.7",
-    "redux": "4.0.0",
-    "redux-form": "^7.3.0",
-    "redux-thunk": "^2.2.0"
+    "react": "16.13.1",
+    "react-native": "0.63.2"
   },
   "devDependencies": {
-    "babel-jest": "21.2.0",
-    "babel-preset-react-native": "4.0.0",
-    "jest": "21.2.1",
-    "react-devtools": "^3.2.1",
-    "react-test-renderer": "16.0.0"
+    "@babel/core": "^7.10.5",
+    "@babel/runtime": "^7.10.5",
+    "@react-native-community/eslint-config": "^2.0.0",
+    "babel-jest": "^26.1.0",
+    "eslint": "^7.5.0",
+    "jest": "^26.1.0",
+    "metro-react-native-babel-preset": "^0.61.0",
+    "react-test-renderer": "16.13.1"
   },
   "jest": {
     "preset": "react-native"

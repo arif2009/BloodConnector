@@ -9,15 +9,21 @@
 import React from 'react';
 import {SafeAreaView, View, Text, StatusBar} from 'react-native';
 
+import {NavigationContainer} from '@react-navigation/native';
+import Router from './Router';
+
 const App = () => {
   return (
     <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <View>
-          <Text>test</Text>
-        </View>
-      </SafeAreaView>
+      <StatusBar
+        barStyle="light-content"
+        hidden={false}
+        backgroundColor="#ff8080"
+        translucent={false}
+      />
+      <NavigationContainer>
+        <Router />
+      </NavigationContainer>
     </>
   );
 };

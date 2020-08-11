@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {AsyncStorage} from 'react-native';
-import {Actions} from 'react-native-router-flux';
+//import {Actions} from 'react-native-router-flux';
 import {
   EMAIL_CHANGED,
   PASSWORD_CHANGED,
@@ -73,6 +73,6 @@ const loginUserSuccess = (dispatch, tokenInfo) => {
       type: LOGIN_USER_SUCCESS,
       payload: tokenInfo.data,
     });
-    Actions.userList({token: tokenInfo.data.access_token, rightTitle: ''});
+    //Actions.userList({token: tokenInfo.data.access_token, rightTitle: ''});
   });
 };

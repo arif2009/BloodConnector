@@ -6,15 +6,19 @@
  * @flow strict-local
  */
 
-import React from 'react';
-import {SafeAreaView, View, Text, StatusBar} from 'react-native';
-
+import React, {Component} from 'react';
+import {SafeAreaView, View, Text, StatusBar, YellowBox} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
+import {Provider} from 'react-redux';
+import {createStore, applyMiddleware} from 'redux';
+import ReduxThunk from 'redux-thunk';
+import renders from './src/reducers';
 import Router from './Router';
 
 const App = () => {
+  const store = createStore(renders, {}, applyMiddleware(ReduxThunk));
   return (
-    <>
+    <Provider store={store}>
       <StatusBar
         barStyle="light-content"
         hidden={false}
@@ -24,7 +28,7 @@ const App = () => {
       <NavigationContainer>
         <Router />
       </NavigationContainer>
-    </>
+    </Provider>
   );
 };
 

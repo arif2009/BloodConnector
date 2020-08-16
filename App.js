@@ -7,13 +7,12 @@
  */
 
 import React, {Component} from 'react';
-import {SafeAreaView, View, Text, StatusBar, YellowBox} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
+import {StatusBar} from 'react-native';
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
 import ReduxThunk from 'redux-thunk';
 import renders from './src/reducers';
-import Router from './Router';
+import AppNavigator from './src/navigation/AppNavigation';
 
 const App = () => {
   const store = createStore(renders, {}, applyMiddleware(ReduxThunk));
@@ -25,9 +24,7 @@ const App = () => {
         backgroundColor="#ff8080"
         translucent={false}
       />
-      <NavigationContainer>
-        <Router />
-      </NavigationContainer>
+      <AppNavigator />
     </Provider>
   );
 };

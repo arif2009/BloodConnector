@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {SubmissionError} from 'redux-form';
 import {AsyncStorage, Alert} from 'react-native';
-import {Actions} from 'react-native-router-flux';
+//import {Actions} from 'react-native-router-flux';
 import {LOGIN_USER_FAIL, LOGIN_USER_SUCCESS} from '../../actions/types';
 import {apiOrigin, processModelstateError} from '../../utills/we';
 
@@ -36,7 +36,7 @@ const loginUserSuccess = (dispatch, tokenInfo) => {
       type: LOGIN_USER_SUCCESS,
       payload: tokenInfo.data,
     });
-    Actions.userList({token: tokenInfo.data.access_token, rightTitle: ''});
+    //Actions.userList({token: tokenInfo.data.access_token, rightTitle: ''});
   });
 };
 

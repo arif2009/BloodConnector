@@ -61,15 +61,6 @@ module.exports = StyleSheet.create({
 
   sceneTitle: {alignSelf: 'center', color: '#fff'},
 
-  drawerContainer: {flex: 1, backgroundColor: '#ffcccc'},
-
-  drawerHeader: {
-    borderBottomWidth: 1,
-    flexDirection: 'column',
-    marginTop: 5,
-    paddingBottom: 5,
-  },
-
   drpIconLeft: {
     paddingLeft: 10,
     justifyContent: 'center',
@@ -85,8 +76,6 @@ module.exports = StyleSheet.create({
   drawerBtnContainer: {paddingLeft: 15, paddingTop: 10, paddingBottom: 10},
 
   drawerBtnTxt: {fontSize: 18, color: '#404040'},
-
-  drawerIcon: {fontSize: 22, color: '#404040'},
 
   errorTextStyle: {fontSize: 20, alignSelf: 'center', color: '#ff0000'},
 
@@ -104,13 +93,6 @@ module.exports = StyleSheet.create({
 
   borderRight: {borderBottomRightRadius: 5, borderTopRightRadius: 5},
 
-  homeTitle: {
-    justifyContent: 'space-around',
-    paddingTop: 10,
-    paddingBottom: 10,
-    backgroundColor: '#fff',
-    borderColor: '#ffcccc',
-  },
   btnBlock: {
     padding: 10,
     height: 45,

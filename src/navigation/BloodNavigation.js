@@ -5,13 +5,12 @@ import {Icon} from 'native-base';
 import {createStackNavigator} from '@react-navigation/stack';
 import Home, {HomeOptions} from '../components/screens/Home';
 import UserList from '../../src/components/UserList';
-import Login from '../../src/components/Login';
+import Login, {LoginOptions} from '../components/screens/Login';
 import {
   nabBg,
   txtBolder,
   txtColor,
   ml,
-  mr,
   selfAlignCenter,
 } from '../../src/components/styles';
 
@@ -24,33 +23,9 @@ const screenStyle = {
   headerTitleStyle: [txtBolder, selfAlignCenter],
 };
 
-const LoginStackScreen = ({navigation}) => (
+const LoginNavigator = ({navigation}) => (
   <LoginStack.Navigator screenOptions={screenStyle}>
-    <LoginStack.Screen
-      name="Login"
-      component={Login}
-      options={{
-        title: 'User Login',
-        headerLeft: () => (
-          <Icon
-            type="Entypo"
-            name="menu"
-            style={[txtColor, ml]}
-            onPress={() => navigation.openDrawer()}
-          />
-        ),
-        headerRight: () => {
-          return false ? (
-            <Icon
-              type="Entypo"
-              name="add-user"
-              style={[txtColor, mr]}
-              onPress={() => navigation.openDrawer()}
-            />
-          ) : null;
-        },
-      }}
-    />
+    <LoginStack.Screen name="Login" component={Login} options={LoginOptions} />
   </LoginStack.Navigator>
 );
 
@@ -90,7 +65,7 @@ export const BloodNavigation = () => {
       initialRouteName="Home"
       drawerContent={(props) => <SideBar {...props} />}>
       <BloodDrawerNavigation.Screen name="Home" component={HomeNavigator} />
-      <BloodDrawerNavigation.Screen name="Login" component={LoginStackScreen} />
+      <BloodDrawerNavigation.Screen name="Login" component={LoginNavigator} />
       <BloodDrawerNavigation.Screen
         name="UserList"
         component={UserListStackScreen}

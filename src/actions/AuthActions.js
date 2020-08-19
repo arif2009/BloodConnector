@@ -1,4 +1,4 @@
-import axios from 'axios';
+/*import axios from 'axios';
 import {AsyncStorage} from 'react-native';
 //import {Actions} from 'react-native-router-flux';
 import {
@@ -76,3 +76,4 @@ const loginUserSuccess = (dispatch, tokenInfo) => {
     //Actions.userList({token: tokenInfo.data.access_token, rightTitle: ''});
   });
 };
+*/

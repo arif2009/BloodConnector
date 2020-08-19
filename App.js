@@ -6,25 +6,33 @@
  * @flow strict-local
  */
 
-import React, {Component} from 'react';
-import {StatusBar} from 'react-native';
-import {Provider} from 'react-redux';
+import React from 'react';
+import {StatusBar, LogBox} from 'react-native';
+import {Provider, useSelector} from 'react-redux';
+import {persistStore} from 'redux-persist';
+import {PersistGate} from 'redux-persist/es/integration/react';
 import {createStore, applyMiddleware} from 'redux';
 import ReduxThunk from 'redux-thunk';
 import renders from './src/reducers';
 import AppNavigator from './src/navigation/AppNavigation';
 
+const store = createStore(renders, {}, applyMiddleware(ReduxThunk));
+const persistor = persistStore(store);
+
+LogBox.ignoreLogs(['Warning: Cannot update a component from inside']);
+
 const App = () => {
-  const store = createStore(renders, {}, applyMiddleware(ReduxThunk));
   return (
     <Provider store={store}>
-      <StatusBar
-        barStyle="light-content"
-        hidden={false}
-        backgroundColor="#ff8080"
-        translucent={false}
-      />
-      <AppNavigator />
+      <PersistGate persistor={persistor} loading={null}>
+        <StatusBar
+          barStyle="light-content"
+          hidden={false}
+          backgroundColor="#ff8080"
+          translucent={false}
+        />
+        <AppNavigator />
+      </PersistGate>
     </Provider>
   );
 };

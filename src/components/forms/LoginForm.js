@@ -3,6 +3,7 @@ import {Field, reduxForm} from 'redux-form';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {Item, Input, Spinner, Icon} from 'native-base';
 import {USER_LOGIN_FORM} from '../../actions/types';
+import styles from './styles';
 import submitLoginForm from './submitLoginForm';
 import {
   required,
@@ -41,7 +42,8 @@ const renderField = ({
           onChangeText={onChange}
           {...restInput}
           placeholder={placeholder}
-          autoCapitalize="none"></Input>
+          autoCapitalize="none"
+        />
         {touched && !!error && <Icon name="close-circle" />}
       </Item>
       {touched &&
@@ -55,7 +57,7 @@ const renderField = ({
   );
 };
 
-class UserComponent extends Component {
+class LoginComponent extends Component {
   constructor(props) {
     super(props);
   }
@@ -64,13 +66,7 @@ class UserComponent extends Component {
     const {handleSubmit, submitting, reset, submitFailed, error} = this.props;
 
     return (
-      <View
-        style={{
-          flex: 1,
-          flexDirection: 'column',
-          padding: 20,
-          justifyContent: 'flex-start',
-        }}>
+      <View style={styles.loginContainer}>
         {submitFailed && (
           <Text style={[mbSm, txtDanger, selfAlignCenter]}>{error}</Text>
         )}
@@ -111,6 +107,6 @@ class UserComponent extends Component {
 
 const LoginForm = reduxForm({
   form: USER_LOGIN_FORM, // a unique identifier for this form
-})(UserComponent);
+})(LoginComponent);
 
 export default LoginForm;

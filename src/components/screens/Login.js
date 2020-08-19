@@ -1,9 +1,18 @@
 import React, {Component} from 'react';
 import {View, Text, Linking} from 'react-native';
-import {Container, Content, Footer, FooterTab} from 'native-base';
-import LoginForm from './forms/LoginForm';
-import {bgColor, bgWhite, footerBg, selfAlignCenter, txtBlue} from './styles';
-import {twoLetterYear, version} from '../utills/we';
+import {Container, Content, Footer, FooterTab, Icon} from 'native-base';
+import LoginForm from '../forms/LoginForm';
+import {
+  justifyCenter,
+  bgWhite,
+  footerBg,
+  selfAlignCenter,
+  txtBlue,
+  txtColor,
+  ml,
+  mr,
+} from '../styles';
+import {twoLetterYear, version} from '../../utills/we';
 
 class Login extends Component {
   render() {
@@ -14,7 +23,7 @@ class Login extends Component {
         </Content>
         <Footer>
           <FooterTab style={footerBg}>
-            <View style={{justifyContent: 'center'}}>
+            <View style={justifyCenter}>
               <Text style={selfAlignCenter}>
                 © 2017-{twoLetterYear} - BloodConnector {version}
               </Text>
@@ -37,3 +46,27 @@ class Login extends Component {
 }
 
 export default Login;
+
+export const LoginOptions = (nav) => {
+  return {
+    title: 'User Login',
+    headerLeft: () => (
+      <Icon
+        type="Entypo"
+        name="menu"
+        style={[txtColor, ml]}
+        onPress={() => nav.navigation.openDrawer()}
+      />
+    ),
+    headerRight: () => {
+      return false ? (
+        <Icon
+          type="Entypo"
+          name="add-user"
+          style={[txtColor, mr]}
+          onPress={() => nav.navigation.openDrawer()}
+        />
+      ) : null;
+    },
+  };
+};

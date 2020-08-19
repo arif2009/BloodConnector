@@ -60,6 +60,7 @@ module.exports = StyleSheet.create({
   budgetTxt: {color: '#fff', fontSize: 18, fontWeight: 'bold'},
 
   sceneTitle: {alignSelf: 'center', color: '#fff'},
+  justifyCenter: {justifyContent: 'center'},
 
   drpIconLeft: {
     paddingLeft: 10,

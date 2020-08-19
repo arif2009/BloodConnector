@@ -11,8 +11,11 @@ import {
   txtBlue,
 } from '../../../src/components/styles';
 import {SS} from './styles';
+import {useSelector} from 'react-redux';
 
 const SideBar = (props) => {
+  const ps = useSelector((state) => state.persistedStore);
+  console.log('Arifur Rahman Sazal', ps.error);
   const INITIAL_STATE = {
     isLogedIn: false,
     fullName: '',
@@ -71,9 +74,7 @@ const SideBar = (props) => {
             )}
             label="Home"
             labelStyle={txtBolder}
-            onPress={() => {
-              props.navigation.navigate('Home');
-            }}
+            onPress={() => props.navigation.navigate('Home')}
           />
 
           {!state.isLogedIn && (
@@ -109,7 +110,7 @@ const SideBar = (props) => {
               )}
               label="Log In"
               labelStyle={txtBolder}
-              onPress={() => {}}
+              onPress={() => props.navigation.navigate('Login')}
             />
           )}
 

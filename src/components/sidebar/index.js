@@ -3,6 +3,7 @@ import {View, Text} from 'react-native';
 import Button from 'react-native-button';
 import {H1, H2, Icon} from 'native-base';
 import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
+import {logOut} from '../../actions/AuthActions';
 import AsyncStorage from '@react-native-community/async-storage';
 import {CardSection} from '../common';
 import {
@@ -11,11 +12,12 @@ import {
   txtBlue,
 } from '../../../src/components/styles';
 import {SS} from './styles';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 
 const SideBar = (props) => {
-  const ps = useSelector((state) => state.persistedStore);
-  console.log('Arifur Rahman Sazal', ps.error);
+  const dispatch = useDispatch();
+  const userData = useSelector((state) => state.persistedStore);
+  console.log('Arifur Rahman Sazal', userData.isLogedIn);
   const INITIAL_STATE = {
     isLogedIn: false,
     fullName: '',
@@ -27,15 +29,15 @@ const SideBar = (props) => {
 
   useEffect(() => {
     const getUserData = async () => {
-      const result = await AsyncStorage.getItem('@auth:userData');
-      const userInfo = result != null ? JSON.parse(result) : null;
+      //const result = await AsyncStorage.getItem('@auth:userData');
+      const userInfo = userData?.userInfo ?? INITIAL_STATE;
 
       setState((prevState) => ({
         ...prevState,
-        isLogedIn: !!userInfo?.access_token,
-        fullName: userInfo?.fullName,
-        bloodGroup: userInfo?.bloodGroup,
-        similarBlood: userInfo?.similarBlood,
+        isLogedIn: !!userInfo.access_token,
+        fullName: userInfo.fullName,
+        bloodGroup: userInfo.bloodGroup,
+        similarBlood: userInfo.similarBlood,
       }));
 
       console.log('userData', state);
@@ -43,7 +45,7 @@ const SideBar = (props) => {
     getUserData();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [userData]);
 
   return (
     <View style={[SS.drawerContainer]}>
@@ -125,7 +127,7 @@ const SideBar = (props) => {
               )}
               label="Log Out"
               labelStyle={txtBolder}
-              onPress={() => {}}
+              onPress={() => logOut(dispatch, props.navigation)}
             />
           )}
         </View>

@@ -6,6 +6,7 @@ import {
   LOGIN_USER,
   AUTH_INFO,
   AUTH_INFO_DISPATCHED,
+  LOG_OUT,
   CREATED_ACC,
 } from '../actions/types';
 
@@ -38,6 +39,8 @@ export default (state = INITIAL_STATE, action) => {
       };
     case LOGIN_USER_FAIL:
       return {...state, error: 'Login Failed.', password: '', loading: false};
+    case LOG_OUT:
+      return {...state, ...INITIAL_STATE};
     //case AUTH_INFO_DISPATCHED:
     //return {...state, ...INITIAL_STATE, userInfo: action.payload};
     case CREATED_ACC:

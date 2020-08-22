@@ -19,6 +19,7 @@ export const loadBloodGroups = () => {
 };
 
 const loadingFail = (dispatch, error) => {
+  console.log('loadingFail', error);
   dispatch({
     type: LOADING_BLOOD_FAIL,
     payload: error,

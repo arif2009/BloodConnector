@@ -11,12 +11,22 @@ import {StatusBar, LogBox} from 'react-native';
 import {Provider, useSelector} from 'react-redux';
 import {persistStore} from 'redux-persist';
 import {PersistGate} from 'redux-persist/es/integration/react';
-import {createStore, applyMiddleware} from 'redux';
+import {createStore, applyMiddleware, compose} from 'redux';
 import ReduxThunk from 'redux-thunk';
 import renders from './src/reducers';
 import AppNavigator from './src/navigation/AppNavigation';
 
-const store = createStore(renders, {}, applyMiddleware(ReduxThunk));
+let composeEnhancers = compose;
+
+if (__DEV__) {
+  composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+}
+
+const store = createStore(
+  renders,
+  {},
+  composeEnhancers(applyMiddleware(ReduxThunk)),
+);
 const persistor = persistStore(store);
 
 LogBox.ignoreLogs(['Warning: Cannot update a component from inside']);

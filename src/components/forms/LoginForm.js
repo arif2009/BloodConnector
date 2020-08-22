@@ -4,7 +4,7 @@ import {View, Text, TouchableOpacity} from 'react-native';
 import {Item, Input, Spinner, Icon} from 'native-base';
 import {USER_LOGIN_FORM} from '../../actions/types';
 import styles from './styles';
-import submitLoginForm from './submitLoginForm';
+import {submitLoginForm} from '../../actions/AuthActions';
 import {
   required,
   maxLength12,

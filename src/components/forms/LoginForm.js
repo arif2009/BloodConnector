@@ -4,7 +4,7 @@ import {View, Text, TouchableOpacity} from 'react-native';
 import {Item, Input, Spinner, Icon} from 'native-base';
 import {USER_LOGIN_FORM} from '../../actions/types';
 import styles from './styles';
-import {submitLoginForm} from '../../actions/AuthActions';
+import {loginUser} from '../../actions/AuthActions';
 import {
   required,
   maxLength12,
@@ -17,6 +17,7 @@ import {
   txtDanger,
   txtWarning,
   txtColor,
+  bgInfo,
   selfAlignCenter,
   button,
   mbSm,
@@ -95,8 +96,8 @@ class LoginComponent extends Component {
 
         <TouchableOpacity
           disabled={submitting}
-          onPress={handleSubmit(submitLoginForm)}
-          style={[button, mtSm, {backgroundColor: '#337ab7'}]}>
+          onPress={handleSubmit(loginUser)}
+          style={[button, mtSm, bgInfo]}>
           <Text style={[txtColor, txtMedium]}>Submit </Text>
           {submitting && <Spinner size={25} color="#fff" />}
         </TouchableOpacity>

@@ -11,7 +11,7 @@ export const logOut = (dispatch, navigation) => {
   return navigation.navigate('Home');
 };
 
-export const submitLoginForm = (values, dispatch, {navigation}) => {
+export const loginUser = (values, dispatch, {navigation}) => {
   const {email, password} = values;
   console.log('values', values, 'navigation', navigation);
 
@@ -77,38 +77,4 @@ export const passwordChanged = (text) => {
   };
 };
 
-export const loginUser = ({email, password}) => {
-  console.log('Login Clicked', email, password);
-  return (dispatch) => {
-    dispatch({type: LOGIN_USER});
-
-    const data = `grant_type=password&username=${encodeURIComponent(
-      email,
-    )}&password=${encodeURIComponent(password)}`;
-    const header = {
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-    };
-    const url = `${We.apiOrigin}token`;
-    axios
-      .post(url, data, header)
-      .then((tokenInfo) => loginUserSuccess(dispatch, tokenInfo))
-      .catch((error) => loginUserFail(dispatch, error));
-  };
-};
-
-const loginUserFail = (dispatch, error) => {
-  dispatch({type: LOGIN_USER_FAIL});
-  console.log(error);
-};
-
-const loginUserSuccess = (dispatch, tokenInfo) => {
-  AsyncStorage.setItem('@auth:userData', JSON.stringify(tokenInfo.data), () => {
-    console.log('Stored auth info');
-    dispatch({
-      type: LOGIN_USER_SUCCESS,
-      payload: tokenInfo.data,
-    });
-    //Actions.userList({token: tokenInfo.data.access_token, rightTitle: ''});
-  });
-};
 */

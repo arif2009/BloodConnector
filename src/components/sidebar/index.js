@@ -10,6 +10,7 @@ import {
   txtBolder,
   selfAlignCenter,
   txtBlue,
+  pXL,
 } from '../../../src/components/styles';
 import {SS} from './styles';
 import {useSelector, useDispatch} from 'react-redux';
@@ -52,7 +53,7 @@ const SideBar = (props) => {
       <DrawerContentScrollView>
         <View style={SS.drawerContent}>
           {!state.isLogedIn && (
-            <CardSection style={{padding: 25}}>
+            <CardSection style={pXL}>
               <Button onPress={() => {}}>
                 Please SignUp to join with us !
               </Button>

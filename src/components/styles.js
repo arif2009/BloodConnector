@@ -21,6 +21,7 @@ module.exports = StyleSheet.create({
   pL: {paddingLeft: 10},
   pR: {paddingRight: 10},
   pLg: {padding: 15},
+  pXL: {padding: 25},
 
   msm: {margin: 5},
   ml5: {marginLeft: 5},
@@ -46,6 +47,7 @@ module.exports = StyleSheet.create({
   bgWhatsApp: {backgroundColor: '#34A34F'},
   bgTwitter: {backgroundColor: '#1DA1F2'},
   bgFb: {backgroundColor: '#3B5998'},
+  bgInfo: {backgroundColor: '#337ab7'},
 
   borderBottom0: {borderBottomWidth: 0},
 

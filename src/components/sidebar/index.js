@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {View, Text} from 'react-native';
 import Button from 'react-native-button';
 import {H1, H2, Icon} from 'native-base';
+import {useSelector, useDispatch} from 'react-redux';
 import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
 import {logOut} from '../../actions/AuthActions';
 import {CardSection} from '../common';
@@ -12,7 +13,6 @@ import {
   pXL,
 } from '../../../src/components/styles';
 import {SS} from './styles';
-import {useSelector, useDispatch} from 'react-redux';
 
 const SideBar = (props) => {
   const dispatch = useDispatch();
@@ -28,7 +28,6 @@ const SideBar = (props) => {
 
   useEffect(() => {
     const getUserData = async () => {
-      //const result = await AsyncStorage.getItem('@auth:userData');
       const userInfo = userData?.userInfo ?? INITIAL_STATE;
 
       setState((prevState) => ({
@@ -38,8 +37,6 @@ const SideBar = (props) => {
         bloodGroup: userInfo.bloodGroup,
         similarBlood: userInfo.similarBlood,
       }));
-
-      console.log('userData', state);
     };
     getUserData();
 

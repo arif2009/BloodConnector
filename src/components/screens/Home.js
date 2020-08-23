@@ -167,10 +167,7 @@ const mapStateToProps = ({blood}) => {
 export default connect(mapStateToProps, {loadBloodGroups})(Home);
 
 export const HomeOptions = (nav) => {
-  const userData = useSelector((state) => state.persistedStore);
-  useEffect(() => {
-    console.log('HomeOptions', userData);
-  });
+  const {isLogedIn} = useSelector((state) => state.persistedStore);
 
   return {
     headerTitle: 'Blood Connector',
@@ -183,7 +180,7 @@ export const HomeOptions = (nav) => {
       />
     ),
     headerRight: () => {
-      return true ? (
+      return !isLogedIn ? (
         <Icon
           type="Entypo"
           name="add-user"

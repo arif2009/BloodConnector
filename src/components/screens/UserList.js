@@ -449,8 +449,6 @@ const mapStateToProps = ({persistedStore: {userInfo}, userLoading}) => {
 export default connect(mapStateToProps, {userFetch})(UserList);
 
 export const UserListOptions = (nav) => {
-  const userData = useSelector((state) => state.persistedStore);
-  //console.log('UserListOptions', userData);
   return {
     headerTitle: 'Blood Connector',
     headerLeft: () => (

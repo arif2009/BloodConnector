@@ -1,11 +1,6 @@
 import {
-  EMAIL_CHANGED,
-  PASSWORD_CHANGED,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
-  LOGIN_USER,
-  AUTH_INFO,
-  AUTH_INFO_DISPATCHED,
   LOG_OUT,
   CREATED_ACC,
 } from '../actions/types';
@@ -17,7 +12,6 @@ const INITIAL_STATE = {
   loading: false,
   isLogedIn: false,
   userInfo: null,
-  //key: 'in-auth-reducer',
 };
 
 export default (state = INITIAL_STATE, action) => {

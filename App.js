@@ -29,7 +29,10 @@ const store = createStore(
 );
 const persistor = persistStore(store);
 
-LogBox.ignoreLogs(['Warning: Cannot update a component from inside']);
+LogBox.ignoreLogs([
+  'Warning: Cannot update a component from inside',
+  'Animated.event now requires a second argument',
+]);
 
 const App = () => {
   return (

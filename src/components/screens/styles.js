@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderColor: '#ffcccc',
   },
+  colBg: {backgroundColor: '#fff', padding: 5},
 });
 
 export default styles;

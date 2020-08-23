@@ -2,6 +2,7 @@ import React from 'react';
 import {Field, reduxForm} from 'redux-form';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {Item, Input, Spinner, Icon} from 'native-base';
+import {useNavigation} from '@react-navigation/native';
 import {USER_LOGIN_FORM} from '../../actions/types';
 import styles from './styles';
 import {loginUser} from '../../actions/AuthActions';
@@ -59,7 +60,7 @@ const renderField = ({
 
 const LoginComponent = (props) => {
   const {handleSubmit, submitting, submitFailed, error} = props;
-
+  const navigation = useNavigation();
   return (
     <View style={styles.loginContainer}>
       {submitFailed && (
@@ -91,7 +92,9 @@ const LoginComponent = (props) => {
 
       <TouchableOpacity
         disabled={submitting}
-        onPress={handleSubmit(loginUser)}
+        onPress={handleSubmit((values, dispatch) =>
+          loginUser(values, dispatch, navigation),
+        )}
         style={[button, mtSm, bgInfo]}>
         <Text style={[txtColor, txtMedium]}>Submit </Text>
         {submitting && <Spinner size={25} color="#fff" />}

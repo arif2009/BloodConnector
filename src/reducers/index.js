@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import AuthReducer from './AuthReducer';
 import UserFormReducer from './UserFormReducer';
 import BloodReducer from './BloodReducer';
-import UserActionReducer from './UserActionReducer';
+import UserLoadingReducer from './UserLoadingReducer';
 
 const persistConfig = {
   key: 'root',
@@ -18,6 +18,6 @@ export default combineReducers({
   persistedStore: persistedReducer,
   userForm: UserFormReducer,
   blood: BloodReducer,
-  action: UserActionReducer,
+  userLoading: UserLoadingReducer,
   form: formReducer,
 });

@@ -1,15 +1,9 @@
 import axios from 'axios';
 import {apiOrigin} from '../utills/we';
-import {USER_UPDATE, USERS_FETCHING} from './types';
+import {USERS_FETCHING} from './types';
 
-export const userUpdate = ({prop, value}) => {
-  return {
-    type: USER_UPDATE,
-    payload: {prop, value},
-  };
-};
-
-export const userFetch = ({token}) => {
+export const userFetch = (token) => {
+  //console.log('token', token);
   return (dispatch) => {
     dispatch({type: USERS_FETCHING});
 

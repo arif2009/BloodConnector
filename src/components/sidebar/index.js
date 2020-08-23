@@ -4,7 +4,6 @@ import Button from 'react-native-button';
 import {H1, H2, Icon} from 'native-base';
 import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
 import {logOut} from '../../actions/AuthActions';
-import AsyncStorage from '@react-native-community/async-storage';
 import {CardSection} from '../common';
 import {
   txtBolder,
@@ -18,7 +17,6 @@ import {useSelector, useDispatch} from 'react-redux';
 const SideBar = (props) => {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.persistedStore);
-  console.log('Arifur Rahman Sazal', userData.isLogedIn);
   const INITIAL_STATE = {
     isLogedIn: false,
     fullName: '',
@@ -102,7 +100,7 @@ const SideBar = (props) => {
               )}
               label="Our Donors"
               labelStyle={txtBolder}
-              onPress={() => {}}
+              onPress={() => props.navigation.navigate('UserList')}
             />
           )}
 

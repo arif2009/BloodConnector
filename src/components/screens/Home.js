@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, {Component, useEffect} from 'react';
 import {StatusBar} from 'react-native';
 import ListView from 'deprecated-react-native-listview';
-import {connect} from 'react-redux';
+import {connect, useSelector} from 'react-redux';
 import {Container, Content, Fab, Icon, Spinner, H2, Button} from 'native-base';
 import Share from 'react-native-share';
 import {loadBloodGroups} from '../../actions';
@@ -167,6 +167,11 @@ const mapStateToProps = ({blood}) => {
 export default connect(mapStateToProps, {loadBloodGroups})(Home);
 
 export const HomeOptions = (nav) => {
+  const userData = useSelector((state) => state.persistedStore);
+  useEffect(() => {
+    console.log('HomeOptions', userData);
+  });
+
   return {
     headerTitle: 'Blood Connector',
     headerLeft: () => (
@@ -178,7 +183,7 @@ export const HomeOptions = (nav) => {
       />
     ),
     headerRight: () => {
-      return false ? (
+      return true ? (
         <Icon
           type="Entypo"
           name="add-user"

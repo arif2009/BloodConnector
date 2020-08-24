@@ -139,7 +139,7 @@ const SideBar = (props) => {
           )}
           label="Help"
           labelStyle={txtBolder}
-          onPress={() => {}}
+          onPress={() => props.navigation.navigate('Help')}
         />
       </View>
     </View>

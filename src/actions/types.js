@@ -9,7 +9,6 @@ export const AUTH_INFO_DISPATCHED = 'auth_info_dispached';
 
 export const USER_UPDATE = 'user_update';
 export const USER_CREATE = 'user_create';
-export const USERS_FETCHING = 'users_fetching';
 export const USER_SAVE_SUCCESS = 'user_save_success';
 export const USER_CREATE_FORM = 'frm_create_user';
 export const USER_LOGIN_FORM = 'frm_login_user';
@@ -19,3 +18,7 @@ export const LOADING_BLOOD_FAIL = 'loading_blood_fail';
 export const LOADING_BLOOD = 'loading_blood';
 
 export const CREATED_ACC = 'created_account';
+
+export const USERS_FETCHING = 'users_fetching';
+export const USERS_FETCHING_SUCCESS = 'users_fetching_success';
+export const USERS_FETCHING_ERROR = 'users_fetching_error';

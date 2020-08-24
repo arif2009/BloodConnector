@@ -1,11 +1,12 @@
 import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import SideBar from '../../src/components/sidebar';
 import {createStackNavigator} from '@react-navigation/stack';
+import SideBar from '../../src/components/sidebar';
+import {nabBg, txtBolder, selfAlignCenter} from '../../src/components/styles';
 import Home, {HomeOptions} from '../components/screens/Home';
 import UserList, {UserListOptions} from '../components/screens/UserList';
 import Login, {LoginOptions} from '../components/screens/Login';
-import {nabBg, txtBolder, selfAlignCenter} from '../../src/components/styles';
+import Help, {HelpOptions} from '../components/screens/Help';
 
 const UserListStack = createStackNavigator();
 const LoginStack = createStackNavigator();
@@ -40,6 +41,12 @@ const UserListNavigator = ({navigation}) => (
   </UserListStack.Navigator>
 );
 
+const HelpNavigator = ({navigation}) => (
+  <UserListStack.Navigator screenOptions={screenStyle}>
+    <UserListStack.Screen name="Help" component={Help} options={HelpOptions} />
+  </UserListStack.Navigator>
+);
+
 const BloodDrawerNavigation = createDrawerNavigator();
 
 export const BloodNavigation = () => {
@@ -53,6 +60,7 @@ export const BloodNavigation = () => {
         name="UserList"
         component={UserListNavigator}
       />
+      <BloodDrawerNavigation.Screen name="Help" component={HelpNavigator} />
     </BloodDrawerNavigation.Navigator>
   );
 };

@@ -15,7 +15,6 @@ import {
 } from 'native-base';
 import {Col, Row, Grid} from 'react-native-easy-grid';
 import Modal from 'react-native-modalbox';
-import {useSelector} from 'react-redux';
 import {InfoModal} from '../common/InfoModal';
 import {userFetch} from '../../actions';
 import {

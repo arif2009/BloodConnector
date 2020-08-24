@@ -3,7 +3,6 @@ import {apiOrigin} from '../utills/we';
 import {USERS_FETCHING} from './types';
 
 export const userFetch = (token) => {
-  //console.log('token', token);
   return (dispatch) => {
     dispatch({type: USERS_FETCHING});
 

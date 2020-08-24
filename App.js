@@ -8,7 +8,7 @@
 
 import React from 'react';
 import {StatusBar, LogBox} from 'react-native';
-import {Provider, useSelector} from 'react-redux';
+import {Provider} from 'react-redux';
 import {persistStore} from 'redux-persist';
 import {PersistGate} from 'redux-persist/es/integration/react';
 import {createStore, applyMiddleware, compose} from 'redux';
